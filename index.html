@@ -1,153 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <title>AIアプリ開発 料金表</title>
-
+  <meta charset="UTF-8">
+  <title>AIアプリ開発 料金早見表</title>
   <!-- Tailwind CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
-  <!-- A4 印刷設定 -->
+  <!-- A4 印刷調整 -->
   <style>
+    @page      { size: A4; margin: 20mm; }
     @media print {
-      @page { size: A4; margin: 12mm }
-      body { margin: 0 }
+      html,body { width: 190mm; height: 277mm; }
     }
   </style>
 </head>
-<body class="text-gray-800 leading-relaxed">
-  <div class="max-w-[794px] mx-auto p-6 space-y-8">
-
-    <!-- タイトル -->
-    <header class="text-center">
-      <h1 class="text-3xl font-bold tracking-tight">AIアプリ開発&nbsp;—&nbsp;料金早見表</h1>
-      <p class="mt-1 text-sm text-gray-500">※金額はすべて税抜・API／クラウド実費別途</p>
+<body class="font-sans text-gray-800 leading-relaxed">
+  <main class="mx-auto max-w-[794px] px-6 py-4">
+    <!-- Header -->
+    <header class="mb-6 text-center">
+      <h1 class="text-2xl font-bold tracking-wide">AIアプリ開発&nbsp;―&nbsp;料金早見表</h1>
+      <p class="text-sm text-gray-500">（広告・LP自動生成向け）</p>
     </header>
 
-    <!-- 料金ロジック -->
-    <section>
-      <h2 class="text-xl font-semibold border-b pb-1 mb-3">1. 計算ロジック</h2>
-      <ol class="list-decimal pl-6 space-y-1 text-sm">
-        <li><strong>開発費 =</strong> <code>ベース開発費 + (生成対象×2万円) + (外部連携×1万円)</code></li>
-        <li><strong>月次保守 =</strong> <code>開発費 × 15%（最低1万円）</code></li>
-        <li>API／クラウド従量分は<span class="underline">実費精算</span></li>
-      </ol>
+    <!-- Pricing Logic -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2 border-b pb-1">1. 料金ロジック</h2>
+      <p class="mb-3">
+        <span class="font-bold">「部品数 × 定価 + 月次保守 15%」</span> だけで計算できるシンプル設計です。
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border px-2 py-1 text-left">項目</th>
+              <th class="border px-2 py-1 text-left">内容</th>
+              <th class="border px-2 py-1 text-right">一律料金（税抜）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-2 py-1 font-medium">① ベース開発費</td>
+              <td class="border px-2 py-1">仕様整理・プロトタイプ・環境構築</td>
+              <td class="border px-2 py-1 text-right">¥50,000</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border px-2 py-1 font-medium">② 生成対象</td>
+              <td class="border px-2 py-1">「〇〇を自動生成」1機能ごと</td>
+              <td class="border px-2 py-1 text-right">¥20,000 / 機能</td>
+            </tr>
+            <tr>
+              <td class="border px-2 py-1 font-medium">③ 外部連携</td>
+              <td class="border px-2 py-1">広告プラットフォームやCMS 1サービスごと</td>
+              <td class="border px-2 py-1 text-right">¥10,000 / 連携</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border px-2 py-1 font-medium">④ 月次保守・API実費</td>
+              <td class="border px-2 py-1">①+②+③ の <span class="font-semibold">15%</span><br><span class="text-xs">(最低 ¥10,000/月)</span></td>
+              <td class="border px-2 py-1 text-right">変動</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-3 text-xs text-gray-500">※API/クラウド従量課金は実費精算</p>
     </section>
 
-    <!-- 基本料金 -->
-    <section>
-      <h2 class="text-xl font-semibold border-b pb-1 mb-3">2. 基本料金</h2>
-      <table class="w-full text-sm border border-gray-300">
-        <thead class="bg-gray-100">
-          <tr>
-            <th class="py-1 px-2 text-left">項目</th>
-            <th class="py-1 px-2 text-left">内容</th>
-            <th class="py-1 px-2 text-right">一律料金</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="py-1 px-2 font-medium">ベース開発費</td>
-            <td class="py-1 px-2">仕様整理・環境構築・プロトタイプ</td>
-            <td class="py-1 px-2 text-right">¥50,000</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2 font-medium">生成対象</td>
-            <td class="py-1 px-2">広告文・LP など<br>自動生成する対象 1種類ごと</td>
-            <td class="py-1 px-2 text-right">¥20,000／機能</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2 font-medium">外部連携</td>
-            <td class="py-1 px-2">広告プラットフォーム / CMS など<br>1サービスごと</td>
-            <td class="py-1 px-2 text-right">¥10,000／連携</td>
-          </tr>
-          <tr class="border-t bg-gray-50">
-            <td class="py-1 px-2 font-medium">月次保守</td>
-            <td class="py-1 px-2">開発費の15%<br><span class="text-xs">(最低¥10,000/月)</span></td>
-            <td class="py-1 px-2 text-right">例）開発費¥100,000 → ¥15,000/月</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Simulation -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2 border-b pb-1">2. 料金シミュレーション</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border px-2 py-1 text-left">ケース</th>
+              <th class="border px-2 py-1 text-right">開発費</th>
+              <th class="border px-2 py-1 text-right">月額保守</th>
+              <th class="border px-2 py-1 text-center">納期目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-2 py-1">① 広告文のみ生成</td>
+              <td class="border px-2 py-1 text-right">¥70,000</td>
+              <td class="border px-2 py-1 text-right">¥10,500</td>
+              <td class="border px-2 py-1 text-center">1‒2週</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border px-2 py-1">② LP自動生成</td>
+              <td class="border px-2 py-1 text-right">¥70,000</td>
+              <td class="border px-2 py-1 text-right">¥10,500</td>
+              <td class="border px-2 py-1 text-center">2週</td>
+            </tr>
+            <tr>
+              <td class="border px-2 py-1">③ 広告＋LP（Google&Meta連携）</td>
+              <td class="border px-2 py-1 text-right">¥110,000</td>
+              <td class="border px-2 py-1 text-right">¥16,500</td>
+              <td class="border px-2 py-1 text-center">3‒4週</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border px-2 py-1">④ フルファネル</td>
+              <td class="border px-2 py-1 text-right">¥140,000</td>
+              <td class="border px-2 py-1 text-right">¥21,000</td>
+              <td class="border px-2 py-1 text-center">1.5‒2か月</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <!-- シミュレーション -->
-    <section>
-      <h2 class="text-xl font-semibold border-b pb-1 mb-3">3. 価格シミュレーション</h2>
-      <table class="w-full text-sm border border-gray-300">
-        <thead class="bg-gray-100">
-          <tr>
-            <th class="py-1 px-2 text-left">ケース</th>
-            <th class="py-1 px-2 text-right">開発費</th>
-            <th class="py-1 px-2 text-right">月次保守</th>
-            <th class="py-1 px-2 text-center">納期目安</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="py-1 px-2">広告文生成のみ</td>
-            <td class="py-1 px-2 text-right">¥70,000</td>
-            <td class="py-1 px-2 text-right">¥10,500</td>
-            <td class="py-1 px-2 text-center">1〜2週</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2">LP自動生成のみ</td>
-            <td class="py-1 px-2 text-right">¥70,000</td>
-            <td class="py-1 px-2 text-right">¥10,500</td>
-            <td class="py-1 px-2 text-center">約2週</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2">広告＋LP（Google/Meta連携）</td>
-            <td class="py-1 px-2 text-right">¥110,000</td>
-            <td class="py-1 px-2 text-right">¥16,500</td>
-            <td class="py-1 px-2 text-center">3〜4週</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2">フルファネル＋ダッシュボード</td>
-            <td class="py-1 px-2 text-right">¥140,000</td>
-            <td class="py-1 px-2 text-right">¥21,000</td>
-            <td class="py-1 px-2 text-center">1.5〜2か月</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Options -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold mb-2 border-b pb-1">3. 追加オプション</h2>
+      <ul class="list-disc ml-6 space-y-1 text-sm">
+        <li><span class="font-medium">UI/UXデザイン：</span> ¥30,000〜（高品質LPデザイン）</li>
+        <li><span class="font-medium">カスタムモデル学習：</span> ¥50,000〜（自社データでFine-tune）</li>
+        <li><span class="font-medium">成果報酬：</span> 売上 or ROAS改善の5%（大規模広告運用時）</li>
+      </ul>
     </section>
 
-    <!-- オプション -->
-    <section>
-      <h2 class="text-xl font-semibold border-b pb-1 mb-3">4. 追加オプション</h2>
-      <table class="w-full text-sm border border-gray-300">
-        <thead class="bg-gray-100">
-          <tr>
-            <th class="py-1 px-2 text-left">オプション</th>
-            <th class="py-1 px-2 text-right">料金</th>
-            <th class="py-1 px-2 text-left">概要</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="py-1 px-2">UI/UXデザイン</td>
-            <td class="py-1 px-2 text-right">¥30,000〜</td>
-            <td class="py-1 px-2">LPに高品質デザインを適用</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2">カスタムモデル学習</td>
-            <td class="py-1 px-2 text-right">¥50,000〜</td>
-            <td class="py-1 px-2">自社データでファインチューニング</td>
-          </tr>
-          <tr class="border-t">
-            <td class="py-1 px-2">成果報酬</td>
-            <td class="py-1 px-2 text-right">売上 or ROAS改善の5%</td>
-            <td class="py-1 px-2">大規模広告運用時に適用可</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- フッター -->
-    <footer class="pt-4 border-t text-xs text-gray-500">
-      <p>ご不明点はお気軽にご相談ください。</p>
-      <p class="mt-1">© 2025 YourName / AI Solutions</p>
+    <!-- Footnotes -->
+    <footer class="text-xs text-gray-500">
+      <p>※表示価格は税抜。インボイス制度対応可。</p>
+      <p>※内容は予告なく変更になる場合があります。</p>
     </footer>
-
-  </div>
+  </main>
 </body>
 </html>
