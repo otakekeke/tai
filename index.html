@@ -1,152 +1,123 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iPhone × OneDrive 写真大量共有マニュアル</title>
+  <title>OneDrive で卒業試験の過去問写真を共有する</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 印刷用スタイル -->
+  <style>
+    @media print {
+      .print-hidden { display: none !important; }
+      body { background: #fff !important; color: #000 !important; }
+      a::after { content: " (" attr(href) ")"; font-size: 90%; }
+    }
+  </style>
 </head>
 
 <body class="bg-slate-50 text-gray-800 leading-relaxed">
-  <!-- --------------------------------------------------------------
-       ヒーローセクション
-  --------------------------------------------------------------- -->
+
+  <!-- ヒーロー -->
   <header class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white">
-    <div class="max-w-4xl mx-auto px-6 py-16 text-center">
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
-        iPhone だけで OneDrive を使い<br class="hidden sm:block" />
-        <span class="whitespace-nowrap">卒業試験の過去問写真</span>を
-        <span class="whitespace-nowrap">一気に共有！</span>
+    <div class="max-w-4xl mx-auto px-6 py-14 text-center">
+      <h1 class="text-3xl sm:text-5xl font-extrabold mb-3">
+        iPhone × OneDrive で<br class="hidden sm:inline" />
+        <span class="whitespace-nowrap">過去問写真を一気に共有</span>
       </h1>
-      <p class="text-lg sm:text-xl">手取り足取りガイド（保存 → アップロード → 共有リンク）</p>
+      <p class="text-lg sm:text-xl">自動同期なし・手動アップロードだけでOK</p>
     </div>
   </header>
 
-  <!-- --------------------------------------------------------------
-       手順タイムライン
-  --------------------------------------------------------------- -->
+  <!-- 手順 -->
   <main class="max-w-4xl mx-auto px-6 py-12">
     <ol class="relative border-l-4 border-blue-600">
-      <!-- Step 1 -->
+      <!-- 1 -->
       <li class="mb-12 ml-6">
         <span
           class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >1</span
-        >
-        <h2 class="text-xl font-semibold mb-1">OneDrive アプリをインストール＆サインイン</h2>
+        >1</span>
+        <h2 class="text-xl font-semibold mb-1">OneDrive を入れてサインイン</h2>
         <p>
-          App Store で「OneDrive」を検索しインストール。起動後、<strong>Microsoft アカウント</strong>でサインインします。
+          App&nbsp;Store で <strong>OneDrive</strong> をインストールし、Microsoft アカウントでサインインします。<br />
+          自動「カメラアップロード」は <strong class="text-red-500">オフ</strong> のままでかまいません。
         </p>
-        <!-- :contentReference[oaicite:0]{index=0} -->
       </li>
 
-      <!-- Step 2 -->
+      <!-- 2 -->
       <li class="mb-12 ml-6">
         <span
           class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >2</span
-        >
-        <h2 class="text-xl font-semibold mb-1">カメラアップロードをON（自動バックアップ）</h2>
-        <p>
-          アプリ右下<strong>アカウント</strong>
-          → <strong>設定</strong>
-          → <strong>カメラアップロード</strong>
-          を有効化。<br />
-          これで iPhone の写真が自動で OneDrive に同期されます（HEIF 形式もOK）。
-        </p>
-        <!-- :contentReference[oaicite:1]{index=1} -->
-      </li>
-
-      <!-- Step 3 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >3</span
-        >
+        >2</span>
         <h2 class="text-xl font-semibold mb-1">共有用フォルダーを作成</h2>
         <p>
-          画面上部の <span class="inline-block align-middle">➕</span> アイコン →
-          <strong>フォルダー</strong> を選択し<br />
-          「<em>過去問-YYMMDD</em>」など分かりやすい名前で作成します。
+          アプリ下部 <strong>＋</strong> → <strong>フォルダー</strong>。<br />
+          例: <kbd class="px-1 bg-slate-200 rounded">過去問-2025-数学</kbd>
         </p>
-        <!-- :contentReference[oaicite:2]{index=2} -->
       </li>
 
-      <!-- Step 4 -->
+      <!-- 3 -->
       <li class="mb-12 ml-6">
         <span
           class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >4</span
-        >
+        >3</span>
         <h2 class="text-xl font-semibold mb-1">写真を一括アップロード</h2>
         <p>
-          作成したフォルダーを開き、再度 <span class="inline-block align-middle">➕</span> →
-          <strong>写真をアップロード</strong> でカメラロールから複数選択。<br />
-          iCloud 最適化を使っている場合は、一時的に「オリジナルをダウンロード」に切り替えてください。
+          フォルダーを開き <strong>＋</strong> → <strong>写真をアップロード</strong>。<br />
+          カメラロールから必要な写真だけ複数選択し、右上 <strong>アップロード</strong>。
         </p>
-        <!-- :contentReference[oaicite:3]{index=3} -->
       </li>
 
-      <!-- Step 5 -->
+      <!-- 4 -->
       <li class="mb-12 ml-6">
         <span
           class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >5</span
-        >
-        <h2 class="text-xl font-semibold mb-1">共有リンクを発行</h2>
+        >4</span>
+        <h2 class="text-xl font-semibold mb-1">リンクを発行してコピー</h2>
         <p>
-          フォルダーを<strong>長押し</strong> → <strong>共有</strong> →
-          <em>リンクをコピー</em> で共有 URL を取得。<br />
-          「<strong>編集を許可</strong>」をOFFにすると閲覧専用になり安全です。必要なら「<strong>有効期限</strong>」も設定しましょう。
+          フォルダーを<strong>長押し</strong> → <strong>共有</strong> → <strong>リンクをコピー</strong>。<br />
+          <label class="inline-flex items-center space-x-1">
+            <input type="checkbox" checked disabled />
+            <span>編集を許可</span>
+          </label>
+          をオフにすると閲覧専用。必要なら <strong>有効期限</strong> も。
         </p>
-        <!-- :contentReference[oaicite:4]{index=4} -->
       </li>
 
-      <!-- Step 6 -->
+      <!-- 5 -->
       <li class="mb-0 ml-6">
         <span
           class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >6</span
-        >
-        <h2 class="text-xl font-semibold mb-1">相手側（受信側）の操作</h2>
+        >5</span>
+        <h2 class="text-xl font-semibold mb-1">リンクを仲間へ送る</h2>
         <p>
-          共有リンクをタップするとブラウザまたは OneDrive アプリが開き、写真を一括ダウンロード可能です。<br />
-          <span class="text-sm text-gray-600"
-            >※ OneDrive アプリが無い場合でも Safari/Chrome で閲覧・保存できます。</span
-          >
+          LINE / Teams / メールなど好きな方法で URL を共有。<br />
+          受信側はリンクを開くだけで写真を閲覧・一括ダウンロードできます。
         </p>
-        <!-- :contentReference[oaicite:5]{index=5} -->
       </li>
     </ol>
 
     <!-- Tips -->
     <section class="bg-white rounded-2xl shadow-lg p-6 mt-12">
-      <h3 class="text-lg font-semibold mb-2">📚 ちょい便利 Tips</h3>
+      <h3 class="text-lg font-semibold mb-2">📌 便利 Tips</h3>
       <ul class="list-disc ml-6 space-y-1">
-        <li>
-          <strong>フォルダー整理</strong>：科目別や年代別にサブフォルダーを作り、検索性アップ。
-        </li>
-        <li>
-          <strong>リンク期限</strong>：共有後に自動失効させたい場合は「有効期限」を設定。（Microsoft 365
-          サブスクで利用可）
-          <!-- :contentReference[oaicite:6]{index=6} -->
-        </li>
-        <li>
-          <strong>ファイルサイズ縮小</strong>：写真アプリで事前に「ファイルサイズを小」にしてからアップロードすると転送が速い。
-        </li>
-        <li>
-          <strong>Files アプリから共有不可</strong>：iOS 標準の「ファイル」アプリでは共有設定ができないため、必ず OneDrive アプリを使う。
-          <!-- :contentReference[oaicite:7]{index=7} -->
-        </li>
+        <li>フォルダーを科目別・年度別で分けると後で探しやすい。</li>
+        <li>送信後にリンクを無効化したい場合は、<em>リンク設定 → リンクを削除</em>。</li>
+        <li>ファイルサイズが重い場合は、写真を <strong>“ファイルサイズ小”</strong> に書き出してからアップロード。</li>
       </ul>
     </section>
+
+    <!-- 印刷案内 -->
+    <p class="print-hidden mt-10 text-center text-sm text-gray-500">
+      ※ ブラウザで開いて <kbd class="px-1 bg-slate-200 rounded">⌘ + P</kbd>（Windows: <kbd class="px-1 bg-slate-200 rounded">Ctrl + P</kbd>）で PDF 保存できます。
+    </p>
   </main>
 
-  <!-- --------------------------------------------------------------
-       フッター
-  --------------------------------------------------------------- -->
+  <!-- フッター -->
   <footer class="text-center py-8 text-sm text-gray-500">
-    © 2025 OneDrive How-To. All rights reserved.
+    © 2025 Share Guide. All rights reserved.
   </footer>
 </body>
 </html>
+```
