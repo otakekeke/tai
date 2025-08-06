@@ -1,168 +1,152 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>AIツール開発 料金早見シート</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iPhone × OneDrive 写真大量共有マニュアル</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-relaxed">
-  <div class="max-w-4xl mx-auto p-6">
-    <!-- ── ヘッダー ───────────────────────── -->
-    <header class="mb-8">
-      <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">AIツール開発 料金早見シート</h1>
-      <p class="mt-2 text-sm text-gray-600">1ポイント＝<span class="font-bold">10,000円</span>（市場相場の約1/5）</p>
-    </header>
 
-    <!-- ── 計算式 ─────────────────────────── -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">計算式</h2>
-      <p class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-        <span class="font-mono text-lg">料金 ＝ (機能合計ポイント) × 10,000円</span>
-      </p>
+<body class="bg-slate-50 text-gray-800 leading-relaxed">
+  <!-- --------------------------------------------------------------
+       ヒーローセクション
+  --------------------------------------------------------------- -->
+  <header class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white">
+    <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
+        iPhone だけで OneDrive を使い<br class="hidden sm:block" />
+        <span class="whitespace-nowrap">卒業試験の過去問写真</span>を
+        <span class="whitespace-nowrap">一気に共有！</span>
+      </h1>
+      <p class="text-lg sm:text-xl">手取り足取りガイド（保存 → アップロード → 共有リンク）</p>
+    </div>
+  </header>
+
+  <!-- --------------------------------------------------------------
+       手順タイムライン
+  --------------------------------------------------------------- -->
+  <main class="max-w-4xl mx-auto px-6 py-12">
+    <ol class="relative border-l-4 border-blue-600">
+      <!-- Step 1 -->
+      <li class="mb-12 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >1</span
+        >
+        <h2 class="text-xl font-semibold mb-1">OneDrive アプリをインストール＆サインイン</h2>
+        <p>
+          App Store で「OneDrive」を検索しインストール。起動後、<strong>Microsoft アカウント</strong>でサインインします。
+        </p>
+        <!-- :contentReference[oaicite:0]{index=0} -->
+      </li>
+
+      <!-- Step 2 -->
+      <li class="mb-12 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >2</span
+        >
+        <h2 class="text-xl font-semibold mb-1">カメラアップロードをON（自動バックアップ）</h2>
+        <p>
+          アプリ右下<strong>アカウント</strong>
+          → <strong>設定</strong>
+          → <strong>カメラアップロード</strong>
+          を有効化。<br />
+          これで iPhone の写真が自動で OneDrive に同期されます（HEIF 形式もOK）。
+        </p>
+        <!-- :contentReference[oaicite:1]{index=1} -->
+      </li>
+
+      <!-- Step 3 -->
+      <li class="mb-12 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >3</span
+        >
+        <h2 class="text-xl font-semibold mb-1">共有用フォルダーを作成</h2>
+        <p>
+          画面上部の <span class="inline-block align-middle">➕</span> アイコン →
+          <strong>フォルダー</strong> を選択し<br />
+          「<em>過去問-YYMMDD</em>」など分かりやすい名前で作成します。
+        </p>
+        <!-- :contentReference[oaicite:2]{index=2} -->
+      </li>
+
+      <!-- Step 4 -->
+      <li class="mb-12 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >4</span
+        >
+        <h2 class="text-xl font-semibold mb-1">写真を一括アップロード</h2>
+        <p>
+          作成したフォルダーを開き、再度 <span class="inline-block align-middle">➕</span> →
+          <strong>写真をアップロード</strong> でカメラロールから複数選択。<br />
+          iCloud 最適化を使っている場合は、一時的に「オリジナルをダウンロード」に切り替えてください。
+        </p>
+        <!-- :contentReference[oaicite:3]{index=3} -->
+      </li>
+
+      <!-- Step 5 -->
+      <li class="mb-12 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >5</span
+        >
+        <h2 class="text-xl font-semibold mb-1">共有リンクを発行</h2>
+        <p>
+          フォルダーを<strong>長押し</strong> → <strong>共有</strong> →
+          <em>リンクをコピー</em> で共有 URL を取得。<br />
+          「<strong>編集を許可</strong>」をOFFにすると閲覧専用になり安全です。必要なら「<strong>有効期限</strong>」も設定しましょう。
+        </p>
+        <!-- :contentReference[oaicite:4]{index=4} -->
+      </li>
+
+      <!-- Step 6 -->
+      <li class="mb-0 ml-6">
+        <span
+          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
+          >6</span
+        >
+        <h2 class="text-xl font-semibold mb-1">相手側（受信側）の操作</h2>
+        <p>
+          共有リンクをタップするとブラウザまたは OneDrive アプリが開き、写真を一括ダウンロード可能です。<br />
+          <span class="text-sm text-gray-600"
+            >※ OneDrive アプリが無い場合でも Safari/Chrome で閲覧・保存できます。</span
+          >
+        </p>
+        <!-- :contentReference[oaicite:5]{index=5} -->
+      </li>
+    </ol>
+
+    <!-- Tips -->
+    <section class="bg-white rounded-2xl shadow-lg p-6 mt-12">
+      <h3 class="text-lg font-semibold mb-2">📚 ちょい便利 Tips</h3>
+      <ul class="list-disc ml-6 space-y-1">
+        <li>
+          <strong>フォルダー整理</strong>：科目別や年代別にサブフォルダーを作り、検索性アップ。
+        </li>
+        <li>
+          <strong>リンク期限</strong>：共有後に自動失効させたい場合は「有効期限」を設定。（Microsoft 365
+          サブスクで利用可）
+          <!-- :contentReference[oaicite:6]{index=6} -->
+        </li>
+        <li>
+          <strong>ファイルサイズ縮小</strong>：写真アプリで事前に「ファイルサイズを小」にしてからアップロードすると転送が速い。
+        </li>
+        <li>
+          <strong>Files アプリから共有不可</strong>：iOS 標準の「ファイル」アプリでは共有設定ができないため、必ず OneDrive アプリを使う。
+          <!-- :contentReference[oaicite:7]{index=7} -->
+        </li>
+      </ul>
     </section>
+  </main>
 
-    <!-- ── 機能別ポイント表 ─────────────────── -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">機能別ポイント表</h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-sm text-left border rounded-lg">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="px-3 py-2 whitespace-nowrap">カテゴリ</th>
-              <th class="px-3 py-2 whitespace-nowrap">機能例</th>
-              <th class="px-3 py-2 whitespace-nowrap">目安人日</th>
-              <th class="px-3 py-2 whitespace-nowrap text-center">ポイント</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y">
-            <!-- AIコア -->
-            <tr>
-              <td class="px-3 py-2 font-semibold">AIコア</td>
-              <td class="px-3 py-2">テキスト生成</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">AIコア</td>
-              <td class="px-3 py-2">画像生成</td>
-              <td class="px-3 py-2">1.5d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-            <tr>
-              <td class="px-3 py-2 font-semibold">AIコア</td>
-              <td class="px-3 py-2">マルチモーダル（画像→テキスト／音声）</td>
-              <td class="px-3 py-2">2d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-
-            <!-- 外部連携 -->
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">外部連携</td>
-              <td class="px-3 py-2">API／Webhook（1件）</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr>
-              <td class="px-3 py-2 font-semibold">外部連携</td>
-              <td class="px-3 py-2">決済・サブスク連携</td>
-              <td class="px-3 py-2">2d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">外部連携</td>
-              <td class="px-3 py-2">SNS/広告アカウント自動入稿</td>
-              <td class="px-3 py-2">2d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-
-            <!-- データ・認証 -->
-            <tr>
-              <td class="px-3 py-2 font-semibold">データ・認証</td>
-              <td class="px-3 py-2">メール+SNS認証 &amp; ユーザ管理</td>
-              <td class="px-3 py-2">2d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">データ・認証</td>
-              <td class="px-3 py-2">データベース CRUD（1テーブル）</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr>
-              <td class="px-3 py-2 font-semibold">データ・認証</td>
-              <td class="px-3 py-2">分析ダッシュボード（グラフ3種）</td>
-              <td class="px-3 py-2">2d</td>
-              <td class="px-3 py-2 text-center font-bold">2</td>
-            </tr>
-
-            <!-- UI / 画面 -->
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">UI / 画面</td>
-              <td class="px-3 py-2">LPビルダー（テンプレ＋公開）</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr>
-              <td class="px-3 py-2 font-semibold">UI / 画面</td>
-              <td class="px-3 py-2">管理画面（テーブル &amp; フィルタ）</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">UI / 画面</td>
-              <td class="px-3 py-2">ドラッグ＆ドロップ式エディタ</td>
-              <td class="px-3 py-2">3d</td>
-              <td class="px-3 py-2 text-center font-bold">3</td>
-            </tr>
-
-            <!-- インフラ / その他 -->
-            <tr>
-              <td class="px-3 py-2 font-semibold">インフラ / その他</td>
-              <td class="px-3 py-2">ホスティング &amp; CI/CD</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr class="bg-gray-50">
-              <td class="px-3 py-2 font-semibold">インフラ / その他</td>
-              <td class="px-3 py-2">モニタリング &amp; アラート</td>
-              <td class="px-3 py-2">1d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-            <tr>
-              <td class="px-3 py-2 font-semibold">インフラ / その他</td>
-              <td class="px-3 py-2">独自ドメイン &amp; SSL 設定</td>
-              <td class="px-3 py-2">0.5d</td>
-              <td class="px-3 py-2 text-center font-bold">1</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ── 見積もり手順 ──────────────────── -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">見積もり手順</h2>
-      <ol class="list-decimal pl-6 space-y-1">
-        <li>必要な機能を <span class="font-bold">表から選択</span> する</li>
-        <li>各機能の <span class="font-bold">ポイントを合計</span> する</li>
-        <li><span class="font-mono">合計ポイント × 10,000円</span> が開発費</li>
-      </ol>
-    </section>
-
-    <!-- ── サンプル計算 ───────────────────── -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold mb-4">サンプル計算</h2>
-      <p class="bg-green-50 border border-green-100 p-4 rounded-lg">
-        広告文生成 (1) + LPビルダー (1) + 管理画面 (1) + 認証 (2) + ホスティング (1) = 
-        <span class="font-bold text-green-700">6 pt → 60,000円</span>
-      </p>
-    </section>
-
-    <!-- ── フッター ──────────────────── -->
-    <footer class="text-xs text-gray-500">
-      ※ API利用料・クラウド費用は実費別途。<br>
-      ※ 0.5人日以下の軽微な修正は「調整チケット」1ptで対応します。
-    </footer>
-  </div>
+  <!-- --------------------------------------------------------------
+       フッター
+  --------------------------------------------------------------- -->
+  <footer class="text-center py-8 text-sm text-gray-500">
+    © 2025 OneDrive How-To. All rights reserved.
+  </footer>
 </body>
 </html>
