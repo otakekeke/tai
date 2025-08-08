@@ -1,152 +1,347 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iPhone × OneDrive 写真大量共有マニュアル</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>大嶽さんの完全マニュアル（判別済み）</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
-<body class="bg-slate-50 text-gray-800 leading-relaxed">
-  <!-- --------------------------------------------------------------
-       ヒーローセクション
-  --------------------------------------------------------------- -->
-  <header class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white">
-    <div class="max-w-4xl mx-auto px-6 py-16 text-center">
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
-        iPhone だけで OneDrive を使い<br class="hidden sm:block" />
-        <span class="whitespace-nowrap">卒業試験の過去問写真</span>を
-        <span class="whitespace-nowrap">一気に共有！</span>
-      </h1>
-      <p class="text-lg sm:text-xl">手取り足取りガイド（保存 → アップロード → 共有リンク）</p>
+<body class="bg-slate-950 text-slate-100 selection:bg-amber-300 selection:text-slate-900">
+  <!-- ===== HERO ===== -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-fuchsia-500/10 to-cyan-400/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-6xl px-6 py-16">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-black tracking-tight">
+            大嶽｜ケアテック開発 × 業務自動化 × 生成AI
+          </h1>
+          <p class="mt-3 text-amber-300/90 font-medium">
+            介護現場の課題を、超わかりやすいツールと自動化で解決する人
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-200 text-sm">日本語での丁寧解説が好み</span>
+            <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-200 text-sm">TypeScript / React / Next.js</span>
+            <span class="px-3 py-1 rounded-full bg-fuchsia-500/20 text-fuchsia-200 text-sm">NestJS / PostgreSQL</span>
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-200 text-sm">現場ファースト</span>
+          </div>
+        </div>
+        <div class="grid gap-2 text-sm text-slate-300">
+          <div>拠点：日本（JST）</div>
+          <div>肩書：ケアテック開発部／個人事業「嶽ノ子」</div>
+          <div>モットー：<span class="font-semibold">「現場の5分短縮は、経営の利益」</span></div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- --------------------------------------------------------------
-       手順タイムライン
-  --------------------------------------------------------------- -->
-  <main class="max-w-4xl mx-auto px-6 py-12">
-    <ol class="relative border-l-4 border-blue-600">
-      <!-- Step 1 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >1</span
-        >
-        <h2 class="text-xl font-semibold mb-1">OneDrive アプリをインストール＆サインイン</h2>
-        <p>
-          App Store で「OneDrive」を検索しインストール。起動後、<strong>Microsoft アカウント</strong>でサインインします。
-        </p>
-        <!-- :contentReference[oaicite:0]{index=0} -->
-      </li>
+  <!-- ===== DISCLAIMER ===== -->
+  <section class="mx-auto max-w-6xl px-6">
+    <div class="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 md:p-6">
+      <h2 class="text-xl font-bold text-amber-300">⚠️ 重要：履歴の判別について</h2>
+      <p class="mt-2 leading-relaxed">
+        会話履歴には<strong>2人分</strong>の内容が混在しています。本ページは、内容を精査し
+        <span class="font-semibold">「大嶽さん本人の履歴（確度：高／中）」</span>と
+        <span class="font-semibold">「別人の履歴（推定）」</span>を明確に区分しました。各項目に確度バッジを付与しています。
+      </p>
+      <div class="mt-3 flex flex-wrap gap-2 text-xs">
+        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200">確度：高</span>
+        <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-200">確度：中</span>
+        <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-200">別人の履歴（推定）</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- Step 2 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >2</span
-        >
-        <h2 class="text-xl font-semibold mb-1">カメラアップロードをON（自動バックアップ）</h2>
-        <p>
-          アプリ右下<strong>アカウント</strong>
-          → <strong>設定</strong>
-          → <strong>カメラアップロード</strong>
-          を有効化。<br />
-          これで iPhone の写真が自動で OneDrive に同期されます（HEIF 形式もOK）。
-        </p>
-        <!-- :contentReference[oaicite:1]{index=1} -->
-      </li>
+  <!-- ===== WHO AM I ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="md:col-span-2 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h2 class="text-2xl font-bold">私はこんな人</h2>
+        <ul class="mt-4 space-y-3 leading-relaxed">
+          <li class="flex gap-3">
+            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
+            <span>介護会社の<strong>ケアテック開発</strong>に従事しつつ、<strong>現場経験</strong>もあるため、実務に即したプロダクト設計が得意。</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
+            <span><strong>生成AI×業務自動化</strong>の内製支援・小規模アプリの受託開発を実施。<strong>RPA的“単純反復の自動化”</strong>が大好物。</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="px-2 py-0.5 h-min rounded bg-sky-500/20 text-sky-200 text-xs">確度：中</span>
+            <span>対象ユーザーは<strong>介護事業者</strong>中心。現場が直感的に使えるUIと、導入コストの低さを重視。</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
+            <span>解説は<strong>小学生にも伝わる比喩</strong>（車のたとえが特に好き）で、<strong>行ごとの理由説明</strong>まで丁寧に。</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="px-2 py-0.5 h-min rounded bg-sky-500/20 text-sky-200 text-xs">確度：中</span>
+            <span>スポーツカー好き。<strong>三菱GTO（Z15A/SR）</strong>の話題はテンション上がる。</span>
+          </li>
+        </ul>
+      </div>
+      <aside class="rounded-2xl border border-slate-700 bg-slate-900/60 p-6">
+        <h3 class="text-lg font-semibold">コミュニケーション指針</h3>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>・抽象論より<strong>具体例→手順→コピペ可</strong>が嬉しい</li>
+          <li>・<strong>前提の明示</strong>、<strong>設計意図</strong>、<strong>なぜその選択か</strong>を筋道立てて説明</li>
+          <li>・結論→理由→代替案→注意点の順で簡潔に</li>
+          <li>・必要なら<strong>自動で実行／雛形化</strong>まで踏み込んでOK</li>
+        </ul>
+        <div class="mt-4 text-xs text-slate-400">※ フラットな関係性での対話を好みます。</div>
+      </aside>
+    </div>
+  </section>
 
-      <!-- Step 3 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >3</span
-        >
-        <h2 class="text-xl font-semibold mb-1">共有用フォルダーを作成</h2>
-        <p>
-          画面上部の <span class="inline-block align-middle">➕</span> アイコン →
-          <strong>フォルダー</strong> を選択し<br />
-          「<em>過去問-YYMMDD</em>」など分かりやすい名前で作成します。
-        </p>
-        <!-- :contentReference[oaicite:2]{index=2} -->
-      </li>
+  <!-- ===== STACK & SKILLS ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-2xl font-bold">技術スタック & スキル（本人確度ラベル付き）</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-700 p-5">
+          <h3 class="font-semibold">フロントエンド</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><span class="badge">TS/React/Next.js</span> <b class="text-emerald-300 text-xs">確度：高</b></li>
+            <li>Headless UI / Tailwind <b class="text-emerald-300 text-xs">確度：高</b></li>
+            <li>UI方針：<span class="italic">現場が迷わない</span>・横並びレイアウト優先 <b class="text-emerald-300 text-xs">確度：高</b></li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-700 p-5">
+          <h3 class="font-semibold">バックエンド</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>NestJS / Node.js <b class="text-emerald-300 text-xs">確度：高</b></li>
+            <li>PostgreSQL / Prisma / SQL最適化（JOIN設計） <b class="text-emerald-300 text-xs">確度：高</b></li>
+            <li>認証：Microsoft Identity / MSAL <b class="text-sky-300 text-xs">確度：中</b></li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-700 p-5">
+          <h3 class="font-semibold">AI・自動化</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>OpenAI API／プロンプト設計／社内自動化Bot <b class="text-emerald-300 text-xs">確度：高</b></li>
+            <li>LangChain / LlamaIndex（必要最小限に） <b class="text-sky-300 text-xs">確度：中</b></li>
+            <li>GAS / Google Form / Sheets連携 <b class="text-emerald-300 text-xs">確度：高</b></li>
+          </ul>
+        </div>
+      </div>
+      <style>
+        .badge{display:inline-block;padding:0.125rem 0.5rem;border-radius:9999px;background:rgba(148,163,184,.15)}
+      </style>
+    </div>
+  </section>
 
-      <!-- Step 4 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >4</span
-        >
-        <h2 class="text-xl font-semibold mb-1">写真を一括アップロード</h2>
-        <p>
-          作成したフォルダーを開き、再度 <span class="inline-block align-middle">➕</span> →
-          <strong>写真をアップロード</strong> でカメラロールから複数選択。<br />
-          iCloud 最適化を使っている場合は、一時的に「オリジナルをダウンロード」に切り替えてください。
+  <!-- ===== PROJECTS ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <h2 class="text-2xl font-bold">主な取り組み・プロジェクト</h2>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">① コア業務の帳票・レポート基盤</h3>
+        <p class="mt-2 text-sm leading-relaxed">
+          S3に格納されたExcelを条件で検索・参照・出力する仕組み。<br/>
+          UIは「<strong>検索条件が揃ってなくてもプレビューは常に可能</strong>」「Excel DLはプレビュー実行済みが前提」など現場ルールを明確化。
         </p>
-        <!-- :contentReference[oaicite:3]{index=3} -->
-      </li>
+        <div class="mt-3 text-xs text-emerald-300">確度：高</div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">② 現場オペ改善UI（SelectMonthUI 等）</h3>
+        <p class="mt-2 text-sm leading-relaxed">
+          モーダル間のデータ同期／月変更時の自動Refetch／検索ボタン撤廃など、<strong>操作の最短距離</strong>を実現。
+        </p>
+        <div class="mt-3 text-xs text-emerald-300">確度：高</div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">③ 生成AI活用の社内教育／セミナー事業構想</h3>
+        <p class="mt-2 text-sm leading-relaxed">
+          初学者でも成果が出る「課題→最小アプリで自動化」型カリキュラム。<br/>
+          テスト合否で業務アサインを自動化する運用モデルを検討。
+        </p>
+        <div class="mt-3 text-xs text-sky-300">確度：中</div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">④ X自動投稿エージェント</h3>
+        <p class="mt-2 text-sm leading-relaxed">
+          OpenAPI仕様での自動投稿・原稿生成。TweepyやGASでの運用事例あり。<br/>
+          将来は営業メールの自動パーソナライズも想定。
+        </p>
+        <div class="mt-3 text-xs text-sky-300">確度：中</div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Step 5 -->
-      <li class="mb-12 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >5</span
-        >
-        <h2 class="text-xl font-semibold mb-1">共有リンクを発行</h2>
-        <p>
-          フォルダーを<strong>長押し</strong> → <strong>共有</strong> →
-          <em>リンクをコピー</em> で共有 URL を取得。<br />
-          「<strong>編集を許可</strong>」をOFFにすると閲覧専用になり安全です。必要なら「<strong>有効期限</strong>」も設定しましょう。
-        </p>
-        <!-- :contentReference[oaicite:4]{index=4} -->
+  <!-- ===== TIMELINE ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <h2 class="text-2xl font-bold">タイムライン（抜粋）</h2>
+    <ol class="mt-6 relative border-s border-slate-700">
+      <li class="ms-6 pb-6">
+        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
+        <div class="text-sm text-slate-400">2024-07</div>
+        <div class="font-semibold">TypeScript/Reactの学習を本格化、現場向けUI設計指針を固める</div>
+        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
       </li>
-
-      <!-- Step 6 -->
-      <li class="mb-0 ml-6">
-        <span
-          class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full ring-4 ring-slate-50 text-white text-sm font-bold"
-          >6</span
-        >
-        <h2 class="text-xl font-semibold mb-1">相手側（受信側）の操作</h2>
-        <p>
-          共有リンクをタップするとブラウザまたは OneDrive アプリが開き、写真を一括ダウンロード可能です。<br />
-          <span class="text-sm text-gray-600"
-            >※ OneDrive アプリが無い場合でも Safari/Chrome で閲覧・保存できます。</span
-          >
-        </p>
-        <!-- :contentReference[oaicite:5]{index=5} -->
+      <li class="ms-6 pb-6">
+        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
+        <div class="text-sm text-slate-400">2024-08〜09</div>
+        <div class="font-semibold">モーダル・テーブル等の共通UIコンポーネント整備／PostgreSQL設計に着手</div>
+        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
+      </li>
+      <li class="ms-6 pb-6">
+        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-sky-400"></span>
+        <div class="text-sm text-slate-400">2024-10～</div>
+        <div class="font-semibold">DBスキーマ把握／Seedデータ作成と挿入順制御の自動化に取り組む</div>
+        <div class="text-xs text-sky-300 mt-1">確度：中</div>
+      </li>
+      <li class="ms-6 pb-6">
+        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-sky-400"></span>
+        <div class="text-sm text-slate-400">2025-01～</div>
+        <div class="font-semibold">AI活用セミナー／受託の事業構想を明文化。「嶽ノ子」名義での提供を検討</div>
+        <div class="text-xs text-sky-300 mt-1">確度：中</div>
+      </li>
+      <li class="ms-6 pb-6">
+        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
+        <div class="text-sm text-slate-400">2025-04～</div>
+        <div class="font-semibold">帳票参照・Excel出力の実装方針を具体化／S3構成やUXルールを整理</div>
+        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
       </li>
     </ol>
+  </section>
 
-    <!-- Tips -->
-    <section class="bg-white rounded-2xl shadow-lg p-6 mt-12">
-      <h3 class="text-lg font-semibold mb-2">📚 ちょい便利 Tips</h3>
-      <ul class="list-disc ml-6 space-y-1">
-        <li>
-          <strong>フォルダー整理</strong>：科目別や年代別にサブフォルダーを作り、検索性アップ。
+  <!-- ===== PREFERENCES ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="text-xl font-semibold">説明スタイルの好み</h3>
+        <ul class="mt-3 space-y-2 text-sm leading-relaxed">
+          <li>✅ まず結論 → 次に根拠 → 代替案 → リスク</li>
+          <li>✅ 初学者向けに噛み砕いて、<strong>車の比喩</strong>でイメージ化</li>
+          <li>✅ コードは<strong>行ごとに理由解説</strong>つき</li>
+          <li>✅ 使う人が「なぜ？」と迷わないUI</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="text-xl font-semibold">運用・購買の制約</h3>
+        <ul class="mt-3 space-y-2 text-sm leading-relaxed">
+          <li>・会社の支払いは<strong>特定クレカのみ</strong>（請求手段の選定に影響）</li>
+          <li>・学習投資は<strong>Udemy等のスポット購入</strong>を好む傾向</li>
+          <li>・現場導入は<strong>最小ステップで効果</strong>が出る構成を優先</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAR & HOBBIES ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h3 class="text-xl font-semibold">趣味・関心</h3>
+      <div class="mt-3 grid gap-4 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-700 p-4">
+          <div class="text-sm text-slate-400">車</div>
+          <div class="font-semibold">三菱GTO（Z15A/SR）／ECU・吸排気談義</div>
+          <div class="mt-1 text-xs text-sky-300">確度：中</div>
+        </div>
+        <div class="rounded-xl border border-slate-700 p-4">
+          <div class="text-sm text-slate-400">学び</div>
+          <div class="font-semibold">TypeScript／React／NestJSの基礎から運用まで</div>
+          <div class="mt-1 text-xs text-emerald-300">確度：高</div>
+        </div>
+        <div class="rounded-xl border border-slate-700 p-4">
+          <div class="text-sm text-slate-400">事業</div>
+          <div class="font-semibold">AIセミナー×受託開発の小回りビジネス</div>
+          <div class="mt-1 text-xs text-sky-300">確度：中</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO WORK WITH ME ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-2xl font-bold">最高の成果を出すための関わり方</h2>
+      <div class="mt-4 grid gap-6 md:grid-cols-2">
+        <div class="rounded-xl border border-slate-700 p-5">
+          <h3 class="font-semibold">Do（歓迎）</h3>
+          <ul class="mt-2 space-y-2 text-sm">
+            <li>・要件→UI草案→API設計→実装の<strong>一本道</strong>に整理</li>
+            <li>・<strong>コピペOK</strong>な雛形と.env例、<strong>実行手順</strong>の明示</li>
+            <li>・画面は<strong>横並び主体</strong>でレスポンシブ最適化</li>
+            <li>・<strong>SLA/制約/運用ルール</strong>も先に決める</li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-slate-700 p-5">
+          <h3 class="font-semibold">Don't（非推奨）</h3>
+          <ul class="mt-2 space-y-2 text-sm">
+            <li>・抽象論だけで終わる提案</li>
+            <li>・前提や環境差分を黙ったままの“動くはず”</li>
+            <li>・現場の操作負荷を置き去りにしたUI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ATTRIBUTION / SECOND PERSON ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <div class="rounded-2xl border border-rose-500/40 bg-rose-500/10 p-6">
+      <h2 class="text-2xl font-bold text-rose-200">別人の履歴（推定）と線引き</h2>
+      <p class="mt-2 text-sm leading-relaxed">
+        以下のテーマは、文脈・継続性・語彙から<strong>別人の履歴</strong>と推定しています。
+        本マニュアルの本人像には<strong>含めていません</strong>。
+      </p>
+      <ul class="mt-4 grid gap-3 md:grid-cols-2 text-sm">
+        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4">
+          ・臨床検査技師試験向けの詳細な問題集依頼（微生物学、抗酸菌、輸血学、尿沈渣、CRE分類 等）
         </li>
-        <li>
-          <strong>リンク期限</strong>：共有後に自動失効させたい場合は「有効期限」を設定。（Microsoft 365
-          サブスクで利用可）
-          <!-- :contentReference[oaicite:6]{index=6} -->
+        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4">
+          ・医学的機序の答案作成依頼（ネフローゼ症候群の蛋白動態 等）
         </li>
-        <li>
-          <strong>ファイルサイズ縮小</strong>：写真アプリで事前に「ファイルサイズを小」にしてからアップロードすると転送が速い。
-        </li>
-        <li>
-          <strong>Files アプリから共有不可</strong>：iOS 標準の「ファイル」アプリでは共有設定ができないため、必ず OneDrive アプリを使う。
-          <!-- :contentReference[oaicite:7]{index=7} -->
+        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4 md:col-span-2">
+          ・医療系国家試験レベルの暗記法・語呂合わせの相談の連投
         </li>
       </ul>
-    </section>
-  </main>
+      <p class="mt-4 text-xs text-rose-100/80">
+        ※ もし上記がご本人であれば、該当セクションの確度を更新し統合版を再生成します。
+      </p>
+    </div>
+  </section>
 
-  <!-- --------------------------------------------------------------
-       フッター
-  --------------------------------------------------------------- -->
-  <footer class="text-center py-8 text-sm text-gray-500">
-    © 2025 OneDrive How-To. All rights reserved.
+  <!-- ===== QUICK CARDS ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10">
+    <h2 class="text-2xl font-bold">クイックカード</h2>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
+        <div class="text-sm text-slate-400">好きな解説</div>
+        <div class="font-semibold">「車の整備」に例える設計解説</div>
+      </div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
+        <div class="text-sm text-slate-400">レビュー観点</div>
+        <div class="font-semibold">意図→代替→副作用→撤退条件</div>
+      </div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
+        <div class="text-sm text-slate-400">成果の定義</div>
+        <div class="font-semibold">現場の1クリック削減＝価値</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT-LIKE (NO PERSONAL INFO) ===== -->
+  <section class="mx-auto max-w-6xl px-6 mt-10 mb-16">
+    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-2xl font-bold">このマニュアルの使い方</h2>
+      <ol class="mt-4 list-decimal ms-6 space-y-2 text-sm leading-relaxed">
+        <li>要件を送る際は「誰が・いつ・どこで・何に困るか」を最初に。</li>
+        <li>欲しい成果物（UIスクショ／API仕様／スクリプト）を明記。</li>
+        <li>制約（端末・支払手段・SLA）をセットで共有。</li>
+        <li>可能ならデータ構造（例：テーブル定義／サンプルCSV）を添付。</li>
+      </ol>
+      <p class="mt-4 text-xs text-slate-400">
+        ※ 個人情報や社内機微情報は、共有範囲と匿名化ルールを確認のうえ扱います。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-slate-800 py-8">
+    <div class="mx-auto max-w-6xl px-6 text-xs text-slate-400">
+      本ページは提供された会話履歴をもとに、確度ラベル付きで編纂しています。更新依頼があればいつでもどうぞ。© 2025
+    </div>
   </footer>
 </body>
 </html>
