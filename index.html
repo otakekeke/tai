@@ -1,347 +1,350 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>大嶽さんの完全マニュアル（判別済み）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>私の現状まとめ | 介護 × AI 起業準備</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="現職・副業・起業準備・スキル・強み/課題を一枚で。介護業界向けオーダーメイドAIアプリ立ち上げに向けた現在地。">
 </head>
-<body class="bg-slate-950 text-slate-100 selection:bg-amber-300 selection:text-slate-900">
-  <!-- ===== HERO ===== -->
+<body class="bg-slate-50 text-slate-900">
+  <!-- HERO -->
   <header class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-fuchsia-500/10 to-cyan-400/10 blur-3xl"></div>
-    <div class="relative mx-auto max-w-6xl px-6 py-16">
-      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h1 class="text-3xl md:text-5xl font-black tracking-tight">
-            大嶽｜ケアテック開発 × 業務自動化 × 生成AI
-          </h1>
-          <p class="mt-3 text-amber-300/90 font-medium">
-            介護現場の課題を、超わかりやすいツールと自動化で解決する人
-          </p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-200 text-sm">日本語での丁寧解説が好み</span>
-            <span class="px-3 py-1 rounded-full bg-sky-500/20 text-sky-200 text-sm">TypeScript / React / Next.js</span>
-            <span class="px-3 py-1 rounded-full bg-fuchsia-500/20 text-fuchsia-200 text-sm">NestJS / PostgreSQL</span>
-            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-200 text-sm">現場ファースト</span>
-          </div>
-        </div>
-        <div class="grid gap-2 text-sm text-slate-300">
-          <div>拠点：日本（JST）</div>
-          <div>肩書：ケアテック開発部／個人事業「嶽ノ子」</div>
-          <div>モットー：<span class="font-semibold">「現場の5分短縮は、経営の利益」</span></div>
-        </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 opacity-90"></div>
+    <div class="relative mx-auto max-w-6xl px-6 py-16 text-white">
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight">私の現状まとめ</h1>
+      <p class="mt-4 max-w-3xl text-lg md:text-xl leading-relaxed">
+        介護業界の現場課題を、AIとアプリ開発で解決するために。<br class="hidden md:block">
+        「個人開発 → 受注拡大 → 事業化」を目指す現在地の記録。
+      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-3 text-sm/6">
+        <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/30">24歳</span>
+        <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/30">社会人2年目</span>
+        <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/30">介護 × IT × AI</span>
+        <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/30">個人事業主（開業届済）</span>
       </div>
+      <p class="mt-6 text-xs/6 opacity-90">最終更新：2025-08-13</p>
     </div>
   </header>
 
-  <!-- ===== DISCLAIMER ===== -->
-  <section class="mx-auto max-w-6xl px-6">
-    <div class="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 md:p-6">
-      <h2 class="text-xl font-bold text-amber-300">⚠️ 重要：履歴の判別について</h2>
-      <p class="mt-2 leading-relaxed">
-        会話履歴には<strong>2人分</strong>の内容が混在しています。本ページは、内容を精査し
-        <span class="font-semibold">「大嶽さん本人の履歴（確度：高／中）」</span>と
-        <span class="font-semibold">「別人の履歴（推定）」</span>を明確に区分しました。各項目に確度バッジを付与しています。
-      </p>
-      <div class="mt-3 flex flex-wrap gap-2 text-xs">
-        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-200">確度：高</span>
-        <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-200">確度：中</span>
-        <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-200">別人の履歴（推定）</span>
+  <main class="mx-auto max-w-6xl px-6 py-12 space-y-12">
+    <!-- 基本プロフィール -->
+    <section id="profile" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+        <h2 class="text-xl font-semibold">基本プロフィール</h2>
+        <dl class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+          <div>
+            <dt class="text-slate-500">現職</dt>
+            <dd class="font-medium">セントケアホールディング / IT部門・プロジェクト開発課</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">勤務形態</dt>
+            <dd class="font-medium">週3リモート（副業/個人開発の余力あり）</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">役割</dt>
+            <dd class="font-medium">プログラマ → システムエンジニア育成段階</dd>
+          </div>
+          <div>
+            <dt class="text-slate-500">学歴</dt>
+            <dd class="font-medium">大学で人工知能を専攻</dd>
+          </div>
+          <div class="sm:col-span-2">
+            <dt class="text-slate-500">入社動機（当初説明）</dt>
+            <dd class="font-medium">
+              現場課題の発見 → ITで解決。自由度が高く、アイデアを形にして人を助ける。AIを多角的に活用し、一連のアプリ開発知識を深く学べる。<br>
+              上場企業でありながらベンチャー気質な仕事内容に惹かれて入社。
+            </dd>
+          </div>
+          <div class="sm:col-span-2">
+            <dt class="text-slate-500">部署体制</dt>
+            <dd class="font-medium">
+              部署設立3年目。新卒採用は毎年1名のみ。先輩2名＋自分（3人目）。
+            </dd>
+          </div>
+        </dl>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== WHO AM I ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="grid gap-6 md:grid-cols-3">
-      <div class="md:col-span-2 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h2 class="text-2xl font-bold">私はこんな人</h2>
-        <ul class="mt-4 space-y-3 leading-relaxed">
-          <li class="flex gap-3">
-            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
-            <span>介護会社の<strong>ケアテック開発</strong>に従事しつつ、<strong>現場経験</strong>もあるため、実務に即したプロダクト設計が得意。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
-            <span><strong>生成AI×業務自動化</strong>の内製支援・小規模アプリの受託開発を実施。<strong>RPA的“単純反復の自動化”</strong>が大好物。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="px-2 py-0.5 h-min rounded bg-sky-500/20 text-sky-200 text-xs">確度：中</span>
-            <span>対象ユーザーは<strong>介護事業者</strong>中心。現場が直感的に使えるUIと、導入コストの低さを重視。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="px-2 py-0.5 h-min rounded bg-emerald-500/20 text-emerald-200 text-xs">確度：高</span>
-            <span>解説は<strong>小学生にも伝わる比喩</strong>（車のたとえが特に好き）で、<strong>行ごとの理由説明</strong>まで丁寧に。</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="px-2 py-0.5 h-min rounded bg-sky-500/20 text-sky-200 text-xs">確度：中</span>
-            <span>スポーツカー好き。<strong>三菱GTO（Z15A/SR）</strong>の話題はテンション上がる。</span>
-          </li>
+      <div class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+        <h3 class="text-lg font-semibold">収入・働き方</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><span class="text-slate-500">手取り：</span><span class="font-medium">月20万円</span></li>
+          <li><span class="text-slate-500">ボーナス：</span><span class="font-medium">約20万円</span></li>
+          <li><span class="text-slate-500">副業：</span><span class="font-medium">AI APIアプリ開発の受託 ほか（詳細は下記）</span></li>
+          <li><span class="text-slate-500">備考：</span><span class="font-medium">給与水準は不満。だがリモート×副業余力は大きな利点。</span></li>
         </ul>
       </div>
-      <aside class="rounded-2xl border border-slate-700 bg-slate-900/60 p-6">
-        <h3 class="text-lg font-semibold">コミュニケーション指針</h3>
-        <ul class="mt-3 space-y-2 text-sm">
-          <li>・抽象論より<strong>具体例→手順→コピペ可</strong>が嬉しい</li>
-          <li>・<strong>前提の明示</strong>、<strong>設計意図</strong>、<strong>なぜその選択か</strong>を筋道立てて説明</li>
-          <li>・結論→理由→代替案→注意点の順で簡潔に</li>
-          <li>・必要なら<strong>自動で実行／雛形化</strong>まで踏み込んでOK</li>
-        </ul>
-        <div class="mt-4 text-xs text-slate-400">※ フラットな関係性での対話を好みます。</div>
-      </aside>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== STACK & SKILLS ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-2xl font-bold">技術スタック & スキル（本人確度ラベル付き）</h2>
-      <div class="mt-6 grid gap-6 md:grid-cols-3">
-        <div class="rounded-xl border border-slate-700 p-5">
-          <h3 class="font-semibold">フロントエンド</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li><span class="badge">TS/React/Next.js</span> <b class="text-emerald-300 text-xs">確度：高</b></li>
-            <li>Headless UI / Tailwind <b class="text-emerald-300 text-xs">確度：高</b></li>
-            <li>UI方針：<span class="italic">現場が迷わない</span>・横並びレイアウト優先 <b class="text-emerald-300 text-xs">確度：高</b></li>
+    <!-- 現在の主業務（基幹システム刷新） -->
+    <section id="core-project" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">現在の主業務：基幹システム刷新プロジェクト</h2>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">プロジェクト概要</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>既存の内製基幹システムを廃止し、新システムを再構築。</li>
+            <li>法改正対応は外部アプリで実装し、足りない機能を内製で連携。</li>
+            <li>入社直前に始動。自分はプログラマとして参画（SE育成中）。</li>
           </ul>
         </div>
-        <div class="rounded-xl border border-slate-700 p-5">
-          <h3 class="font-semibold">バックエンド</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li>NestJS / Node.js <b class="text-emerald-300 text-xs">確度：高</b></li>
-            <li>PostgreSQL / Prisma / SQL最適化（JOIN設計） <b class="text-emerald-300 text-xs">確度：高</b></li>
-            <li>認証：Microsoft Identity / MSAL <b class="text-sky-300 text-xs">確度：中</b></li>
-          </ul>
-        </div>
-        <div class="rounded-xl border border-slate-700 p-5">
-          <h3 class="font-semibold">AI・自動化</h3>
-          <ul class="mt-3 space-y-2 text-sm">
-            <li>OpenAI API／プロンプト設計／社内自動化Bot <b class="text-emerald-300 text-xs">確度：高</b></li>
-            <li>LangChain / LlamaIndex（必要最小限に） <b class="text-sky-300 text-xs">確度：中</b></li>
-            <li>GAS / Google Form / Sheets連携 <b class="text-emerald-300 text-xs">確度：高</b></li>
+        <div>
+          <h3 class="font-semibold mb-2">ここまでで得たこと</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>アプリ開発の「常識」「基本プロセス」を一通り習得。</li>
+            <li>社内外（他部署・外部ベンダ）との調整フローを経験。</li>
           </ul>
         </div>
       </div>
-      <style>
-        .badge{display:inline-block;padding:0.125rem 0.5rem;border-radius:9999px;background:rgba(148,163,184,.15)}
-      </style>
-    </div>
-  </section>
-
-  <!-- ===== PROJECTS ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <h2 class="text-2xl font-bold">主な取り組み・プロジェクト</h2>
-    <div class="mt-6 grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">① コア業務の帳票・レポート基盤</h3>
-        <p class="mt-2 text-sm leading-relaxed">
-          S3に格納されたExcelを条件で検索・参照・出力する仕組み。<br/>
-          UIは「<strong>検索条件が揃ってなくてもプレビューは常に可能</strong>」「Excel DLはプレビュー実行済みが前提」など現場ルールを明確化。
-        </p>
-        <div class="mt-3 text-xs text-emerald-300">確度：高</div>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">② 現場オペ改善UI（SelectMonthUI 等）</h3>
-        <p class="mt-2 text-sm leading-relaxed">
-          モーダル間のデータ同期／月変更時の自動Refetch／検索ボタン撤廃など、<strong>操作の最短距離</strong>を実現。
-        </p>
-        <div class="mt-3 text-xs text-emerald-300">確度：高</div>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">③ 生成AI活用の社内教育／セミナー事業構想</h3>
-        <p class="mt-2 text-sm leading-relaxed">
-          初学者でも成果が出る「課題→最小アプリで自動化」型カリキュラム。<br/>
-          テスト合否で業務アサインを自動化する運用モデルを検討。
-        </p>
-        <div class="mt-3 text-xs text-sky-300">確度：中</div>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">④ X自動投稿エージェント</h3>
-        <p class="mt-2 text-sm leading-relaxed">
-          OpenAPI仕様での自動投稿・原稿生成。TweepyやGASでの運用事例あり。<br/>
-          将来は営業メールの自動パーソナライズも想定。
-        </p>
-        <div class="mt-3 text-xs text-sky-300">確度：中</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TIMELINE ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <h2 class="text-2xl font-bold">タイムライン（抜粋）</h2>
-    <ol class="mt-6 relative border-s border-slate-700">
-      <li class="ms-6 pb-6">
-        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
-        <div class="text-sm text-slate-400">2024-07</div>
-        <div class="font-semibold">TypeScript/Reactの学習を本格化、現場向けUI設計指針を固める</div>
-        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
-      </li>
-      <li class="ms-6 pb-6">
-        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
-        <div class="text-sm text-slate-400">2024-08〜09</div>
-        <div class="font-semibold">モーダル・テーブル等の共通UIコンポーネント整備／PostgreSQL設計に着手</div>
-        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
-      </li>
-      <li class="ms-6 pb-6">
-        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-sky-400"></span>
-        <div class="text-sm text-slate-400">2024-10～</div>
-        <div class="font-semibold">DBスキーマ把握／Seedデータ作成と挿入順制御の自動化に取り組む</div>
-        <div class="text-xs text-sky-300 mt-1">確度：中</div>
-      </li>
-      <li class="ms-6 pb-6">
-        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-sky-400"></span>
-        <div class="text-sm text-slate-400">2025-01～</div>
-        <div class="font-semibold">AI活用セミナー／受託の事業構想を明文化。「嶽ノ子」名義での提供を検討</div>
-        <div class="text-xs text-sky-300 mt-1">確度：中</div>
-      </li>
-      <li class="ms-6 pb-6">
-        <span class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full bg-emerald-400"></span>
-        <div class="text-sm text-slate-400">2025-04～</div>
-        <div class="font-semibold">帳票参照・Excel出力の実装方針を具体化／S3構成やUXルールを整理</div>
-        <div class="text-xs text-emerald-300 mt-1">確度：高</div>
-      </li>
-    </ol>
-  </section>
-
-  <!-- ===== PREFERENCES ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="text-xl font-semibold">説明スタイルの好み</h3>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed">
-          <li>✅ まず結論 → 次に根拠 → 代替案 → リスク</li>
-          <li>✅ 初学者向けに噛み砕いて、<strong>車の比喩</strong>でイメージ化</li>
-          <li>✅ コードは<strong>行ごとに理由解説</strong>つき</li>
-          <li>✅ 使う人が「なぜ？」と迷わないUI</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="text-xl font-semibold">運用・購買の制約</h3>
-        <ul class="mt-3 space-y-2 text-sm leading-relaxed">
-          <li>・会社の支払いは<strong>特定クレカのみ</strong>（請求手段の選定に影響）</li>
-          <li>・学習投資は<strong>Udemy等のスポット購入</strong>を好む傾向</li>
-          <li>・現場導入は<strong>最小ステップで効果</strong>が出る構成を優先</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CAR & HOBBIES ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h3 class="text-xl font-semibold">趣味・関心</h3>
-      <div class="mt-3 grid gap-4 md:grid-cols-3">
-        <div class="rounded-xl border border-slate-700 p-4">
-          <div class="text-sm text-slate-400">車</div>
-          <div class="font-semibold">三菱GTO（Z15A/SR）／ECU・吸排気談義</div>
-          <div class="mt-1 text-xs text-sky-300">確度：中</div>
-        </div>
-        <div class="rounded-xl border border-slate-700 p-4">
-          <div class="text-sm text-slate-400">学び</div>
-          <div class="font-semibold">TypeScript／React／NestJSの基礎から運用まで</div>
-          <div class="mt-1 text-xs text-emerald-300">確度：高</div>
-        </div>
-        <div class="rounded-xl border border-slate-700 p-4">
-          <div class="text-sm text-slate-400">事業</div>
-          <div class="font-semibold">AIセミナー×受託開発の小回りビジネス</div>
-          <div class="mt-1 text-xs text-sky-300">確度：中</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW TO WORK WITH ME ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-2xl font-bold">最高の成果を出すための関わり方</h2>
-      <div class="mt-4 grid gap-6 md:grid-cols-2">
-        <div class="rounded-xl border border-slate-700 p-5">
-          <h3 class="font-semibold">Do（歓迎）</h3>
-          <ul class="mt-2 space-y-2 text-sm">
-            <li>・要件→UI草案→API設計→実装の<strong>一本道</strong>に整理</li>
-            <li>・<strong>コピペOK</strong>な雛形と.env例、<strong>実行手順</strong>の明示</li>
-            <li>・画面は<strong>横並び主体</strong>でレスポンシブ最適化</li>
-            <li>・<strong>SLA/制約/運用ルール</strong>も先に決める</li>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">直面している課題</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>開発人員が不足し、つぎはぎ運用に陥りがち。</li>
+            <li>請求回収課・業務支援部・経理部など業務フローが古く、不要に見える帳簿も外部カスタムで必要化。</li>
+            <li>相互不信が生まれやすく、地獄の調整が多い（自分の成長実感が薄い）。</li>
+            <li>運用後も混乱が予想され、創造的なAI活用へ戻れる時期は不透明。</li>
           </ul>
         </div>
-        <div class="rounded-xl border border-slate-700 p-5">
-          <h3 class="font-semibold">Don't（非推奨）</h3>
-          <ul class="mt-2 space-y-2 text-sm">
-            <li>・抽象論だけで終わる提案</li>
-            <li>・前提や環境差分を黙ったままの“動くはず”</li>
-            <li>・現場の操作負荷を置き去りにしたUI</li>
+        <div>
+          <h3 class="font-semibold mb-2">志向との乖離</h3>
+          <p class="leading-relaxed">
+            本来は「ユニークでアイデアフルなプロダクト」で現場課題を解決したい志向。<br>
+            現状は調整中心で、創造的AI開発の機会が少ない。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 副業・個人開発 -->
+    <section id="side" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">副業・個人開発の実績と学び</h2>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">受託実績（AI API活用）</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>本の自動作成アプリ：<span class="font-medium">¥20,000</span>で作成（相場より低単価で受注）。</li>
+            <li>そのほか、AI APIを使ったアプリ開発を複数回受託。</li>
+          </ul>
+          <p class="mt-2 text-slate-600">※低単価でも、学びと人脈を報酬として回収中。</p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">学んでいること</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>集客・広告・セールスマーケティングの実践知。</li>
+            <li>AIアプリの「オーソドックス（定石・型）」を強化したい意欲。</li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">営業状況</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>営業代行経由で<span class="font-medium">アポ5件</span>獲得済み（PoC候補）。</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">起業準備の進捗</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>個人事業主として開業届提出済み。</li>
+            <li>ランディングページ（LP）作成済み。</li>
+            <li>業務フローを整備済み。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== ATTRIBUTION / SECOND PERSON ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <div class="rounded-2xl border border-rose-500/40 bg-rose-500/10 p-6">
-      <h2 class="text-2xl font-bold text-rose-200">別人の履歴（推定）と線引き</h2>
-      <p class="mt-2 text-sm leading-relaxed">
-        以下のテーマは、文脈・継続性・語彙から<strong>別人の履歴</strong>と推定しています。
-        本マニュアルの本人像には<strong>含めていません</strong>。
-      </p>
-      <ul class="mt-4 grid gap-3 md:grid-cols-2 text-sm">
-        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4">
-          ・臨床検査技師試験向けの詳細な問題集依頼（微生物学、抗酸菌、輸血学、尿沈渣、CRE分類 等）
+    <!-- 目標・ビジョン -->
+    <section id="vision" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">目標・ビジョン</h2>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="rounded-lg border p-4">
+          <h3 class="font-semibold">最終目標</h3>
+          <p class="mt-2">自分で会社を立ち上げ、<span class="font-semibold">介護事業者向けオーダーメイドAIアプリ</span>で収益化。</p>
+        </div>
+        <div class="rounded-lg border p-4">
+          <h3 class="font-semibold">短期ゴール</h3>
+          <p class="mt-2">個人開発と受託で実績を積み、介護領域でのPoC/導入事例を確立。</p>
+        </div>
+        <div class="rounded-lg border p-4">
+          <h3 class="font-semibold">強み</h3>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li>モノづくりに自信。</li>
+            <li>介護ドメインの近さ＋経営層の後押し（人脈強い）。</li>
+            <li>AI専攻の基礎知識＋実務受託経験。</li>
+            <li>週3リモートで時間を投資しやすい。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 意思決定の現在地 -->
+    <section id="decision" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">意思決定の現在地：現職継続 vs 転職（AIタレントフォース 等）</h2>
+      <div class="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm">
+        <div class="rounded-lg border p-4">
+          <h3 class="font-semibold">現職に残るメリット</h3>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li>週3リモートで副業・個人開発に集中できる。</li>
+            <li>安定収入で生活の下支え。</li>
+            <li>介護業界の人脈・現場アクセス（部長/取締役の支援）。</li>
+            <li>PoCを自前ネットワークで回しやすい。</li>
+          </ul>
+          <h4 class="mt-4 font-semibold">現職の課題</h4>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li>給与が低い（手取り20万・ボーナス20万）。</li>
+            <li>調整中心で創造的なAI開発が少ない。</li>
+            <li>基幹刷新の混沌で負荷が高い。</li>
+          </ul>
+        </div>
+        <div class="rounded-lg border p-4">
+          <h3 class="font-semibold">転職の検討点（例：AIタレントフォース）</h3>
+          <ul class="mt-2 list-disc pl-5 space-y-1">
+            <li>AIを日常的に扱える案件に触れやすい可能性。</li>
+            <li>カジュアル面談で「ぜひ来てほしい」と打診あり。</li>
+            <li>ただし配属は会社都合になりやすく、介護領域から離れる恐れ。</li>
+            <li>副業余力やリモート条件が弱まる可能性。</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-600">※現時点では、起業準備を優先しつつ、AI実務の型を副業・短期PJで補う方針が合理的と認識。</p>
+    </section>
+
+    <!-- 現在の指標（スコアカード風） -->
+    <section id="score" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">現在の指標（自分評価）</h2>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">時間余力（副業/個人開発）</span><span class="text-slate-500">高</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-5/6"></div>
+          </div>
+          <p class="mt-2 text-slate-600">週3リモートで時間投資しやすい。</p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">人脈・後ろ盾（介護領域）</span><span class="text-slate-500">高</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-5/6"></div>
+          </div>
+          <p class="mt-2 text-slate-600">部長/取締役の支援とネットワーク。</p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">見込み顧客</span><span class="text-slate-500">中〜高</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-2/3"></div>
+          </div>
+          <p class="mt-2 text-slate-600">営業代行でアポ5件取得済み。</p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">技術（基礎→実務型）</span><span class="text-slate-500">強化中</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-1/2"></div>
+          </div>
+          <p class="mt-2 text-slate-600">AIアプリの「型」をさらに習得したい。</p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">収入の満足度</span><span class="text-slate-500">低</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-1/3"></div>
+          </div>
+          <p class="mt-2 text-slate-600">本業の給与は不満。副業で補完中。</p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <div class="flex items-center justify-between">
+            <span class="font-medium">モチベーション</span><span class="text-slate-500">非常に高い</span>
+          </div>
+          <div class="mt-2 h-2 rounded bg-slate-100">
+            <div class="h-2 rounded bg-indigo-600 w-5/6"></div>
+          </div>
+          <p class="mt-2 text-slate-600">起業・実装・導入まで駆け抜ける意思。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- スキルと強み/課題 -->
+    <section id="skills" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">スキル / 強み・課題</h2>
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">強み</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>AI専攻の基礎＋AI API実装の受託経験。</li>
+            <li>モノづくりに自信（個人開発・受託を継続）。</li>
+            <li>介護ドメインへの理解と現場アクセス。</li>
+            <li>集客/広告/セールスの実務に触れている。</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">課題（伸ばしたい領域）</h3>
+          <ul class="list-disc pl-5 space-y-1">
+            <li>AIアプリの「オーソドックス（定石）」の体系習得。</li>
+            <li>PoC→本番運用（MLOps/監視/改善）の型。</li>
+            <li>要件定義〜設計〜実装〜運用の一気通貫経験の拡張。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- タイムライン -->
+    <section id="timeline" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">これまでの流れ（タイムライン）</h2>
+      <ol class="mt-4 relative border-s border-slate-200 pl-6 space-y-6 text-sm">
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          入社理由：現場課題をITとAIで解決できる、自由度の高い仕事への期待。
         </li>
-        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4">
-          ・医学的機序の答案作成依頼（ネフローゼ症候群の蛋白動態 等）
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          入社直前：基幹システム刷新PJが始動。自分はプログラマとして参画。
         </li>
-        <li class="rounded-xl border border-rose-500/30 bg-rose-500/5 p-4 md:col-span-2">
-          ・医療系国家試験レベルの暗記法・語呂合わせの相談の連投
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          基礎習得：アプリ開発の常識を一通りキャッチアップ → 調整業務が中心へ。
         </li>
-      </ul>
-      <p class="mt-4 text-xs text-rose-100/80">
-        ※ もし上記がご本人であれば、該当セクションの確度を更新し統合版を再生成します。
-      </p>
-    </div>
-  </section>
-
-  <!-- ===== QUICK CARDS ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10">
-    <h2 class="text-2xl font-bold">クイックカード</h2>
-    <div class="mt-6 grid gap-4 md:grid-cols-3">
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
-        <div class="text-sm text-slate-400">好きな解説</div>
-        <div class="font-semibold">「車の整備」に例える設計解説</div>
-      </div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
-        <div class="text-sm text-slate-400">レビュー観点</div>
-        <div class="font-semibold">意図→代替→副作用→撤退条件</div>
-      </div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
-        <div class="text-sm text-slate-400">成果の定義</div>
-        <div class="font-semibold">現場の1クリック削減＝価値</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT-LIKE (NO PERSONAL INFO) ===== -->
-  <section class="mx-auto max-w-6xl px-6 mt-10 mb-16">
-    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-2xl font-bold">このマニュアルの使い方</h2>
-      <ol class="mt-4 list-decimal ms-6 space-y-2 text-sm leading-relaxed">
-        <li>要件を送る際は「誰が・いつ・どこで・何に困るか」を最初に。</li>
-        <li>欲しい成果物（UIスクショ／API仕様／スクリプト）を明記。</li>
-        <li>制約（端末・支払手段・SLA）をセットで共有。</li>
-        <li>可能ならデータ構造（例：テーブル定義／サンプルCSV）を添付。</li>
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          副業開始：AI APIアプリの受託を複数回実施。本の自動作成アプリを¥20,000で納品。
+        </li>
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          起業準備：LP作成／業務フロー整備／開業届提出済み。営業代行でアポ5件獲得。
+        </li>
+        <li class="relative">
+          <span class="absolute -left-1 top-0.5 h-2 w-2 rounded-full bg-indigo-600"></span>
+          将来選択：AIタレントフォースとカジュアル面談。「ぜひ来てほしい」との打診。転職は検討中。
+        </li>
       </ol>
-      <p class="mt-4 text-xs text-slate-400">
-        ※ 個人情報や社内機微情報は、共有範囲と匿名化ルールを確認のうえ扱います。
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-slate-800 py-8">
-    <div class="mx-auto max-w-6xl px-6 text-xs text-slate-400">
-      本ページは提供された会話履歴をもとに、確度ラベル付きで編纂しています。更新依頼があればいつでもどうぞ。© 2025
-    </div>
+    <!-- 連絡先（任意のプレースホルダ） -->
+    <section id="contact" class="bg-white shadow-sm rounded-xl border border-slate-200 p-6">
+      <h2 class="text-xl font-semibold">連絡・相談</h2>
+      <p class="mt-2 text-sm text-slate-600">
+        介護 × AIのPoC/共同検証、受託開発のご相談歓迎です。<br>
+        ※連絡先は適宜追記してください（例：メールアドレス、フォーム、SNSなど）。
+      </p>
+      <div class="mt-4">
+        <a href="#" class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+          相談する（連絡先を後で設定）
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mx-auto max-w-6xl px-6 py-10 text-xs text-slate-500">
+    <p>© 2025 現状まとめ。内容は本人の実体験に基づく自己記録です。</p>
   </footer>
 </body>
 </html>
+```
