@@ -1,24 +1,22 @@
+```html
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>汎用開発料金表｜エンジニア列 / 非エンジニア列</title>
+  <title>汎用開発料金表｜追加項目（エンジニア列 / 非エンジニア列）</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <!-- Header -->
   <header class="bg-white border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-bold">汎用開発料金表（項目別・効果明示）</h1>
+      <h1 class="text-xl font-bold">汎用開発料金表（追加項目）</h1>
       <nav class="hidden md:flex gap-4 text-sm">
-        <a href="#fe" class="hover:underline">フロントエンド</a>
-        <a href="#be" class="hover:underline">バックエンド</a>
-        <a href="#infra" class="hover:underline">インフラ</a>
-        <a href="#db" class="hover:underline">データベース</a>
-        <a href="#qa" class="hover:underline">品質・最適化</a>
-        <a href="#docs" class="hover:underline">テスト/ドキュメント</a>
-        <a href="#support" class="hover:underline">サポート</a>
+        <a href="#fe-extend" class="hover:underline">フロントエンド追加</a>
+        <a href="#be-extend" class="hover:underline">バックエンド追加</a>
+        <a href="#db-extend" class="hover:underline">DB追加</a>
+        <a href="#qa-extend" class="hover:underline">品質追加</a>
         <a href="#defs" class="hover:underline">定義</a>
       </nav>
     </div>
@@ -29,218 +27,88 @@
     <section class="mb-6">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
         <p class="text-sm leading-relaxed">
-          本ページは<strong>非エンジニアのお客さま</strong>と<strong>エンジニア（私）</strong>の双方が同じ内容を確認できるよう、
-          各項目を<strong>2カラム</strong>で表示します。抽象語は使用しません。値は日本円です。
+          本ページは、既存の料金表へ追加する<strong>具体的機能</strong>を掲出します。各カードは<strong>価格</strong>、<strong>エンジニア（私）の実装内容</strong>、<strong>非エンジニア（お客さま）の利用効果</strong>の2カラムで構成します。抽象語は使用しません。
         </p>
       </div>
     </section>
 
-    <!-- Free scope -->
-    <section class="mb-10">
-      <h2 class="text-lg font-semibold mb-3">無料範囲</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-white rounded-2xl shadow-sm border p-4">
-          <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-          <ul class="list-disc ml-5 text-sm space-y-1">
-            <li>初回ヒアリング：60分×1回。議事メモを作成。</li>
-            <li>要件定義：必須機能/非必須機能の表を1枚作成。</li>
-            <li>基本設計：画面一覧・API一覧の表を各1枚作成。</li>
-          </ul>
-        </div>
-        <div class="bg-white rounded-2xl shadow-sm border p-4">
-          <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-          <ul class="list-disc ml-5 text-sm space-y-1">
-            <li>打合せ1回（60分）。費用0円。</li>
-            <li>「必要な機能の表」を1枚受領。</li>
-            <li>「作る画面の一覧」と「使うAPIの一覧」を受領。</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Frontend -->
-    <section id="fe" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">フロントエンド（ユーザー画面）</h2>
-
-      <!-- Item Card Template -->
+    <!-- Frontend: Extend -->
+    <section id="fe-extend" class="mb-12">
+      <h2 class="text-xl font-bold mb-4">フロントエンド（追加）</h2>
       <div class="space-y-6">
-        <!-- Excel Upload -->
+        <!-- AI Preview -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">ファイルアップロード（Excel）</h3>
+            <h3 class="font-semibold">AI処理プレビュー表示</h3>
+            <div class="text-sm font-bold text-slate-700">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-0">
+            <div class="p-4 border-r">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>画像をタイル分割して重なり幅（例：64px）をオーバーレイ表示。</li>
+                <li>タイルサイズ：1024×1024固定／行列数を計算してグリッド表示。</li>
+                <li>プレビュー描画時間：クリック→500ms以内。</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>送信前に「分割枚数」「重なり幅」を画面で確認できる。</li>
+                <li>分割範囲の見落としを0件にできる（事前確認で回避）。</li>
+                <li>表示から送信までの操作回数：2回（表示→確認→送信）。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Export -->
+        <article class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <h3 class="font-semibold">データエクスポート（Excel/CSV）</h3>
             <div class="text-sm font-bold text-slate-700">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>拡張子 <code>.xlsx</code> のみ受理。1操作=1ファイル。</li>
-                <li>進捗％表示、拡張子/サイズ（≤20MB）検証。</li>
-                <li>受け入れ試験：連続20回アップロードでエラー0件。</li>
+                <li>Excel（.xlsx）/CSV（UTF-8）の2形式を出力。</li>
+                <li>列順・ヘッダー固定、最大行数：50,000。</li>
+                <li>生成時間：10,000行で3秒以内（ローカル計測）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Excel（.xlsx）を1回で1件送信できる。</li>
-                <li>ファイル上限：1件20MB。</li>
-                <li>送信中の進捗％を画面で確認できる。</li>
+                <li>画面の結果を1クリックでExcel/CSV保存できる。</li>
+                <li>ヘッダー行付きでそのまま表計算に貼り付け可能。</li>
+                <li>10,000行のファイルを3秒以内で取得できる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- CSV Upload -->
+        <!-- Composite Filter -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">ファイルアップロード（CSV）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li><code>.csv</code> のみ受理。UTF-8/BOM自動判定。</li>
-                <li>サイズ上限20MB。拡張子/サイズ検証。</li>
-                <li>受け入れ試験：20回連続でエラー0件。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>CSVをそのまま送信できる（文字コード設定不要）。</li>
-                <li>1件20MBまで送信できる。</li>
-                <li>送信失敗時は理由が表示される。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Image Upload -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">ファイルアップロード（画像）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li><code>.png</code>/<code>.jpg</code> を受理。1操作=1ファイル。</li>
-                <li>プレビュー表示。長辺最大2048pxで表示。</li>
-                <li>プレビュー生成：クリック→1秒以内。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画像を1回で1枚アップロードできる。</li>
-                <li>画面でサムネイルをすぐ確認できる（1秒以内）。</li>
-                <li>サイズ上限：1枚20MB。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Table -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">結果表示（表）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1ページ50行。ページネーション搭載。</li>
-                <li>列ソート（昇順/降順）。</li>
-                <li>ページ切替：クリック→1秒以内で描画。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>表で結果を確認できる。</li>
-                <li>ページ切替時の待ち時間は1秒以内。</li>
-                <li>並べ替えで昇順/降順を選べる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Chart -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">グラフ表示（棒/折れ線/円）</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1画面1グラフ。系列最大3。</li>
-                <li>軸ラベル/凡例表示。</li>
-                <li>初回描画：2秒以内（ローカル計測）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>結果をグラフで確認できる。</li>
-                <li>画面表示から2秒以内にグラフが出る。</li>
-                <li>凡例を見て系列名を確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Responsive -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">レスポンシブ対応</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>幅375px〜1440pxで横スクロール0回。</li>
-                <li>主要ブレークポイント3種。</li>
-                <li>Chromeデバイスモード検証済み。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>スマホとPCの両方で表示崩れがない。</li>
-                <li>横スクロールは不要。</li>
-                <li>ボタンや文字は読める大きさで表示される。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Multilang -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">多言語UI（日本語＋英語）</h3>
+            <h3 class="font-semibold">複合フィルターUI</h3>
             <div class="text-sm font-bold text-slate-700">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>言語ファイル切替（2言語）。</li>
-                <li>切替操作→1秒以内に反映。</li>
-                <li>未翻訳キーは0件で納品。</li>
+                <li>選択肢（多選択）、日付範囲、テキスト検索を同一画面で実装。</li>
+                <li>条件数：最大3種をAND結合。URLクエリに保存。</li>
+                <li>応答時間：10,000件で200ms以内（ローカル計測）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>日本語と英語を切り替えできる。</li>
-                <li>切替後1秒以内に表示が変わる。</li>
-                <li>未翻訳の英単語は表示されない。</li>
+                <li>期間・分類・キーワードの3条件で同時に絞り込める。</li>
+                <li>表示切替の待ち時間は0.2秒以内。</li>
+                <li>共有用URLをコピーして同じ絞り込み状態を再現できる。</li>
               </ul>
             </div>
           </div>
@@ -248,239 +116,109 @@
       </div>
     </section>
 
-    <!-- Backend -->
-    <section id="be" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">バックエンド（処理ロジック）</h2>
+    <!-- Backend: Extend -->
+    <section id="be-extend" class="mb-12">
+      <h2 class="text-xl font-bold mb-4">バックエンド（追加）</h2>
       <div class="space-y-6">
-        <!-- Excel parse -->
+        <!-- Intelligent Tile -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">Excel解析</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円</div>
+            <h3 class="font-semibold">AI向けインテリジェント画像分割</h3>
+            <div class="text-sm font-bold text-slate-700">12,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>空白行削除、1行=1レコード整形。</li>
-                <li>列≤50、行≤50,000。</li>
-                <li>読込30秒以内（ローカル計測）。</li>
+                <li>タイル：1024×1024、重なり幅：64px（上下左右）。</li>
+                <li>縦長画像（高さ≤30,000px）を自動分割し順序を保持。</li>
+                <li>APIサイズエラー発生率：0%（テスト画像50枚）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Excelをそのまま読み込める。</li>
-                <li>最大50,000行まで対応。</li>
-                <li>読み込み完了まで30秒以内。</li>
+                <li>非常に長いスクリーンショットも分割して処理できる。</li>
+                <li>サイズ上限エラーが発生しない。</li>
+                <li>結合結果は元画像の順番で表示される。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Image preprocess -->
+        <!-- Pipeline -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">画像前処理</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円</div>
+            <h3 class="font-semibold">AI処理パイプライン構築</h3>
+            <div class="text-sm font-bold text-slate-700">12,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>長辺≤2048pxへリサイズ、正規化。</li>
-                <li><code>.png</code>/<code>.jpg</code>対象。</li>
-                <li>1枚500ms以内で処理。</li>
+                <li>最大3段の連鎖（例：OCR→要約→構造化JSON）。</li>
+                <li>段間の中間データを一時保存（メモリ/一時ファイル）。</li>
+                <li>段ごとに失敗検知し再実行1回を自動実施。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>大きい画像でも読み込める。</li>
-                <li>1枚の準備時間は0.5秒以内。</li>
-                <li>対象形式：PNG/JPG。</li>
+                <li>ボタン1回で3段の処理が順番に完了する。</li>
+                <li>途中で失敗した場合は1回自動でやり直す。</li>
+                <li>中間結果を確認してから次段に進める設定も選べる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- AI API text -->
+        <!-- Bulk -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">AI API接続（テキスト）</h3>
+            <h3 class="font-semibold">AI APIバルク処理（並列＋レート制御）</h3>
             <div class="text-sm font-bold text-slate-700">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1モデル/1エンドポイント。</li>
-                <li>タイムアウト30秒、最大3回リトライ。</li>
-                <li>JSONで結果を受け取り整形。</li>
+                <li>同時実行数：最大4。レート制限に合わせて自動待機。</li>
+                <li>キュー投入→完了までの進捗％をAPIで提供。</li>
+                <li>100件処理の完了時間を直列比40%以上短縮。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>テキストの分析/生成を実行できる。</li>
-                <li>応答が遅い場合は自動で再試行する。</li>
-                <li>結果は表や文章として画面に出る。</li>
+                <li>100件の処理時間例：100分→60分。</li>
+                <li>進捗％で完了までの残りを確認できる。</li>
+                <li>失敗した件のみ再実行できる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- AI API vision -->
+        <!-- Prompt Eng -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">AI API接続（画像）</h3>
+            <h3 class="font-semibold">高度なプロンプトエンジニアリング</h3>
             <div class="text-sm font-bold text-slate-700">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1モデル/1エンドポイント。</li>
-                <li>タイムアウト30秒、最大3回リトライ。</li>
-                <li>前処理後の画像を送信。</li>
+                <li>JSON Schemaを提示しスキーマ検証を実装。</li>
+                <li>無効出力は自動再プロンプト1回で修正。</li>
+                <li>有効JSON率：80%→99%（100入力で計測）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画像の内容を判定/抽出できる。</li>
-                <li>失敗時は自動再試行で処理継続。</li>
-                <li>結果は画面に数値や文字で表示。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Transform -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">データ変換・整形</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>日付をYYYY-MM-DDに統一。</li>
-                <li>数値の小数桁を丸め。</li>
-                <li>対象列≤10。検証エラー0件で納品。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>日付や数値の表記が揃う。</li>
-                <li>表計算での集計がやりやすくなる。</li>
-                <li>形式の不一致は表示されない。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Search/Filter -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">検索・フィルタ</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>列ごとの条件絞り込み。</li>
-                <li>対象列≤10。</li>
-                <li>10,000件で応答100ms以内。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>条件を選ぶと該当行だけ表示される。</li>
-                <li>表示の切替は0.1秒以内。</li>
-                <li>対象件数が多くても待ち時間が短い。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Integration -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">外部サービス連携（例：Google Drive）</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円 / サービス</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>OAuth認可1回/ユーザー。</li>
-                <li>読み込み or 書き出しを1方向構成。</li>
-                <li>再認可0回/30日を確認。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>自分のDriveから読み込める。</li>
-                <li>または結果をDriveへ保存できる（片方）。</li>
-                <li>最初の許可操作は1回のみ。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Auth -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">認証・ユーザー管理</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>メール＋パスワードでログイン/ログアウト。</li>
-                <li>5回失敗→5分ロック。</li>
-                <li>ユーザー≤1,000を想定。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>IDとパスワードで入れる。</li>
-                <li>連続5回失敗で一時的にロックされる。</li>
-                <li>登録上限は1,000人。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Batch -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">定期処理（バッチ）</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円〜</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>毎日 or 毎週の1スケジュール。</li>
-                <li>予定時刻±1分以内で起動。</li>
-                <li>失敗時に5分後自動再実行1回。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>毎日または毎週の自動処理が動く。</li>
-                <li>予定時刻から1分以内に開始する。</li>
-                <li>失敗しても1回は自動でやり直す。</li>
+                <li>毎回同じ形式（JSON）で結果を受け取れる。</li>
+                <li>表計算や他システムにそのまま投入できる。</li>
+                <li>出力崩れの手直しが不要になる。</li>
               </ul>
             </div>
           </div>
@@ -488,135 +226,31 @@
       </div>
     </section>
 
-    <!-- Infra -->
-    <section id="infra" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">インフラ（運用環境）</h2>
+    <!-- Database: Extend -->
+    <section id="db-extend" class="mb-12">
+      <h2 class="text-xl font-bold mb-4">データベース（追加）</h2>
       <div class="space-y-6">
-        <!-- HF Deploy -->
+        <!-- DB-less -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">Hugging Face Spaces デプロイ</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Gradio/Streamlitを配置。公開URL発行。</li>
-                <li>初回起動60秒以内（Space起動時）。</li>
-                <li>未ログインアクセス可。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>URLを共有するだけで利用できる。</li>
-                <li>最初の読み込みは60秒以内に完了。</li>
-                <li>ログイン不要で使える。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Env -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">環境変数・APIキー設定</h3>
+            <h3 class="font-semibold">DBレス設計（セッションストレージ活用）</h3>
             <div class="text-sm font-bold text-slate-700">3,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Secretsへキー≤5個登録。</li>
-                <li>Git履歴へキーが残らないことを確認。</li>
-                <li>手順書1枚を納品。</li>
+                <li>ブラウザのセッションストレージに結果を保存。</li>
+                <li>保存期間：タブを閉じるまで。永続化なし。</li>
+                <li>サーバー側の保存処理を削除（構成を簡略化）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>APIキーを安全に管理できる。</li>
-                <li>キーの貼り付け操作だけで設定が完了する。</li>
-                <li>設定手順を1枚の資料で確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- CI/CD -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">CI/CD（GitHub Actions）</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>masterへのpushで自動デプロイ。</li>
-                <li>失敗時にメール通知を送信。</li>
-                <li>完了まで10分以内（通常時）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>修正をpushすると自動で反映される。</li>
-                <li>失敗時はメールが届く。</li>
-                <li>反映まで約10分。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Logging -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">ログ収集（基本）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>日付/レベル付きで標準出力保存。</li>
-                <li>保存期間30日。</li>
-                <li>例外時はスタックトレース出力。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>不具合の原因を後から確認できる。</li>
-                <li>30日分は記録を残せる。</li>
-                <li>日時と内容を記録で確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Monitoring -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">稼働監視（簡易）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>5分ごとにHTTP 200を確認。</li>
-                <li>1エンドポイントを監視。</li>
-                <li>障害検知→5分以内にメール通知。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>停止に気づける。</li>
-                <li>メールで通知が届く。</li>
-                <li>確認間隔は5分。</li>
+                <li>開発日数を短縮できる。</li>
+                <li>サーバーにデータが残らない。</li>
+                <li>同じタブの操作中は結果を再利用できる。</li>
               </ul>
             </div>
           </div>
@@ -624,517 +258,31 @@
       </div>
     </section>
 
-    <!-- Database -->
-    <section id="db" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">データベース</h2>
+    <!-- Quality: Extend -->
+    <section id="qa-extend" class="mb-12">
+      <h2 class="text-xl font-bold mb-4">品質・最適化（追加）</h2>
       <div class="space-y-6">
-        <!-- DB design -->
+        <!-- Hardening -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">DB設計</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>列名/型/制約を定義。テーブル≤5。</li>
-                <li>DDLとER図（画像1枚）を納品。</li>
-                <li>必須列の未入力検出100%（テスト100件）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>保存する項目名と型を一覧で確認できる。</li>
-                <li>未入力の必要項目は登録できない。</li>
-                <li>設計資料を受け取れる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- CRUD -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">CRUD API（登録/表示/更新/削除）</h3>
-            <div class="text-sm font-bold text-slate-700">3,000円 / エンティティ</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>REST 4種のエンドポイントを提供。</li>
-                <li>200/201/204の正常応答を確認。</li>
-                <li>400/500はJSONで理由を返却。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>データの登録/閲覧/修正/削除ができる。</li>
-                <li>失敗時はエラー理由を画面で確認できる。</li>
-                <li>動作結果のHTTPステータスを記録できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Index -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">検索インデックス</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>列≤3へインデックス付与。</li>
-                <li>10,000件検索で100ms以内に応答。</li>
-                <li>クエリ計画の確認を実施。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>検索の表示が速くなる（0.1秒以内）。</li>
-                <li>対象列は3つまで設定できる。</li>
-                <li>大きな表でも待ち時間が短い。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Audit Log -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">履歴保存（監査ログ）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>作成者/更新者/更新時刻を保存。</li>
-                <li>1エンティティ対象。</li>
-                <li>最新100件を時系列で取得可能。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>誰がいつ変更したかを確認できる。</li>
-                <li>直近100件を一覧で確認できる。</li>
-                <li>誤操作の特定ができる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Backup -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">バックアップ</h3>
-            <div class="text-sm font-bold text-slate-700">3,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1日1回の自動バックアップ。</li>
-                <li>保持世代7。</li>
-                <li>復元テスト1回成功の記録を添付。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>最大7日前まで戻せる。</li>
-                <li>復元が1回成功していることを確認済み。</li>
-                <li>毎日自動で保存される。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Quality -->
-    <section id="qa" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">品質・最適化</h2>
-      <div class="space-y-6">
-        <!-- Cache -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">処理速度改善（キャッシュ）</h3>
+            <h3 class="font-semibold">AI応答の安定化・堅牢化</h3>
             <div class="text-sm font-bold text-slate-700">8,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
+          <div class="grid md:grid-cols-2 gap-0">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同一入力の結果を保存/再利用。</li>
-                <li>キャッシュキー定義1種。</li>
-                <li>API呼び出し回数を削減。</li>
+                <li>JSON検証、欠損項目補完、再試行（最大2回）。</li>
+                <li>通信エラー時の待機→再実行を実装（指数バックオフ）。</li>
+                <li>エラー率：5%→1%（100件の連続実行で計測）。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同じ入力の再実行時間：5秒→1秒以内。</li>
-                <li>外部APIの呼び出し回数が減る。</li>
-                <li>待ち時間が短くなる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Async -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">非同期化</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>重処理をバックグラウンドへ移動。</li>
-                <li>進捗APIを0.5秒間隔で更新。</li>
-                <li>キュー1系統を構成。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>重い処理中でも画面の操作は止まらない。</li>
-                <li>進捗が0.5秒ごとに更新される。</li>
-                <li>完了までの待機は画面を閉じずに行える。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Parallel -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">並列処理</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時ワーカー≤4。</li>
-                <li>画像/レコードを分割処理。</li>
-                <li>直列比40%以上の短縮を目標。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>10件の処理時間例：10秒→6秒。</li>
-                <li>処理待ちが短くなる。</li>
-                <li>同時に複数の処理を進められる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Memory -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">メモリ最適化</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ストリーミング/チャンク読込を実装。</li>
-                <li>対象：Excel/CSV。</li>
-                <li>50,000行でピーク<1GBを確認。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>大きなファイルでも動作が止まらない。</li>
-                <li>メモリ不足によるエラーが出にくい。</li>
-                <li>扱える行数の上限が上がる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Model optimization -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">モデル最適化</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>小型モデル切替 or 量子化。</li>
-                <li>1モデル単位で設定。</li>
-                <li>平均推論：2.0秒→1.2秒（10回平均）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>AIの応答が速くなる。</li>
-                <li>1件の結果表示が約1.2秒。</li>
-                <li>待ち時間が短くなる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Image compression -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">画像圧縮</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>JPEG圧縮/またはWebP変換。</li>
-                <li>長辺≤2048px。</li>
-                <li>平均サイズ50%削減（例：4MB→2MB）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画像の読み込みが速くなる。</li>
-                <li>保存に必要な容量が半分になる。</li>
-                <li>表示品質を維持したまま縮小する。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Initial load -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">初期ロード短縮</h3>
-            <div class="text-sm font-bold text-slate-700">8,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>コード分割/遅延ロードを設定。</li>
-                <li>1画面の初期JSサイズ≤300KB。</li>
-                <li>初回操作可能まで≤3秒。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画面を開いてから3秒以内に操作できる。</li>
-                <li>読み込み中の待機が短い。</li>
-                <li>通信量が減る。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Scalability -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">スケーラビリティ設定</h3>
-            <div class="text-sm font-bold text-slate-700">10,000円〜</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時ユーザー10想定のキュー/タイムアウト。</li>
-                <li>輻輳時の順番待ち制御。</li>
-                <li>5分テストでタイムアウト0件を確認。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時に10人が使っても止まらない。</li>
-                <li>順番待ちで処理が抜け落ちない。</li>
-                <li>5分間の連続利用で失敗0件。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Docs/Tests -->
-    <section id="docs" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">テスト / ドキュメント</h2>
-      <div class="space-y-6">
-        <!-- Unit tests -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">単体テスト（基本）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>主要関数≤10に成功/失敗テストを各1本。</li>
-                <li>合計≥20本。失敗0件で納品。</li>
-                <li>実行レポートを添付。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>動作確認の証拠を受け取れる。</li>
-                <li>想定外の入力でもエラー処理が動く。</li>
-                <li>失敗0件であることを確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Manual -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">操作マニュアル</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>A4換算≤5ページ。画面ごとに手順図付き。</li>
-                <li>手順通りに実行して同一結果を再現。</li>
-                <li>PDF1本を納品。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>手順の通りに操作すれば同じ結果になる。</li>
-                <li>画像つきで迷いにくい。</li>
-                <li>PDF1本で共有しやすい。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- API spec -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">API仕様書</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>エンドポイント/パラメータ/例外一覧。</li>
-                <li>対象API≤10。</li>
-                <li>Markdown1本で納品。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>外部連携の項目名と値が一覧で分かる。</li>
-                <li>トラブル時に原因箇所を特定しやすい。</li>
-                <li>他システム担当へ渡せる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Measurement -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">計測レポート（速度/メモリ/エラー率）</h3>
-            <div class="text-sm font-bold text-slate-700">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>A4換算3ページ。数値とスクリーンショット添付。</li>
-                <li>計測条件（CPU/メモリ）を記載。</li>
-                <li>実測値を表形式で記録。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>速度とメモリの数値を確認できる。</li>
-                <li>改善前/後の差を表で確認できる。</li>
-                <li>社内の承認資料にそのまま使える。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Support -->
-    <section id="support" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">サポート</h2>
-      <div class="space-y-6">
-        <!-- Light -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">保守（ライト）</h3>
-            <div class="text-sm font-bold text-slate-700">3,000円 / 月</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>メール対応。</li>
-                <li>軽微修正：月1回、1時間以内。</li>
-                <li>対応時間：平日10:00–18:00（JST）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>問い合わせの初回返信は24時間以内（営業日）。</li>
-                <li>小さな修正を月1回依頼できる。</li>
-                <li>対応時間は日本時間10時〜18時。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Standard -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <h3 class="font-semibold">保守（スタンダード）</h3>
-            <div class="text-sm font-bold text-slate-700">6,000円 / 月</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500 mb-2">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>メール対応。</li>
-                <li>軽微修正：月2回、各1時間以内。</li>
-                <li>対応時間：平日10:00–18:00（JST）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500 mb-2">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>初回返信は8時間以内（営業日）。</li>
-                <li>小さな修正を月2回依頼できる。</li>
-                <li>対応時間は日本時間10時〜18時。</li>
+                <li>異常時でも自動でやり直しが実行される。</li>
+                <li>停止せずに処理が完走する回数が増える。</li>
+                <li>不正な形式の結果を画面に表示しない。</li>
               </ul>
             </div>
           </div>
@@ -1147,20 +295,20 @@
       <h2 class="text-xl font-bold mb-3">定義・前提条件</h2>
       <div class="bg-white border rounded-2xl shadow-sm p-4">
         <ul class="list-disc ml-5 text-sm space-y-2">
-          <li>1画面＝URL1つ＋主要UI1つ。モーダルは同一画面に含む。</li>
-          <li>1機能＝ボタン1つで完了する処理、またはAPIエンドポイント1つ。</li>
-          <li>ファイル上限＝1件20MB。Excel/CSVの行数上限＝50,000行。</li>
-          <li>同時ユーザー上限＝10。</li>
-          <li>測定環境＝ローカルPC（CPU8コア/メモリ16GB）。ネットワーク遅延は含まない。</li>
-          <li>再見積もり条件＝行数>50,000、同時ユーザー>10、モデル>2。</li>
+          <li>計測環境：ローカルPC（CPU8コア/メモリ16GB）。ネットワーク遅延は含まない。</li>
+          <li>タイル分割の既定：サイズ1024×1024、重なり幅64px。必要に応じて値を固定で変更可能。</li>
+          <li>ファイル上限：1件20MB、Excel/CSVの行上限：50,000行。</li>
+          <li>同時実行数の既定：4。レート制限変更時は設定値を更新。</li>
+          <li>再見積条件：行数>50,000、同時ユーザー>10、段数>3、モデル>2。</li>
         </ul>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="pb-12 text-center text-xs text-slate-500">
-      © 2025 料金表テンプレート（エンジニア列 / 非エンジニア列）
+      © 2025 料金表追加テンプレート（エンジニア列 / 非エンジニア列）
     </footer>
   </main>
 </body>
 </html>
+```
