@@ -27,7 +27,7 @@
     <section class="mb-6">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
         <p class="text-sm leading-relaxed">
-          本ページは、既存の料金表へ追加する<strong>具体的機能</strong>を掲出します。各カードは<strong>価格</strong>、<strong>エンジニア（私）の実装内容</strong>、<strong>非エンジニア（お客さま）の利用効果</strong>の2カラムで構成します。抽象語は使用しません。
+          本ページは、既存の料金表へ<strong>具体的な追加項目</strong>を統合した版です。各カードは<strong>価格</strong>、<strong>エンジニア（私）の実装内容</strong>、<strong>非エンジニア（お客さま）の利用効果</strong>の2カラムで構成します。抽象表現は使用しません。
         </p>
       </div>
     </section>
@@ -36,7 +36,7 @@
     <section id="fe-extend" class="mb-12">
       <h2 class="text-xl font-bold mb-4">フロントエンド（追加）</h2>
       <div class="space-y-6">
-        <!-- AI Preview -->
+        <!-- 既存: AI処理プレビュー表示 -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">AI処理プレビュー表示</h3>
@@ -46,23 +46,23 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画像をタイル分割して重なり幅（例：64px）をオーバーレイ表示。</li>
-                <li>タイルサイズ：1024×1024固定／行列数を計算してグリッド表示。</li>
-                <li>プレビュー描画時間：クリック→500ms以内。</li>
+                <li>画像をタイル分割し重なり幅64pxをオーバーレイ表示。</li>
+                <li>タイルサイズ1024×1024固定で行列数を計算して描画。</li>
+                <li>描画時間：クリック→500ms以内。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>送信前に「分割枚数」「重なり幅」を画面で確認できる。</li>
-                <li>分割範囲の見落としを0件にできる（事前確認で回避）。</li>
-                <li>表示から送信までの操作回数：2回（表示→確認→送信）。</li>
+                <li>分割枚数と重なり幅を送信前に画面で確認できる。</li>
+                <li>分割の抜け漏れを事前に確認できる。</li>
+                <li>表示→確認→送信の操作回数は2回。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Export -->
+        <!-- 既存: データエクスポート -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">データエクスポート（Excel/CSV）</h3>
@@ -72,23 +72,23 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Excel（.xlsx）/CSV（UTF-8）の2形式を出力。</li>
-                <li>列順・ヘッダー固定、最大行数：50,000。</li>
-                <li>生成時間：10,000行で3秒以内（ローカル計測）。</li>
+                <li>.xlsx と .csv（UTF-8）で出力。</li>
+                <li>列順・ヘッダー固定、最大行数50,000。</li>
+                <li>10,000行の生成時間3秒以内（ローカル計測）。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画面の結果を1クリックでExcel/CSV保存できる。</li>
-                <li>ヘッダー行付きでそのまま表計算に貼り付け可能。</li>
-                <li>10,000行のファイルを3秒以内で取得できる。</li>
+                <li>1クリックでExcel/CSV保存ができる。</li>
+                <li>ヘッダー付きで表計算にそのまま貼り付け可能。</li>
+                <li>10,000行を3秒以内で取得できる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Composite Filter -->
+        <!-- 既存: 複合フィルターUI -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">複合フィルターUI</h3>
@@ -98,9 +98,9 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>選択肢（多選択）、日付範囲、テキスト検索を同一画面で実装。</li>
-                <li>条件数：最大3種をAND結合。URLクエリに保存。</li>
-                <li>応答時間：10,000件で200ms以内（ローカル計測）。</li>
+                <li>多選択・日付範囲・テキスト検索を1画面で実装。</li>
+                <li>条件3種をAND結合しURLクエリに保存。</li>
+                <li>10,000件で応答200ms以内（ローカル計測）。</li>
               </ul>
             </div>
             <div class="p-4">
@@ -108,7 +108,111 @@
               <ul class="list-disc ml-5 text-sm space-y-1">
                 <li>期間・分類・キーワードの3条件で同時に絞り込める。</li>
                 <li>表示切替の待ち時間は0.2秒以内。</li>
-                <li>共有用URLをコピーして同じ絞り込み状態を再現できる。</li>
+                <li>共有URLで同じ条件を再現できる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Excelデータインポート -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-blue-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-blue-50">
+            <h3 class="font-semibold">Excelデータインポート</h3>
+            <div class="text-sm font-bold text-slate-700">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li><code>pandas</code>で .xlsx のシート「企画」「著者」「読者」を解析。</li>
+                <li>各シートのB列（質問）・C列（回答）をQ&Aとして抽出しJSONで返却。</li>
+                <li>.xls/.xlsx とサイズ≤50MBをサーバー側で検証。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>既存のExcel企画シートを1回アップロードでフォーム項目に自動入力。</li>
+                <li>手作業の転記を0回にできる。</li>
+                <li>50MBまでの企画ファイルを処理できる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 対話的AI企画支援UI -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-blue-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-blue-50">
+            <h3 class="font-semibold">対話的AI企画支援UI</h3>
+            <div class="text-sm font-bold text-slate-700">12,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>各項目の「選択肢生成」ボタンでAPI要求を送信。</li>
+                <li>質問文＋企画/著者/読者データを用いプロンプトを動的構築。</li>
+                <li>AI応答（JSON）を重複除外してドロップダウンへ反映。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>各項目でボタン1回で具体的な提案10件を取得できる。</li>
+                <li>企画作成時間を50%以上短縮できる。</li>
+                <li>著者・読者情報を考慮した選択肢だけが表示される。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 複数パターンAIタイトル生成UI -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-blue-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-blue-50">
+            <h3 class="font-semibold">複数パターンAIタイトル生成UI</h3>
+            <div class="text-sm font-bold text-slate-700">10,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>「対比系」「数字系」「呼びかけ系」「方法系」の4プロンプトを生成。</li>
+                <li>4リクエストを並列送信し、カテゴリ分けして表示。</li>
+                <li>JSON崩れ時はテキストから項目抽出するフォールバックを実装。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>キーワード入力だけで4型×3件＝12案を取得できる。</li>
+                <li>案出し時間は約30秒。</li>
+                <li>応答が崩れても候補を画面表示できる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 非同期タスク進捗表示・キャンセルUI -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-blue-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-blue-50">
+            <h3 class="font-semibold">非同期タスク進捗表示・キャンセルUI</h3>
+            <div class="text-sm font-bold text-slate-700">9,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>書籍生成APIのタスクIDをブラウザに保存。</li>
+                <li><code>setInterval</code>で2秒間隔の進捗ポーリングを実装。</li>
+                <li>キャンセルボタン→キャンセルAPIへリクエスト送信。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>「3章/10章処理中」などの進捗を画面で確認できる。</li>
+                <li>残り時間を目安で把握できる（2秒ごと更新）。</li>
+                <li>ボタン1回で生成処理を中断できる。</li>
               </ul>
             </div>
           </div>
@@ -120,7 +224,7 @@
     <section id="be-extend" class="mb-12">
       <h2 class="text-xl font-bold mb-4">バックエンド（追加）</h2>
       <div class="space-y-6">
-        <!-- Intelligent Tile -->
+        <!-- 既存: インテリジェント画像分割 -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">AI向けインテリジェント画像分割</h3>
@@ -130,23 +234,23 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>タイル：1024×1024、重なり幅：64px（上下左右）。</li>
-                <li>縦長画像（高さ≤30,000px）を自動分割し順序を保持。</li>
-                <li>APIサイズエラー発生率：0%（テスト画像50枚）。</li>
+                <li>1024×1024のタイル、重なり幅64pxで分割。</li>
+                <li>高さ≤30,000pxの縦長画像を順序保持で処理。</li>
+                <li>サイズエラー率0%（50枚テスト）。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>非常に長いスクリーンショットも分割して処理できる。</li>
+                <li>縦長スクリーンショットも処理できる。</li>
                 <li>サイズ上限エラーが発生しない。</li>
-                <li>結合結果は元画像の順番で表示される。</li>
+                <li>結果は元の順番で結合される。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Pipeline -->
+        <!-- 既存: AI処理パイプライン構築 -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">AI処理パイプライン構築</h3>
@@ -156,23 +260,23 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>最大3段の連鎖（例：OCR→要約→構造化JSON）。</li>
-                <li>段間の中間データを一時保存（メモリ/一時ファイル）。</li>
-                <li>段ごとに失敗検知し再実行1回を自動実施。</li>
+                <li>最大3段（例：OCR→要約→JSON構造化）。</li>
+                <li>中間データを一時保存して段間で連携。</li>
+                <li>段ごとに失敗検知して再実行1回。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ボタン1回で3段の処理が順番に完了する。</li>
-                <li>途中で失敗した場合は1回自動でやり直す。</li>
-                <li>中間結果を確認してから次段に進める設定も選べる。</li>
+                <li>ボタン1回で3段の処理が連続完了する。</li>
+                <li>途中失敗時も自動やり直し1回。</li>
+                <li>中間結果を確認して次段に進める設定ができる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Bulk -->
+        <!-- 既存: AI APIバルク処理 -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">AI APIバルク処理（並列＋レート制御）</h3>
@@ -182,23 +286,23 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時実行数：最大4。レート制限に合わせて自動待機。</li>
-                <li>キュー投入→完了までの進捗％をAPIで提供。</li>
-                <li>100件処理の完了時間を直列比40%以上短縮。</li>
+                <li>同時実行数≤4、レート制限に合わせ自動待機。</li>
+                <li>進捗％APIを提供。</li>
+                <li>100件処理の総時間を直列比40%以上短縮。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>100件の処理時間例：100分→60分。</li>
-                <li>進捗％で完了までの残りを確認できる。</li>
-                <li>失敗した件のみ再実行できる。</li>
+                <li>100件：100分→約60分の完了時間。</li>
+                <li>進捗％で残りを確認できる。</li>
+                <li>失敗分のみ再実行できる。</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <!-- Prompt Eng -->
+        <!-- 既存: 高度なプロンプトエンジニアリング -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">高度なプロンプトエンジニアリング</h3>
@@ -210,7 +314,7 @@
               <ul class="list-disc ml-5 text-sm space-y-1">
                 <li>JSON Schemaを提示しスキーマ検証を実装。</li>
                 <li>無効出力は自動再プロンプト1回で修正。</li>
-                <li>有効JSON率：80%→99%（100入力で計測）。</li>
+                <li>有効JSON率80%→99%（100入力で測定）。</li>
               </ul>
             </div>
             <div class="p-4">
@@ -218,7 +322,85 @@
               <ul class="list-disc ml-5 text-sm space-y-1">
                 <li>毎回同じ形式（JSON）で結果を受け取れる。</li>
                 <li>表計算や他システムにそのまま投入できる。</li>
-                <li>出力崩れの手直しが不要になる。</li>
+                <li>出力崩れの手直しを0回にできる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 書籍生成に特化したAIワークフロー -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-emerald-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-emerald-50">
+            <h3 class="font-semibold">書籍生成に特化したAIワークフロー</h3>
+            <div class="text-sm font-bold text-slate-700">15,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>目次生成→章ループ→節ループ→本文生成の多段階処理を実装。</li>
+                <li>目次を解析し章・節の入力へ動的に引き渡し。</li>
+                <li>章の役割（導入/問題提起/結論）を自動判定してプロンプトへ反映。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>企画を入力してボタン1回で目次から最終章まで生成できる。</li>
+                <li>章ごと・節ごとに手動指示は不要。</li>
+                <li>書籍として自然な構成が自動で担保される。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 長文生成のための階層的メモリ管理 -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-emerald-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-emerald-50">
+            <h3 class="font-semibold">長文生成のための階層的メモリ管理</h3>
+            <div class="text-sm font-bold text-slate-700">12,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li><code>langchain</code>のメモリを組合せた<code>HierarchicalMemory</code>を実装（全体/章/直近節）。</li>
+                <li>節生成時に3層から関連情報を抽出し、要約でトークン上限を回避。</li>
+                <li>章完了時に章メモリを破棄し要約を全体メモリへ統合。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>10万文字超でも第10章が第1章の内容を維持できる。</li>
+                <li>文脈を忘れることによる品質低下やエラーを防止できる。</li>
+                <li>長時間処理でもメモリ使用量の増加を抑えられる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 非同期長時間タスク管理 -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-emerald-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-emerald-50">
+            <h3 class="font-semibold">非同期長時間タスク管理</h3>
+            <div class="text-sm font-bold text-slate-700">10,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li><code>asyncio</code>＋<code>threading</code>で重処理をバックグラウンド実行。</li>
+                <li><code>uuid</code>でタスクIDを発行し進捗％と結果パスを辞書で管理。</li>
+                <li><code>/progress/&lt;task_id&gt;</code> と <code>/cancel-generation/&lt;task_id&gt;</code> を提供。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>生成ボタン後にブラウザを閉じても処理が継続する。</li>
+                <li>複数生成を同時に走らせても個別に進捗を確認できる。</li>
+                <li>外部からAPIで進捗確認やキャンセル操作を実行できる。</li>
               </ul>
             </div>
           </div>
@@ -230,7 +412,7 @@
     <section id="db-extend" class="mb-12">
       <h2 class="text-xl font-bold mb-4">データベース（追加）</h2>
       <div class="space-y-6">
-        <!-- DB-less -->
+        <!-- 既存: DBレス設計 -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">DBレス設計（セッションストレージ活用）</h3>
@@ -242,7 +424,7 @@
               <ul class="list-disc ml-5 text-sm space-y-1">
                 <li>ブラウザのセッションストレージに結果を保存。</li>
                 <li>保存期間：タブを閉じるまで。永続化なし。</li>
-                <li>サーバー側の保存処理を削除（構成を簡略化）。</li>
+                <li>サーバー側保存処理を削除して構成を簡略化。</li>
               </ul>
             </div>
             <div class="p-4">
@@ -250,7 +432,33 @@
               <ul class="list-disc ml-5 text-sm space-y-1">
                 <li>開発日数を短縮できる。</li>
                 <li>サーバーにデータが残らない。</li>
-                <li>同じタブの操作中は結果を再利用できる。</li>
+                <li>同一タブ操作中は結果を再利用できる。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: 生成コンテンツのファイルシステム永続化 -->
+        <article class="bg-white border rounded-2xl shadow-sm ring-1 ring-fuchsia-100">
+          <div class="px-4 py-3 border-b flex items-center justify-between bg-fuchsia-50">
+            <h3 class="font-semibold">生成コンテンツのファイルシステム永続化</h3>
+            <div class="text-sm font-bold text-slate-700">6,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>生成HTMLとメタJSONを <code>book/</code> ディレクトリに保存。</li>
+                <li>ファイル名はサニタイズ済みタイトル＋タイムスタンプ <code>YYYYMMDD_HHMMSS</code>。</li>
+                <li><code>/list-books</code> で <code>book/</code> 内のHTML/JSON一覧を返却。</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-white">
+              <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>生成した書籍はブラウザ終了後もサーバーに残る。</li>
+                <li>同名タイトルでも上書きされず履歴が残る。</li>
+                <li>管理画面で生成済み書籍を一覧・ダウンロードできる。</li>
               </ul>
             </div>
           </div>
@@ -258,11 +466,10 @@
       </div>
     </section>
 
-    <!-- Quality: Extend -->
+    <!-- Quality: Extend (既存1項目の掲出を保持) -->
     <section id="qa-extend" class="mb-12">
       <h2 class="text-xl font-bold mb-4">品質・最適化（追加）</h2>
       <div class="space-y-6">
-        <!-- Hardening -->
         <article class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <h3 class="font-semibold">AI応答の安定化・堅牢化</h3>
@@ -272,17 +479,17 @@
             <div class="p-4 border-r">
               <div class="text-xs font-semibold text-slate-500 mb-1">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>JSON検証、欠損項目補完、再試行（最大2回）。</li>
-                <li>通信エラー時の待機→再実行を実装（指数バックオフ）。</li>
-                <li>エラー率：5%→1%（100件の連続実行で計測）。</li>
+                <li>JSON検証・欠損補完・再試行（最大2回）。</li>
+                <li>通信失敗時は指数バックオフで再実行。</li>
+                <li>エラー率5%→1%（連続100件で測定）。</li>
               </ul>
             </div>
             <div class="p-4">
               <div class="text-xs font-semibold text-slate-500 mb-1">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>異常時でも自動でやり直しが実行される。</li>
-                <li>停止せずに処理が完走する回数が増える。</li>
-                <li>不正な形式の結果を画面に表示しない。</li>
+                <li>異常時でも自動やり直しで処理が継続する。</li>
+                <li>停止件数が減る。</li>
+                <li>不正形式の結果は画面に出ない。</li>
               </ul>
             </div>
           </div>
@@ -296,17 +503,18 @@
       <div class="bg-white border rounded-2xl shadow-sm p-4">
         <ul class="list-disc ml-5 text-sm space-y-2">
           <li>計測環境：ローカルPC（CPU8コア/メモリ16GB）。ネットワーク遅延は含まない。</li>
-          <li>タイル分割の既定：サイズ1024×1024、重なり幅64px。必要に応じて値を固定で変更可能。</li>
-          <li>ファイル上限：1件20MB、Excel/CSVの行上限：50,000行。</li>
-          <li>同時実行数の既定：4。レート制限変更時は設定値を更新。</li>
-          <li>再見積条件：行数>50,000、同時ユーザー>10、段数>3、モデル>2。</li>
+          <li>ファイル上限：1件50MB（Excelインポート）。通常機能は1件20MB。</li>
+          <li>Excel/CSVの行上限：50,000行。</li>
+          <li>タイル分割の既定：サイズ1024×1024、重なり幅64px。</li>
+          <li>同時実行の既定：4並列。レート制限は設定値で管理。</li>
+          <li>再見積条件：行数&gt;50,000、同時ユーザー&gt;10、段数&gt;3、モデル&gt;2。</li>
         </ul>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="pb-12 text-center text-xs text-slate-500">
-      © 2025 料金表追加テンプレート（エンジニア列 / 非エンジニア列）
+      © 2025 料金表 追加統合テンプレート（エンジニア列 / 非エンジニア列）
     </footer>
   </main>
 </body>
