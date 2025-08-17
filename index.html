@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>完全にイメージできる選択式・汎用開発料金表（デモ＋一覧表）</title>
+  <title>Webシステム開発料金表 - 実際の動作を見て選べる機能一覧</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .wire { background: repeating-linear-gradient(45deg,#e2e8f0,#e2e8f0 10px,#f8fafc 10px,#f8fafc 20px);}
@@ -27,17 +27,17 @@
   <!-- Header -->
   <header class="bg-white border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-base md:text-xl font-bold">完全にイメージできる料金表（ミニデモ＋表で一括選択）</h1>
+      <h1 class="text-base md:text-xl font-bold">Webシステム開発料金表 - 実際の動作を見てから選択</h1>
       <nav class="hidden md:flex gap-4 text-xs md:text-sm">
-        <a href="#quick" class="hover:underline">まずは一覧表</a>
-        <a href="#fe" class="hover:underline">フロントエンド</a>
-        <a href="#be" class="hover:underline">バックエンド</a>
-        <a href="#infra" class="hover:underline">インフラ</a>
-        <a href="#db" class="hover:underline">データベース</a>
-        <a href="#qa" class="hover:underline">品質/最適化</a>
-        <a href="#docs" class="hover:underline">テスト/資料</a>
-        <a href="#support" class="hover:underline">保守</a>
-        <a href="#defs" class="hover:underline">定義</a>
+        <a href="#quick" class="hover:underline">料金一覧表</a>
+        <a href="#fe" class="hover:underline">画面機能</a>
+        <a href="#be" class="hover:underline">処理機能</a>
+        <a href="#infra" class="hover:underline">公開・運用</a>
+        <a href="#db" class="hover:underline">データ保存</a>
+        <a href="#qa" class="hover:underline">速度向上</a>
+        <a href="#docs" class="hover:underline">動作確認</a>
+        <a href="#support" class="hover:underline">アフターサポート</a>
+        <a href="#defs" class="hover:underline">詳細条件</a>
       </nav>
     </div>
   </header>
@@ -46,7 +46,7 @@
   <section class="max-w-7xl mx-auto px-4 py-4">
     <div class="bg-white border rounded-2xl shadow-sm p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div class="text-sm">
-        <p>チェックで見積に加算します。<strong>一覧表（上）</strong>と<strong>カード型デモ（下）</strong>は連動します（どちらで選んでも同じ項目にカウント）。</p>
+        <p>チェックを入れると料金に追加されます。<strong>上の一覧表</strong>と<strong>下の実演画面</strong>は同じ項目です（どちらでチェックしても同じ機能が選ばれます）。</p>
       </div>
       <div class="flex gap-2">
         <button id="selectAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全選択</button>
@@ -58,20 +58,20 @@
   <!-- ===================== QUICK TABLES (PROXY CHECKBOXES) ===================== -->
   <main class="max-w-7xl mx-auto px-4 pb-28">
     <section id="quick" class="mb-10">
-      <h2 class="text-xl font-bold mb-3">クイック一覧（表で一括選択 &rarr; デモへジャンプ）</h2>
-      <p class="text-xs text-slate-600 mb-4">各行のチェックは下のデモカードと同期します。価格は税込。<span class="note">赤字</span>は現状の備考です。</p>
+      <h2 class="text-xl font-bold mb-3">機能と料金の一覧表（チェックして下の実演画面で動作確認）</h2>
+      <p class="text-xs text-slate-600 mb-4">各行のチェックボックスと下の実演画面は連動しています。表示価格は税込です。<span class="note">赤い文字</span>は現在の制限事項です。</p>
 
       <!-- Frontend table -->
       <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">フロントエンド（ユーザー画面）</div>
+        <div class="px-4 py-3 border-b font-semibold">画面機能（お客さまが実際に操作する部分）</div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr>
               <th class="px-3 py-2 w-10">選択</th>
               <th class="px-3 py-2">機能名</th>
               <th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">エンジニア（私）向け説明</th>
-              <th class="px-3 py-2">非エンジニア（お客さま）向け説明</th>
+              <th class="px-3 py-2">技術的な詳細</th>
+              <th class="px-3 py-2">お客さまにとっての効果</th>
             </tr>
           </thead>
           <tbody class="align-top">
@@ -80,54 +80,54 @@
               <td class="px-3 py-2"><a href="#art_fe_upload_excel_csv" class="text-blue-600 underline">ファイルアップロード（Excel/CSV）</a></td>
               <td class="px-3 py-2">5,000円</td>
               <td class="px-3 py-2 table-cell">
-                <p>.xlsx/.csv を1操作=1ファイルで受理。拡張子とサイズ≤20MBを検証。</p>
-                <p>アップロード進捗％表示。失敗時は理由をJSONで返却。</p>
-                <p>受け入れ試験：連続20回の送信でエラー0件。</p>
+                <p>ExcelファイルやCSVファイル（20MBまで）を1回で1つアップロード可能。</p>
+                <p>アップロード中は進捗パーセントを表示。失敗した場合は具体的な理由を表示。</p>
+                <p>動作確認済み：20回連続でファイルを送信してもエラーなし。</p>
               </td>
               <td class="px-3 py-2 table-cell">
-                <p>1回の操作で1件を送信できる。</p>
-                <p>進捗％を画面で確認できる。</p>
-                <p>失敗時は理由が画面に表示される。</p>
+                <p>ファイル選択→アップロードボタンを押すだけで完了。</p>
+                <p>「80%完了」のような進捗が見えるので安心。</p>
+                <p>「ファイルサイズが大きすぎます」のような理由がすぐ分かる。</p>
               </td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_upload_image"></td>
               <td class="px-3 py-2"><a href="#art_fe_upload_image" class="text-blue-600 underline">ファイルアップロード（画像）</a></td>
               <td class="px-3 py-2">5,000円</td>
-              <td class="px-3 py-2 table-cell"><p>.png/.jpg を受理。プレビューはクリック→1秒以内。</p><p>長辺≤2048px。サイズ≤20MB検証。</p><p>連続20回のプレビューでエラー0件。</p></td>
-              <td class="px-3 py-2 table-cell"><p>1秒以内にサムネイル表示。</p><p>大きい画像でも停止しない。</p><p>不適合の理由が表示される。</p></td>
+              <td class="px-3 py-2 table-cell"><p>PNG・JPG画像ファイル（20MBまで、横幅2048ピクセルまで）対応。</p><p>選択すると1秒以内に小さなプレビュー画像を表示。</p><p>動作確認済み：20回連続で画像を選択してもエラーなし。</p></td>
+              <td class="px-3 py-2 table-cell"><p>画像を選んだ瞬間に小さな見本が表示される。</p><p>大きな写真を選んでも画面が固まらない。</p><p>「画像が大きすぎます」のような理由がすぐ分かる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_table_result"></td>
-              <td class="px-3 py-2"><a href="#art_fe_table_result" class="text-blue-600 underline">結果表示（表・ソート・ページネーション）</a></td>
+              <td class="px-3 py-2"><a href="#art_fe_table_result" class="text-blue-600 underline">データを表で表示（並び替え・ページ送り機能付き）</a></td>
               <td class="px-3 py-2">5,000円</td>
-              <td class="px-3 py-2 table-cell"><p>1ページ50行、昇順/降順。</p><p>切替1秒以内。</p><p>10,000件で検索API応答100ms以内。</p></td>
-              <td class="px-3 py-2 table-cell"><p>並び替えとページ移動ができる。</p><p>切替の待機は1秒以内。</p><p>大量データでも遅くならない。</p></td>
+              <td class="px-3 py-2 table-cell"><p>1画面に50行ずつ表示。列名をクリックすると昇順・降順で並び替え。</p><p>ページ切り替えは1秒以内に完了。</p><p>1万件のデータでも0.1秒で検索結果を表示。</p></td>
+              <td class="px-3 py-2 table-cell"><p>「日付順」「名前順」などに列をクリックするだけで並び替えできる。</p><p>「次のページ」ボタンを押して1秒以内に次の50件が表示される。</p><p>大量のデータがあっても待たされることがない。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_filters"></td>
-              <td class="px-3 py-2"><a href="#art_fe_filters" class="text-blue-600 underline">複合フィルターUI（多選択＋日付範囲＋テキスト）</a></td>
+              <td class="px-3 py-2"><a href="#art_fe_filters" class="text-blue-600 underline">データ絞り込み機能（期間・分類・キーワードを同時指定）</a></td>
               <td class="px-3 py-2">10,000円</td>
-              <td class="px-3 py-2 table-cell"><p>3条件AND結合。URLクエリ保存/復元。</p><p>10,000件で応答200ms以内。</p><p>未入力時は全件表示。</p></td>
-              <td class="px-3 py-2 table-cell"><p>期間・分類・キーワードを同時絞込。</p><p>共有URLで条件を再現。</p><p>切替は0.2秒以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>「2024年1月〜3月」「営業部」「契約」の3つの条件を同時に指定可能。</p><p>1万件のデータから0.2秒以内で絞り込み結果を表示。</p><p>何も入力しなければ全てのデータを表示。URLで検索条件を保存・共有可能。</p></td>
+              <td class="px-3 py-2 table-cell"><p>「この期間の」「この部署の」「このキーワードを含む」データだけを表示できる。</p><p>URLをコピーして他の人に送ると、同じ絞り込み条件で見てもらえる。</p><p>条件を変更すると0.2秒以内に結果が更新される。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_preprocess_preview"></td>
-              <td class="px-3 py-2"><a href="#art_fe_preprocess_preview" class="text-blue-600 underline">前処理プレビュー表示（分割/切り出しの可視化）</a></td>
+              <td class="px-3 py-2"><a href="#art_fe_preprocess_preview" class="text-blue-600 underline">画像分割プレビュー（送信前に分割範囲を確認）</a></td>
               <td class="px-3 py-2">8,000円</td>
-              <td class="px-3 py-2 table-cell"><p>タイル1024×1024、重なり64px。</p><p>描画500ms以内。</p><p>表示値を送信に適用。</p></td>
-              <td class="px-3 py-2 table-cell"><p>送信前に分割範囲を確認。</p><p>手戻り0回にできる。</p><p>操作は「表示→確認→送信」。</p></td>
+              <td class="px-3 py-2 table-cell"><p>大きな画像を1024×1024ピクセルの正方形に分割。隣り合う正方形は64ピクセル重複。</p><p>分割プレビューは0.5秒以内に表示。</p><p>プレビューで確認した設定で実際の処理を実行。</p></td>
+              <td class="px-3 py-2 table-cell"><p>大きな画像がどう分割されるかを送信前に画面で確認できる。</p><p>「やり直し」が不要になる。</p><p>「プレビュー表示→内容確認→送信実行」の3ステップで完了。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_async_progress"></td>
-              <td class="px-3 py-2"><a href="#art_fe_async_progress" class="text-blue-600 underline">非同期タスク進捗表示・キャンセルUI</a></td>
+              <td class="px-3 py-2"><a href="#art_fe_async_progress" class="text-blue-600 underline">長時間処理の進捗表示・途中停止機能</a></td>
               <td class="px-3 py-2">9,000円</td>
               <td class="px-3 py-2 table-cell">
-                <p>タスクID保持、2秒間隔ポーリング。</p>
-                <p>キャンセルAPI呼び出し、完了/失敗をトースト。</p>
-                <p class="note">※現状：進捗表示のみ（キャンセルAPI未接続）</p>
+                <p>処理IDを保持し、2秒ごとに進捗状況を自動更新。</p>
+                <p>「キャンセル」ボタンで処理を途中停止。完了・失敗時は画面右上に通知表示。</p>
+                <p class="note">※現在は進捗表示のみ実装済み（キャンセル機能は別途接続が必要）</p>
               </td>
-              <td class="px-3 py-2 table-cell"><p>％と残り目安を確認。</p><p>不要なら1クリック停止。</p><p>画面を閉じても進捗復元。</p></td>
+              <td class="px-3 py-2 table-cell"><p>「45%完了、あと3分」のような進捗と目安時間を確認できる。</p><p>不要になったら「キャンセル」ボタン1回で処理を停止できる。</p><p>ブラウザを閉じても、再度開けば進捗が復元される。</p></td>
             </tr>
           </tbody>
         </table>
@@ -135,42 +135,42 @@
 
       <!-- Backend table -->
       <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">バックエンド（処理ロジック）</div>
+        <div class="px-4 py-3 border-b font-semibold">処理機能（データを加工・変換する部分）</div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr>
               <th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th>
+              <th class="px-3 py-2">技術的な詳細</th><th class="px-3 py-2">お客さまにとっての効果</th>
             </tr>
           </thead>
           <tbody class="align-top">
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_excel_parse"></td>
-              <td class="px-3 py-2"><a href="#art_be_excel_parse" class="text-blue-600 underline">Excel解析（列マッピング対応）</a></td>
+              <td class="px-3 py-2"><a href="#art_be_excel_parse" class="text-blue-600 underline">Excelファイル読み込み（列名が違っても対応）</a></td>
               <td class="px-3 py-2">8,000円</td>
-              <td class="px-3 py-2 table-cell"><p>任意シート選択、列マッピング。</p><p>空白行削除、列≤50/行≤50,000。</p><p>読込30秒以内。</p></td>
-              <td class="px-3 py-2 table-cell"><p>既存Excelをそのまま読込。</p><p>列名違いは画面で対応。</p><p>30秒以内に完了。</p></td>
+              <td class="px-3 py-2 table-cell"><p>複数シートから任意のシートを選択。列名の対応関係を画面で設定。</p><p>空白行は自動削除。最大50列、5万行まで対応。</p><p>読み込みは30秒以内に完了。</p></td>
+              <td class="px-3 py-2 table-cell"><p>今お使いのExcelファイルをそのまま使える。</p><p>「氏名」「名前」「お名前」など列名が違っても画面で「同じもの」として設定できる。</p><p>大きなファイルでも30秒以内に読み込み完了。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_image_preprocess"></td>
-              <td class="px-3 py-2"><a href="#art_be_image_preprocess" class="text-blue-600 underline">画像前処理（リサイズ/正規化）</a></td>
+              <td class="px-3 py-2"><a href="#art_be_image_preprocess" class="text-blue-600 underline">画像サイズ統一処理（大きさをそろえて処理を高速化）</a></td>
               <td class="px-3 py-2">8,000円</td>
-              <td class="px-3 py-2 table-cell"><p>長辺≤2048px、正規化。</p><p>.png/.jpg、1枚500ms。</p><p>失敗はログ化。</p></td>
-              <td class="px-3 py-2 table-cell"><p>大きい画像でも安定。</p><p>読み込みが速い。</p><p>対象形式が明確。</p></td>
+              <td class="px-3 py-2 table-cell"><p>どんな大きさの画像も横幅2048ピクセル以下に統一。PNG・JPG対応。</p><p>1枚あたり0.5秒以内で処理完了。</p><p>処理に失敗した画像は理由をログに記録。</p></td>
+              <td class="px-3 py-2 table-cell"><p>スマホで撮った大きな写真も、小さなアイコンも、同じ大きさに統一される。</p><p>処理が速いので待たされない。</p><p>対応形式（PNG・JPG）が明確で分かりやすい。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_data_transform"></td>
-              <td class="px-3 py-2"><a href="#art_be_data_transform" class="text-blue-600 underline">データ変換・整形（日付/数値の統一）</a></td>
+              <td class="px-3 py-2"><a href="#art_be_data_transform" class="text-blue-600 underline">データ形式統一（日付・数値を同じ書式に変換）</a></td>
               <td class="px-3 py-2">5,000円</td>
-              <td class="px-3 py-2 table-cell"><p>日付=YYYY-MM-DD、小数桁統一。</p><p>対象列≤10、検証エラー0件。</p><p>不一致を一覧返却。</p></td>
-              <td class="px-3 py-2 table-cell"><p>集計が容易。</p><p>誤集計を防止。</p><p>修正点を一覧で確認。</p></td>
+              <td class="px-3 py-2 table-cell"><p>日付を「2024-12-25」形式に統一。小数点以下の桁数も統一。</p><p>最大10列まで対応。変換時にエラーが発生しない設計。</p><p>変換できなかったデータは一覧で表示。</p></td>
+              <td class="px-3 py-2 table-cell"><p>「2024/12/25」「12月25日」「Dec 25」などがすべて「2024-12-25」に統一される。</p><p>集計・グラフ作成で間違いが起こらない。</p><p>変換できなかったデータは一覧で確認して修正できる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_search_api"></td>
-              <td class="px-3 py-2"><a href="#art_be_search_api" class="text-blue-600 underline">検索・フィルタAPI</a></td>
+              <td class="px-3 py-2"><a href="#art_be_search_api" class="text-blue-600 underline">高速検索機能（大量データから瞬時に絞り込み）</a></td>
               <td class="px-3 py-2">8,000円</td>
-              <td class="px-3 py-2 table-cell"><p>列別条件、列≤10。</p><p>10,000件で100ms応答。</p><p>400/500で理由JSON。</p></td>
-              <td class="px-3 py-2 table-cell"><p>目的の行を即絞込。</p><p>切替0.1秒以内。</p><p>入力ミスの理由が分かる。</p></td>
+              <td class="px-3 py-2 table-cell"><p>最大10列の条件を同時指定可能。</p><p>1万件のデータから0.1秒以内で検索結果を表示。</p><p>検索エラー時は具体的な理由を表示。</p></td>
+              <td class="px-3 py-2 table-cell"><p>探したいデータをすぐに見つけられる。</p><p>条件を変更すると0.1秒以内に結果が更新される。</p><p>検索できない場合は理由が分かる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_bulk"></td>
@@ -383,7 +383,7 @@
 
     <!-- ===== Frontend ===== -->
     <section id="fe" class="mb-10">
-      <h2 class="text-xl font-bold mb-3">フロントエンド（ユーザー画面）</h2>
+      <h2 class="text-xl font-bold mb-3">画面機能（お客さまが実際に操作する部分）- 実演画面で動作確認</h2>
       <div class="grid gap-6">
 
         <!-- FE: File Upload Excel/CSV -->
@@ -415,7 +415,7 @@
           <!-- ミニデモ -->
           <div class="px-4 py-3 border-t">
             <details>
-              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（サンプルCSVを読み込み → 表に反映）</summary>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（サンプルCSVファイルを読み込んで表に表示）</summary>
               <div class="mt-3 grid md:grid-cols-3 gap-3">
                 <div class="bg-slate-50 border rounded-lg p-3">
                   <div class="text-xs font-semibold mb-2">1. ファイル選択</div>
@@ -423,7 +423,7 @@
                     <button id="demoCsvBtn" class="px-3 py-1.5 border rounded hover:bg-white text-sm">サンプルCSVを読み込む</button>
                     <span id="demoCsvStatus" class="text-xs text-slate-500">未読込</span>
                   </div>
-                  <p class="text-xs text-slate-500 mt-2">※実ファイル不要。ボタンで内部データを読み込みます。</p>
+                  <p class="text-xs text-slate-500 mt-2">※実際のファイルは不要です。ボタンを押すとサンプルデータが読み込まれます。</p>
                 </div>
                 <div class="bg-slate-50 border rounded-lg p-3 md:col-span-2">
                   <div class="text-xs font-semibold mb-2">2. 取り込み結果（表）</div>
@@ -463,7 +463,7 @@
           </div>
           <div class="px-4 py-3 border-t">
             <details>
-              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（ダミー画像プレースホルダでプレビュー挙動を確認）</summary>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（画像選択後のプレビュー表示を確認）</summary>
               <div class="mt-3">
                 <div class="flex items-center gap-2">
                   <button id="imgPreviewBtn" class="px-3 py-1.5 border rounded text-sm hover:bg-white">プレビューを表示</button>
@@ -504,7 +504,7 @@
           </div>
           <div class="px-4 py-3 border-t">
             <details open>
-              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（小規模データで実挙動を表示）</summary>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（表の並び替え・絞り込み・ページ送り）</summary>
               <div class="mt-3 space-y-2">
                 <div class="flex flex-wrap items-end gap-2">
                   <div><label class="text-xs block">キーワード</label><input id="kw" class="border rounded px-2 py-1 text-sm" placeholder="例: campaign" /></div>
@@ -1085,7 +1085,7 @@ GET /list-outputs → [
   <!-- ===== Floating Summary ===== -->
   <aside class="fixed bottom-4 right-4 left-4 md:left-auto md:w-[28rem] bg-white border rounded-2xl shadow-lg p-4">
     <div class="flex items-center justify-between mb-1">
-      <h3 class="font-semibold">見積サマリー</h3>
+      <h3 class="font-semibold">選択した機能の料金合計</h3>
       <button id="clearAll2" class="text-sm underline">全解除</button>
     </div>
     <div class="text-xs text-slate-600 mb-1 flex gap-4">
@@ -1096,7 +1096,7 @@ GET /list-outputs → [
     <div class="text-2xl font-bold mb-2"><span id="totalPrice">0</span> 円</div>
     <div class="text-sm">月額合計：</div>
     <div class="text-xl font-bold"><span id="monthlyPrice">0</span> 円 / 月</div>
-    <p class="text-[11px] text-slate-500 mt-2">※同一項目は一覧表とカードで同期。月額項目（保守）は別枠で集計します。</p>
+    <p class="text-[11px] text-slate-500 mt-2">※上の一覧表と下の実演画面は同じ項目です。月額項目（アフターサポート）は別に計算されます。</p>
   </aside>
 
   <script>
