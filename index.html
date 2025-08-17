@@ -140,12 +140,11 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <h1 class="text-base md:text-xl font-bold">Webシステム開発料金表 - 実際の動作を見てから選択</h1>
       <nav class="hidden md:flex gap-4 text-xs md:text-sm">
-        <a href="#quick" class="hover:underline">料金一覧表</a>
-        <a href="#fe" class="hover:underline">画面機能</a>
-        <a href="#be" class="hover:underline">処理機能</a>
-        <a href="#infra" class="hover:underline">公開・運用</a>
-        <a href="#db" class="hover:underline">データ保存</a>
-        <a href="#support" class="hover:underline">アフターサポート</a>
+        <a href="#fe" class="hover:underline">画面機能 (8項目)</a>
+        <a href="#be" class="hover:underline">処理機能 (6項目)</a>
+        <a href="#infra" class="hover:underline">公開・運用 (3項目)</a>
+        <a href="#db" class="hover:underline">データ保存 (3項目)</a>
+        <a href="#support" class="hover:underline">サポート (3項目)</a>
       </nav>
     </div>
   </header>
@@ -154,7 +153,7 @@
   <section class="max-w-7xl mx-auto px-4 py-4">
     <div class="card p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div class="text-sm">
-        <p>チェックを入れると料金に追加されます。<strong>上の一覧表</strong>と<strong>下の実演画面</strong>は同じ項目です（どちらでチェックしても同じ機能が選ばれます）。</p>
+        <p>チェックを入れると料金に追加されます。各機能には<strong>実際に動かせる体験デモ</strong>が付いています。</p>
       </div>
       <div class="flex gap-2">
         <button id="selectAll" class="btn btn-primary">全選択</button>
@@ -163,294 +162,7 @@
     </div>
   </section>
 
-  <!-- ===================== QUICK TABLES (PROXY CHECKBOXES) ===================== -->
   <main class="max-w-7xl mx-auto px-4 pb-28">
-    <section id="quick" class="mb-10">
-      <h2 class="text-xl font-bold mb-3">機能と料金の一覧表（チェックして下の実演画面で動作確認）</h2>
-      <p class="text-xs text-slate-600 mb-4">各行のチェックボックスと下の実演画面は連動しています。表示価格は税込です。</p>
-
-      <!-- Frontend table -->
-      <div class="card category-frontend mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
-          <span>画面機能（お客さまが実際に操作する部分）</span>
-          <span class="text-xs text-gray-600">基本的な画面操作に必要</span>
-        </div>
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-left">
-            <tr>
-              <th class="px-3 py-2 w-10">選択</th>
-              <th class="px-3 py-2">機能名</th>
-              <th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">含まれる機能</th>
-              <th class="px-3 py-2">お客さまにとっての効果</th>
-            </tr>
-          </thead>
-          <tbody class="align-top">
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_file_upload"></td>
-              <td class="px-3 py-2">
-                <div class="flex items-center gap-2">
-                  <a href="#art_fe_file_upload" class="text-blue-600 underline">ファイルアップロード</a>
-                  <span class="recommended">推奨</span>
-                </div>
-              </td>
-              <td class="px-3 py-2"><span class="price">3,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• Excel・CSV・画像ファイル対応（20MBまで）</p>
-                <p>• 進捗表示・エラー理由表示</p>
-                <p>• 画像プレビュー・サイズ自動調整</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>どんな種類のファイルでも簡単アップロード。</p>
-                <p>進捗が見えるので安心。失敗理由もすぐ分かる。</p>
-                <p>画像は選んだ瞬間にプレビュー表示。</p>
-              </td>
-            </tr>
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_data_display"></td>
-              <td class="px-3 py-2">
-                <div class="flex items-center gap-2">
-                  <a href="#art_fe_data_display" class="text-blue-600 underline">データ表示・検索</a>
-                  <span class="recommended">推奨</span>
-                </div>
-              </td>
-              <td class="px-3 py-2"><span class="price">5,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• 表形式表示・並び替え・ページ送り</p>
-                <p>• 期間・分類・キーワード絞り込み</p>
-                <p>• 高速検索（1万件を0.1秒で処理）</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>大量データも見やすい表で表示。</p>
-                <p>欲しい情報だけを瞬時に絞り込み。</p>
-                <p>URLで検索条件を他の人と共有可能。</p>
-              </td>
-            </tr>
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_bulk_management"></td>
-              <td class="px-3 py-2"><a href="#art_fe_bulk_management" class="text-blue-600 underline">大量処理管理</a></td>
-              <td class="px-3 py-2"><span class="price">5,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• 大量データの並列処理</p>
-                <p>• リアルタイム進捗表示</p>
-                <p>• 処理のキャンセル・再開機能</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>大量の作業も効率的に処理。</p>
-                <p>進捗と残り時間が分かるので安心。</p>
-                <p>不要になったら途中で停止可能。</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Backend table -->
-      <div class="card category-backend mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
-          <span>処理機能（データを加工・変換する部分）</span>
-          <span class="text-xs text-gray-600">データ処理の効率化に必要</span>
-        </div>
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-left">
-            <tr>
-              <th class="px-3 py-2 w-10">選択</th>
-              <th class="px-3 py-2">機能名</th>
-              <th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">含まれる機能</th>
-              <th class="px-3 py-2">お客さまにとっての効果</th>
-            </tr>
-          </thead>
-          <tbody class="align-top">
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_data_processing"></td>
-              <td class="px-3 py-2">
-                <div class="flex items-center gap-2">
-                  <a href="#art_be_data_processing" class="text-blue-600 underline">データ処理</a>
-                  <span class="recommended">推奨</span>
-                </div>
-              </td>
-              <td class="px-3 py-2"><span class="price">3,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• Excel・CSV読み込み（列名自動対応）</p>
-                <p>• 日付・数値の書式統一</p>
-                <p>• 画像サイズ自動調整</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>既存のExcelファイルをそのまま使用可能。</p>
-                <p>データ形式のバラツキを自動で統一。</p>
-                <p>集計・分析で間違いが起こらない。</p>
-              </td>
-            </tr>
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_ai_functions"></td>
-              <td class="px-3 py-2"><a href="#art_be_ai_functions" class="text-blue-600 underline">AI機能</a></td>
-              <td class="px-3 py-2"><span class="price">8,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• 高精度プロンプト設計・検証</p>
-                <p>• 複数パターン一括生成</p>
-                <p>• 知識ベース連携・エラー自動修正</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>AIが毎回同じ品質で結果を生成。</p>
-                <p>複数のパターンから最適なものを選択。</p>
-                <p>専門知識を組み込んで精度向上。</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Infra table -->
-      <div class="card category-infra mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
-          <span>公開・運用（システムを世界に公開）</span>
-          <span class="text-xs text-gray-600">システム公開時に必須</span>
-        </div>
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-left">
-            <tr>
-              <th class="px-3 py-2 w-10">選択</th>
-              <th class="px-3 py-2">機能名</th>
-              <th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">含まれる機能</th>
-              <th class="px-3 py-2">お客さまにとっての効果</th>
-            </tr>
-          </thead>
-          <tbody class="align-top">
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#infra_deployment"></td>
-              <td class="px-3 py-2">
-                <div class="flex items-center gap-2">
-                  <a href="#art_infra_deployment" class="text-blue-600 underline">システム公開・監視</a>
-                  <span class="recommended">推奨</span>
-                </div>
-              </td>
-              <td class="px-3 py-2"><span class="price">3,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• 自動デプロイ（CI/CD）</p>
-                <p>• 稼働監視・アラート通知</p>
-                <p>• ログ保存・エラー追跡</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>システムをインターネットで公開。</p>
-                <p>修正が自動で反映される。</p>
-                <p>問題発生時はメールで通知。</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- DB table -->
-      <div class="card category-db mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
-          <span>データ保存（情報を保存・管理）</span>
-          <span class="text-xs text-gray-600">データ管理に必要</span>
-        </div>
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-left">
-            <tr>
-              <th class="px-3 py-2 w-10">選択</th>
-              <th class="px-3 py-2">機能名</th>
-              <th class="px-3 py-2 w-28">価格</th>
-              <th class="px-3 py-2">含まれる機能</th>
-              <th class="px-3 py-2">お客さまにとっての効果</th>
-            </tr>
-          </thead>
-          <tbody class="align-top">
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_system"></td>
-              <td class="px-3 py-2">
-                <div class="flex items-center gap-2">
-                  <a href="#art_db_system" class="text-blue-600 underline">データベース設計・構築</a>
-                  <span class="recommended">推奨</span>
-                </div>
-              </td>
-              <td class="px-3 py-2"><span class="price">3,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• データベース設計・設計書</p>
-                <p>• 登録・更新・削除機能</p>
-                <p>• エラーハンドリング</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>データを安全に保存・管理。</p>
-                <p>情報の登録・更新・削除が可能。</p>
-                <p>エラー時は理由が明確に表示。</p>
-              </td>
-            </tr>
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_file_storage"></td>
-              <td class="px-3 py-2"><a href="#art_db_file_storage" class="text-blue-600 underline">ファイル保存</a></td>
-              <td class="px-3 py-2"><span class="price">2,000円</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• 生成ファイルの自動保存</p>
-                <p>• ファイル一覧・ダウンロード</p>
-                <p>• 履歴管理（上書き防止）</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>作成したファイルが自動で保存される。</p>
-                <p>過去のファイルを一覧で確認・ダウンロード。</p>
-                <p>上書きされず履歴が残る。</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Support table -->
-      <div class="card category-support overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
-          <span>アフターサポート（継続的な保守）</span>
-          <span class="text-xs text-gray-600">運用開始後に必要</span>
-        </div>
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-left">
-            <tr>
-              <th class="px-3 py-2 w-10">選択</th>
-              <th class="px-3 py-2">機能名</th>
-              <th class="px-3 py-2 w-36">価格</th>
-              <th class="px-3 py-2">含まれるサービス</th>
-              <th class="px-3 py-2">お客さまにとっての効果</th>
-            </tr>
-          </thead>
-          <tbody class="align-top">
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_light"></td>
-              <td class="px-3 py-2"><a href="#art_support_light" class="text-blue-600 underline">保守（ライト）</a></td>
-              <td class="px-3 py-2"><span class="price">2,000円</span> <span class="text-xs text-gray-600">/ 月</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• メール相談・軽微修正（月1回・1時間以内）</p>
-                <p>• 平日10:00-18:00対応</p>
-                <p>• 初回返信24時間以内</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>月1回の小修正を依頼可能。</p>
-                <p>対応時間と返信目安が明確。</p>
-                <p>安心して運用を継続。</p>
-              </td>
-            </tr>
-            <tr class="border-t">
-              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_std"></td>
-              <td class="px-3 py-2"><a href="#art_support_std" class="text-blue-600 underline">保守（スタンダード）</a></td>
-              <td class="px-3 py-2"><span class="price">3,000円</span> <span class="text-xs text-gray-600">/ 月</span></td>
-              <td class="px-3 py-2 table-cell">
-                <p>• メール相談・軽微修正（月2回・各1時間以内）</p>
-                <p>• 平日10:00-18:00対応</p>
-                <p>• 初回返信8時間以内</p>
-              </td>
-              <td class="px-3 py-2 table-cell">
-                <p>月2回まで修正依頼可能。</p>
-                <p>返信が速く運用の手間を削減。</p>
-                <p>積極的な改善提案も対応。</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ===================== DEMO CARDS (REAL CHECKBOXES FOR PRICING) ===================== -->
 
     <!-- ===== Frontend ===== -->
     <section id="fe" class="mb-10">
@@ -464,6 +176,7 @@
               <input id="fe_file_upload" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="fe_file_upload" />
               <span class="font-semibold">ファイルアップロード</span>
               <span class="badge">.xlsx/.csv/.png/.jpg ≤20MB</span>
+              <span class="recommended">推奨</span>
             </label>
             <div class="price">3,000円</div>
           </div>
@@ -508,12 +221,104 @@
           </div>
         </article>
 
+        <!-- FE: Drag and Drop Upload -->
+        <article id="art_fe_drag_drop" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_drag_drop" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="fe_drag_drop" />
+              <span class="font-semibold">ドラッグ&ドロップ</span>
+              <span class="badge">複数ファイル同時</span>
+            </label>
+            <div class="price">2,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>複数ファイル同時ドロップ対応</li>
+                <li>ドロップエリアのビジュアル表示</li>
+                <li>ファイル種別の自動判定</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>直感的な操作で複数ファイルを一度に処理</li>
+                <li>エクスプローラーからそのまま持ってくるだけ</li>
+                <li>作業効率が大幅に向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（ドラッグ&ドロップエリア）</summary>
+              <div class="mt-3 space-y-3">
+                <div id="dropArea" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50 transition-colors">
+                  <div class="text-sm text-gray-500">ここにファイルをドラッグ&ドロップ</div>
+                  <div class="text-xs text-gray-400 mt-1">（デモ用：クリックでファイル追加をシミュレート）</div>
+                </div>
+                <div id="fileList" class="space-y-2"></div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Real-time Validation -->
+        <article id="art_fe_validation" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_validation" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="fe_validation" />
+              <span class="font-semibold">リアルタイム入力検証</span>
+              <span class="badge">即座にエラー表示</span>
+            </label>
+            <div class="price">4,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>入力中のリアルタイムチェック</li>
+                <li>分かりやすいエラーメッセージ</li>
+                <li>必須項目・形式チェック</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>入力ミスを即座に発見・修正</li>
+                <li>送信後のエラーで時間を無駄にしない</li>
+                <li>正しい入力方法がすぐ分かる</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（リアルタイム検証）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-xs block mb-1">メールアドレス</label>
+                    <input id="emailInput" class="border rounded px-2 py-1 text-sm w-full" placeholder="例: user@example.com" />
+                    <div id="emailError" class="text-xs text-red-500 mt-1 hidden"></div>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">電話番号</label>
+                    <input id="phoneInput" class="border rounded px-2 py-1 text-sm w-full" placeholder="例: 090-1234-5678" />
+                    <div id="phoneError" class="text-xs text-red-500 mt-1 hidden"></div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
         <!-- FE: Data Display -->
         <article id="art_fe_data_display" class="card">
           <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
               <input id="fe_data_display" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_data_display" />
               <span class="font-semibold">データ表示・検索</span>
+              <span class="recommended">推奨</span>
             </label>
             <div class="price">5,000円</div>
           </div>
@@ -568,6 +373,115 @@
           </div>
         </article>
 
+        <!-- FE: Advanced Filter -->
+        <article id="art_fe_advanced_filter" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_advanced_filter" type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" data-key="fe_advanced_filter" />
+              <span class="font-semibold">高度な絞り込み</span>
+              <span class="badge">複数条件・範囲指定</span>
+            </label>
+            <div class="price">6,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>複数条件の組み合わせ絞り込み</li>
+                <li>数値・日付の範囲指定</li>
+                <li>保存された絞り込み条件</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>複雑な条件でも簡単に絞り込み</li>
+                <li>よく使う条件を保存して再利用</li>
+                <li>大量データから必要な情報を瞬時に抽出</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（高度な絞り込み）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div>
+                    <label class="text-xs block mb-1">価格範囲</label>
+                    <div class="flex gap-1">
+                      <input id="priceMin" class="border rounded px-2 py-1 text-xs w-full" placeholder="最小" />
+                      <input id="priceMax" class="border rounded px-2 py-1 text-xs w-full" placeholder="最大" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">日付範囲</label>
+                    <div class="flex gap-1">
+                      <input id="dateFrom" type="date" class="border rounded px-2 py-1 text-xs w-full" />
+                      <input id="dateTo" type="date" class="border rounded px-2 py-1 text-xs w-full" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">保存済み条件</label>
+                    <select id="savedFilters" class="border rounded px-2 py-1 text-xs w-full">
+                      <option value="">選択してください</option>
+                      <option value="recent">最近の高額商品</option>
+                      <option value="popular">人気商品</option>
+                    </select>
+                  </div>
+                </div>
+                <button id="applyAdvancedFilter" class="btn btn-primary">高度な絞り込みを適用</button>
+                <div id="advancedFilterResult" class="text-xs text-gray-600">条件を設定して絞り込みボタンを押してください</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Chart Visualization -->
+        <article id="art_fe_chart" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_chart" type="checkbox" class="feature-toggle h-5 w-5" data-price="7000" data-key="fe_chart" />
+              <span class="font-semibold">グラフ・チャート表示</span>
+              <span class="badge">棒・円・線グラフ</span>
+            </label>
+            <div class="price">7,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>棒グラフ・円グラフ・線グラフ</li>
+                <li>インタラクティブな操作</li>
+                <li>画像・PDF出力機能</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>数値データを視覚的に理解</li>
+                <li>トレンドや傾向が一目で分かる</li>
+                <li>資料作成に使える高品質な画像</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（グラフ表示）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="showBarChart" class="btn">棒グラフ</button>
+                  <button id="showPieChart" class="btn">円グラフ</button>
+                  <button id="showLineChart" class="btn">線グラフ</button>
+                  <button id="exportChart" class="btn ml-auto">画像で保存</button>
+                </div>
+                <div id="chartContainer" class="border rounded-lg p-4 bg-gray-50 h-64 flex items-center justify-center text-sm text-gray-500">
+                  上のボタンでグラフを表示
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
         <!-- FE: Bulk Management -->
         <article id="art_fe_bulk_management" class="card">
           <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
@@ -615,6 +529,102 @@
           </div>
         </article>
 
+        <!-- FE: Notification System -->
+        <article id="art_fe_notifications" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_notifications" type="checkbox" class="feature-toggle h-5 w-5" data-price="3500" data-key="fe_notifications" />
+              <span class="font-semibold">通知システム</span>
+              <span class="badge">リアルタイム・プッシュ</span>
+            </label>
+            <div class="price">3,500円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>リアルタイム通知表示</li>
+                <li>プッシュ通知対応</li>
+                <li>通知履歴・未読管理</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>重要な更新を見逃さない</li>
+                <li>ブラウザを閉じていても通知受信</li>
+                <li>過去の通知も確認可能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（通知システム）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="sendNotification" class="btn btn-primary">通知を送信</button>
+                  <button id="showNotificationHistory" class="btn">履歴表示</button>
+                  <button id="clearNotifications" class="btn">全削除</button>
+                </div>
+                <div id="notificationArea" class="border rounded-lg p-3 bg-gray-50 min-h-24">
+                  <div class="text-xs text-gray-500">通知がここに表示されます</div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: User Dashboard -->
+        <article id="art_fe_dashboard" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_dashboard" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="fe_dashboard" />
+              <span class="font-semibold">ユーザーダッシュボード</span>
+              <span class="badge">カスタマイズ可能</span>
+            </label>
+            <div class="price">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>ウィジェット配置・サイズ変更</li>
+                <li>個人設定の保存</li>
+                <li>KPI・統計情報の表示</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>必要な情報を一画面で確認</li>
+                <li>自分好みにレイアウト調整</li>
+                <li>業務効率が大幅に向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（ダッシュボード）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="addWidget" class="btn btn-primary">ウィジェット追加</button>
+                  <button id="resetDashboard" class="btn">レイアウトリセット</button>
+                </div>
+                <div id="dashboardGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 min-h-48">
+                  <div class="widget border rounded-lg p-3 bg-blue-50">
+                    <div class="text-xs font-semibold mb-2">売上</div>
+                    <div class="text-lg font-bold">¥123,456</div>
+                  </div>
+                  <div class="widget border rounded-lg p-3 bg-green-50">
+                    <div class="text-xs font-semibold mb-2">注文数</div>
+                    <div class="text-lg font-bold">42件</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -629,6 +639,7 @@
             <label class="flex items-center gap-3 cursor-pointer">
               <input id="be_data_processing" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="be_data_processing" />
               <span class="font-semibold">データ処理</span>
+              <span class="recommended">推奨</span>
             </label>
             <div class="price">3,000円</div>
           </div>
@@ -649,6 +660,131 @@
                 <li>集計・分析で間違いが起こらない</li>
               </ul>
             </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（データ変換処理）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">変換前データ</div>
+                    <div class="text-xs font-mono bg-white border rounded p-2">
+                      日付: 2025/1/15, 2025-01-16<br/>
+                      価格: ¥1,000, 1500円<br/>
+                      画像: 4000x3000px, 800x600px
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">変換後データ</div>
+                    <div class="text-xs font-mono bg-white border rounded p-2">
+                      日付: 2025-01-15, 2025-01-16<br/>
+                      価格: 1000, 1500<br/>
+                      画像: 800x600px, 800x600px
+                    </div>
+                  </div>
+                </div>
+                <button id="processDataDemo" class="btn btn-primary">データ変換を実行</button>
+                <div id="processResult" class="text-xs text-gray-600">変換ボタンを押してください</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Data Validation -->
+        <article id="art_be_validation" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_validation" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="be_validation" />
+              <span class="font-semibold">データ検証・クリーニング</span>
+              <span class="badge">重複・欠損値処理</span>
+            </label>
+            <div class="price">4,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>重複データの自動検出・削除</li>
+                <li>欠損値の補完・処理</li>
+                <li>データ整合性チェック</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>データ品質が大幅に向上</li>
+                <li>分析結果の精度が向上</li>
+                <li>手作業でのデータ確認が不要</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（データ検証）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="checkDuplicates" class="btn">重複チェック</button>
+                  <button id="checkMissing" class="btn">欠損値チェック</button>
+                  <button id="cleanData" class="btn btn-primary">データクリーニング</button>
+                </div>
+                <div id="validationResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  検証結果がここに表示されます
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Batch Processing -->
+        <article id="art_be_batch" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_batch" type="checkbox" class="feature-toggle h-5 w-5" data-price="5500" data-key="be_batch" />
+              <span class="font-semibold">バッチ処理・スケジューリング</span>
+              <span class="badge">自動実行</span>
+            </label>
+            <div class="price">5,500円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>定期実行スケジューリング</li>
+                <li>大量データの分割処理</li>
+                <li>エラー時の自動リトライ</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>夜間や休日に自動で処理実行</li>
+                <li>人手を介さずに定期作業が完了</li>
+                <li>処理失敗時も自動で再実行</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（スケジューリング）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-xs block mb-1">実行間隔</label>
+                    <select id="scheduleInterval" class="border rounded px-2 py-1 text-sm w-full">
+                      <option value="hourly">毎時</option>
+                      <option value="daily">毎日</option>
+                      <option value="weekly">毎週</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">実行時刻</label>
+                    <input id="scheduleTime" type="time" class="border rounded px-2 py-1 text-sm w-full" value="02:00" />
+                  </div>
+                </div>
+                <button id="createSchedule" class="btn btn-primary">スケジュール作成</button>
+                <div id="scheduleStatus" class="text-xs text-gray-600">スケジュールを作成してください</div>
+              </div>
+            </details>
           </div>
         </article>
 
@@ -704,6 +840,115 @@
           </div>
         </article>
 
+        <!-- BE: API Integration -->
+        <article id="art_be_api" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_api" type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" data-key="be_api" />
+              <span class="font-semibold">外部API連携</span>
+              <span class="badge">決済・地図・SNS</span>
+            </label>
+            <div class="price">6,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>決済API（Stripe, PayPal等）</li>
+                <li>地図・住所検索API</li>
+                <li>SNS投稿・認証API</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>オンライン決済が簡単に導入</li>
+                <li>住所入力が自動で補完</li>
+                <li>SNSでの情報発信が自動化</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（API連携デモ）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">決済API</div>
+                    <button id="testPayment" class="btn w-full">テスト決済</button>
+                    <div id="paymentStatus" class="text-xs mt-2 text-gray-600">未実行</div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">住所検索</div>
+                    <input id="addressInput" class="border rounded px-2 py-1 text-xs w-full" placeholder="郵便番号" />
+                    <button id="searchAddress" class="btn w-full mt-1">住所検索</button>
+                    <div id="addressResult" class="text-xs mt-2 text-gray-600">検索結果</div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">SNS投稿</div>
+                    <textarea id="snsPost" class="border rounded px-2 py-1 text-xs w-full" rows="2" placeholder="投稿内容"></textarea>
+                    <button id="postToSNS" class="btn w-full mt-1">投稿</button>
+                    <div id="snsStatus" class="text-xs mt-2 text-gray-600">未投稿</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Security & Authentication -->
+        <article id="art_be_security" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_security" type="checkbox" class="feature-toggle h-5 w-5" data-price="7000" data-key="be_security" />
+              <span class="font-semibold">セキュリティ・認証</span>
+              <span class="badge">多要素認証・暗号化</span>
+            </label>
+            <div class="price">7,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>多要素認証（SMS、メール）</li>
+                <li>データ暗号化・ハッシュ化</li>
+                <li>アクセス制御・権限管理</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>不正アクセスから完全防御</li>
+                <li>個人情報が安全に保護</li>
+                <li>法令遵守で信頼性向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（セキュリティ機能）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">多要素認証</div>
+                    <input id="phoneNumber" class="border rounded px-2 py-1 text-xs w-full" placeholder="電話番号" />
+                    <button id="sendOTP" class="btn w-full mt-1">認証コード送信</button>
+                    <input id="otpCode" class="border rounded px-2 py-1 text-xs w-full mt-1" placeholder="認証コード" />
+                    <button id="verifyOTP" class="btn w-full mt-1">認証</button>
+                    <div id="otpStatus" class="text-xs mt-2 text-gray-600">認証待ち</div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">データ暗号化</div>
+                    <textarea id="plainText" class="border rounded px-2 py-1 text-xs w-full" rows="3" placeholder="暗号化したいテキスト"></textarea>
+                    <button id="encryptData" class="btn w-full mt-1">暗号化</button>
+                    <div id="encryptedResult" class="text-xs mt-2 p-2 bg-white border rounded font-mono">暗号化結果</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -717,6 +962,7 @@
             <label class="flex items-center gap-3 cursor-pointer">
               <input id="infra_deployment" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="infra_deployment" />
               <span class="font-semibold">システム公開・監視</span>
+              <span class="recommended">推奨</span>
             </label>
             <div class="price">3,000円</div>
           </div>
@@ -738,6 +984,120 @@
               </ul>
             </div>
           </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（デプロイ・監視）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">デプロイ状況</div>
+                    <button id="deploySystem" class="btn btn-primary w-full">デプロイ開始</button>
+                    <div id="deployStatus" class="text-xs mt-2 text-gray-600">待機中</div>
+                    <div class="progress-bar mt-2"><div id="deployProgress" class="progress-fill" style="width:0%"></div></div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">システム監視</div>
+                    <div class="space-y-1 text-xs">
+                      <div>CPU使用率: <span id="cpuUsage" class="font-mono">25%</span></div>
+                      <div>メモリ使用率: <span id="memoryUsage" class="font-mono">45%</span></div>
+                      <div>稼働時間: <span id="uptime" class="font-mono">15日</span></div>
+                    </div>
+                    <button id="refreshMetrics" class="btn w-full mt-2">更新</button>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article id="art_infra_cdn" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="infra_cdn" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="infra_cdn" />
+              <span class="font-semibold">CDN・高速配信</span>
+              <span class="badge">世界中で高速</span>
+            </label>
+            <div class="price">4,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>世界各地のサーバーに配信</li>
+                <li>画像・動画の自動最適化</li>
+                <li>キャッシュによる高速化</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>どこからでも高速アクセス</li>
+                <li>大量アクセスでも安定動作</li>
+                <li>通信費を大幅削減</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（CDN効果測定）</summary>
+              <div class="mt-3 space-y-3">
+                <button id="testCDN" class="btn btn-primary">CDN効果を測定</button>
+                <div id="cdnResults" class="grid md:grid-cols-2 gap-3 hidden">
+                  <div class="bg-red-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">CDNなし</div>
+                    <div class="text-lg font-bold text-red-600">2.3秒</div>
+                  </div>
+                  <div class="bg-green-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">CDNあり</div>
+                    <div class="text-lg font-bold text-green-600">0.4秒</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article id="art_infra_backup" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="infra_backup" type="checkbox" class="feature-toggle h-5 w-5" data-price="2500" data-key="infra_backup" />
+              <span class="font-semibold">自動バックアップ</span>
+              <span class="badge">データ保護</span>
+            </label>
+            <div class="price">2,500円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>毎日の自動バックアップ</li>
+                <li>複数世代の履歴保持</li>
+                <li>ワンクリック復元機能</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>データ消失リスクゼロ</li>
+                <li>過去の状態にいつでも復元</li>
+                <li>安心してシステム運用</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（バックアップ管理）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="createBackup" class="btn btn-primary">バックアップ作成</button>
+                  <button id="listBackups" class="btn">履歴表示</button>
+                </div>
+                <div id="backupList" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  バックアップ履歴がここに表示されます
+                </div>
+              </div>
+            </details>
+          </div>
         </article>
 
       </div>
@@ -753,6 +1113,7 @@
             <label class="flex items-center gap-3 cursor-pointer">
               <input id="db_system" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="db_system" />
               <span class="font-semibold">データベース設計・構築</span>
+              <span class="recommended">推奨</span>
             </label>
             <div class="price">3,000円</div>
           </div>
@@ -773,6 +1134,32 @@
                 <li>エラー時は理由が明確に表示</li>
               </ul>
             </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（データベース操作）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">データ登録</div>
+                    <input id="dbName" class="border rounded px-2 py-1 text-xs w-full" placeholder="名前" />
+                    <input id="dbEmail" class="border rounded px-2 py-1 text-xs w-full mt-1" placeholder="メール" />
+                    <button id="insertData" class="btn w-full mt-1">登録</button>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">データ検索</div>
+                    <input id="searchQuery" class="border rounded px-2 py-1 text-xs w-full" placeholder="検索キーワード" />
+                    <button id="searchData" class="btn w-full mt-1">検索</button>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">データ更新</div>
+                    <input id="updateId" class="border rounded px-2 py-1 text-xs w-full" placeholder="ID" />
+                    <button id="updateData" class="btn w-full mt-1">更新</button>
+                  </div>
+                </div>
+                <div id="dbResult" class="border rounded-lg p-3 bg-gray-50 text-xs">操作結果がここに表示されます</div>
+              </div>
+            </details>
           </div>
         </article>
 
@@ -802,6 +1189,75 @@
               </ul>
             </div>
           </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（ファイル管理）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="saveFile" class="btn btn-primary">ファイル保存</button>
+                  <button id="listFiles" class="btn">ファイル一覧</button>
+                  <button id="downloadFile" class="btn">ダウンロード</button>
+                </div>
+                <div id="fileList" class="border rounded-lg p-3 bg-gray-50 text-xs">ファイル一覧がここに表示されます</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article id="art_db_analytics" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="db_analytics" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="db_analytics" />
+              <span class="font-semibold">データ分析・集計</span>
+              <span class="badge">レポート自動生成</span>
+            </label>
+            <div class="price">5,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>売上・アクセス数等の自動集計</li>
+                <li>月次・年次レポート生成</li>
+                <li>トレンド分析・予測機能</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>ビジネスの状況が数値で把握</li>
+                <li>意思決定に必要なデータを提供</li>
+                <li>将来の予測で戦略立案が可能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（データ分析）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-xs block mb-1">分析期間</label>
+                    <select id="analyticsPeriod" class="border rounded px-2 py-1 text-sm w-full">
+                      <option value="week">過去1週間</option>
+                      <option value="month">過去1ヶ月</option>
+                      <option value="year">過去1年</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">分析項目</label>
+                    <select id="analyticsType" class="border rounded px-2 py-1 text-sm w-full">
+                      <option value="sales">売上分析</option>
+                      <option value="users">ユーザー分析</option>
+                      <option value="access">アクセス分析</option>
+                    </select>
+                  </div>
+                </div>
+                <button id="generateReport" class="btn btn-primary">レポート生成</button>
+                <div id="analyticsReport" class="border rounded-lg p-3 bg-gray-50 text-xs">分析結果がここに表示されます</div>
+              </div>
+            </details>
+          </div>
         </article>
 
       </div>
@@ -811,6 +1267,7 @@
     <section id="support" class="mb-10">
       <h2 class="text-xl font-bold mb-3">アフターサポート</h2>
       <div class="grid gap-6">
+        
         <article id="art_support_light" class="card">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
@@ -819,8 +1276,39 @@
             </label>
             <div class="price">2,000円 <span class="text-xs text-gray-600">/ 月</span></div>
           </div>
-          <div class="p-4 text-sm">メール相談・軽微修正 月1回（1時間以内）、平日10:00–18:00、初回返信24時間以内</div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれるサービス</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>メール相談・軽微修正（月1回・1時間以内）</li>
+                <li>平日10:00-18:00対応</li>
+                <li>初回返信24時間以内</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>月1回の小修正を依頼可能</li>
+                <li>対応時間と返信目安が明確</li>
+                <li>安心して運用を継続</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（サポート依頼）</summary>
+              <div class="mt-3 space-y-3">
+                <textarea id="supportRequestLight" class="border rounded px-2 py-1 text-sm w-full" rows="3" placeholder="サポート内容を入力してください"></textarea>
+                <div class="flex gap-2">
+                  <button id="submitSupportLight" class="btn btn-primary">サポート依頼</button>
+                  <button id="checkStatusLight" class="btn">状況確認</button>
+                </div>
+                <div id="supportStatusLight" class="text-xs text-gray-600">サポート依頼を送信してください</div>
+              </div>
+            </details>
+          </div>
         </article>
+
         <article id="art_support_std" class="card">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
@@ -829,8 +1317,100 @@
             </label>
             <div class="price">3,000円 <span class="text-xs text-gray-600">/ 月</span></div>
           </div>
-          <div class="p-4 text-sm">メール相談・軽微修正 月2回（各1時間以内）、平日10:00–18:00、初回返信8時間以内</div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれるサービス</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>メール相談・軽微修正（月2回・各1時間以内）</li>
+                <li>平日10:00-18:00対応</li>
+                <li>初回返信8時間以内</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>月2回まで修正依頼可能</li>
+                <li>返信が速く運用の手間を削減</li>
+                <li>積極的な改善提案も対応</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（優先サポート）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-xs block mb-1">緊急度</label>
+                    <select id="urgencyLevel" class="border rounded px-2 py-1 text-sm w-full">
+                      <option value="low">低（通常対応）</option>
+                      <option value="high">高（優先対応）</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-xs block mb-1">カテゴリ</label>
+                    <select id="supportCategory" class="border rounded px-2 py-1 text-sm w-full">
+                      <option value="bug">不具合修正</option>
+                      <option value="feature">機能追加</option>
+                      <option value="question">使い方相談</option>
+                    </select>
+                  </div>
+                </div>
+                <textarea id="supportRequestStd" class="border rounded px-2 py-1 text-sm w-full" rows="3" placeholder="詳細な内容を入力してください"></textarea>
+                <button id="submitSupportStd" class="btn btn-primary">優先サポート依頼</button>
+                <div id="supportStatusStd" class="text-xs text-gray-600">8時間以内に返信いたします</div>
+              </div>
+            </details>
+          </div>
         </article>
+
+        <article id="art_support_premium" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="support_premium" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="support_premium" data-period="monthly" />
+              <span class="font-semibold">保守（プレミアム）</span>
+              <span class="badge">24時間対応</span>
+            </label>
+            <div class="price">5,000円 <span class="text-xs text-gray-600">/ 月</span></div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれるサービス</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>24時間365日対応</li>
+                <li>電話・チャット・メール対応</li>
+                <li>月5回まで修正対応（各2時間以内）</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>緊急時もすぐに対応</li>
+                <li>ビジネスの機会損失を防止</li>
+                <li>専任担当者による手厚いサポート</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（24時間サポート）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="callSupport" class="btn btn-primary">電話サポート</button>
+                  <button id="chatSupport" class="btn">チャット開始</button>
+                  <button id="emergencySupport" class="btn bg-red-600 text-white">緊急対応</button>
+                </div>
+                <div id="supportResponse" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">サポート状況</div>
+                  <div>現在の待ち時間: <span class="font-mono">約2分</span></div>
+                  <div>担当者: <span class="font-mono">田中（専任）</span></div>
+                  <div>対応可能時間: <span class="font-mono">24時間365日</span></div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -848,26 +1428,26 @@
       <div class="flex items-center gap-1">
         <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
         <span>買い切り：<span id="selectedCount" class="font-semibold">0</span>項目</span>
-      </div>
+        </div>
       <div class="flex items-center gap-1">
         <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
         <span>月額：<span id="selectedMonthly" class="font-semibold">0</span>項目</span>
+        </div>
       </div>
-    </div>
-
+      
     <!-- 価格表示 -->
     <div class="space-y-3">
       <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <span class="text-sm font-medium">買い切り合計</span>
         <span class="price price-large"><span id="totalPrice">0</span> 円</span>
-      </div>
+        </div>
       <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
         <span class="text-sm font-medium">月額合計</span>
         <span class="price"><span id="monthlyPrice">0</span> 円 / 月</span>
       </div>
     </div>
-
-    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※上の一覧表と下の実演画面は同じ項目です。月額項目（アフターサポート）は別に計算されます。</p>
+    
+    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※全23項目から選択可能。各機能には実際に動かせる体験デモが付いています。月額項目（アフターサポート）は別に計算されます。</p>
   </aside>
 
   <script>
@@ -1071,6 +1651,247 @@
 
     // ===== Initial proxy sync =====
     syncProxiesFromTargets();
+
+    // ===== NEW DEMO FUNCTIONS =====
+    
+    // Drag and Drop Demo
+    const dropArea = document.getElementById('dropArea');
+    const fileList = document.getElementById('fileList');
+    if (dropArea) {
+      dropArea.addEventListener('click', () => {
+        const fileCount = Math.floor(Math.random() * 3) + 1;
+        fileList.innerHTML = '';
+        for (let i = 0; i < fileCount; i++) {
+          const fileDiv = document.createElement('div');
+          fileDiv.className = 'text-xs p-2 bg-white border rounded';
+          fileDiv.textContent = `ファイル${i + 1}.xlsx (${Math.floor(Math.random() * 500) + 100}KB)`;
+          fileList.appendChild(fileDiv);
+        }
+        dropArea.style.borderColor = '#10b981';
+        dropArea.style.backgroundColor = '#f0fdf4';
+      });
+    }
+
+    // Real-time Validation Demo
+    const emailInput = document.getElementById('emailInput');
+    const phoneInput = document.getElementById('phoneInput');
+    const emailError = document.getElementById('emailError');
+    const phoneError = document.getElementById('phoneError');
+    
+    if (emailInput && emailError) {
+      emailInput.addEventListener('input', (e) => {
+        const email = e.target.value;
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (email && !isValid) {
+          emailError.textContent = '正しいメールアドレス形式で入力してください';
+          emailError.classList.remove('hidden');
+          emailInput.style.borderColor = '#dc2626';
+        } else {
+          emailError.classList.add('hidden');
+          emailInput.style.borderColor = email ? '#10b981' : '#d1d5db';
+        }
+      });
+    }
+
+    if (phoneInput && phoneError) {
+      phoneInput.addEventListener('input', (e) => {
+        const phone = e.target.value;
+        const isValid = /^[\d\-\s\(\)]+$/.test(phone) && phone.length >= 10;
+        if (phone && !isValid) {
+          phoneError.textContent = '正しい電話番号形式で入力してください';
+          phoneError.classList.remove('hidden');
+          phoneInput.style.borderColor = '#dc2626';
+        } else {
+          phoneError.classList.add('hidden');
+          phoneInput.style.borderColor = phone ? '#10b981' : '#d1d5db';
+        }
+      });
+    }
+
+    // Advanced Filter Demo
+    const applyAdvancedFilter = document.getElementById('applyAdvancedFilter');
+    const advancedFilterResult = document.getElementById('advancedFilterResult');
+    if (applyAdvancedFilter) {
+      applyAdvancedFilter.addEventListener('click', () => {
+        const priceMin = document.getElementById('priceMin').value;
+        const priceMax = document.getElementById('priceMax').value;
+        const dateFrom = document.getElementById('dateFrom').value;
+        const dateTo = document.getElementById('dateTo').value;
+        
+        advancedFilterResult.innerHTML = `
+          <div class="font-semibold text-green-600">絞り込み完了</div>
+          <div>価格範囲: ${priceMin || '制限なし'} - ${priceMax || '制限なし'}</div>
+          <div>期間: ${dateFrom || '制限なし'} - ${dateTo || '制限なし'}</div>
+          <div>検索結果: 42件が条件に合致</div>
+        `;
+      });
+    }
+
+    // Chart Demo
+    const showBarChart = document.getElementById('showBarChart');
+    const showPieChart = document.getElementById('showPieChart');
+    const showLineChart = document.getElementById('showLineChart');
+    const chartContainer = document.getElementById('chartContainer');
+    
+    if (showBarChart) {
+      showBarChart.addEventListener('click', () => {
+        chartContainer.innerHTML = '<div class="w-full h-full bg-blue-100 flex items-center justify-center text-blue-800">📊 棒グラフが表示されました</div>';
+      });
+    }
+    if (showPieChart) {
+      showPieChart.addEventListener('click', () => {
+        chartContainer.innerHTML = '<div class="w-full h-full bg-green-100 flex items-center justify-center text-green-800">🥧 円グラフが表示されました</div>';
+      });
+    }
+    if (showLineChart) {
+      showLineChart.addEventListener('click', () => {
+        chartContainer.innerHTML = '<div class="w-full h-full bg-purple-100 flex items-center justify-center text-purple-800">📈 線グラフが表示されました</div>';
+      });
+    }
+
+    // Notification Demo
+    const sendNotification = document.getElementById('sendNotification');
+    const notificationArea = document.getElementById('notificationArea');
+    if (sendNotification) {
+      sendNotification.addEventListener('click', () => {
+        const notificationDiv = document.createElement('div');
+        notificationDiv.className = 'p-2 bg-blue-50 border-l-4 border-blue-500 text-xs mb-2';
+        notificationDiv.innerHTML = `
+          <div class="font-semibold">新しい通知</div>
+          <div>システムが正常に動作しています - ${new Date().toLocaleTimeString()}</div>
+        `;
+        notificationArea.appendChild(notificationDiv);
+      });
+    }
+
+    // Dashboard Demo
+    const addWidget = document.getElementById('addWidget');
+    const dashboardGrid = document.getElementById('dashboardGrid');
+    if (addWidget) {
+      addWidget.addEventListener('click', () => {
+        const widgetDiv = document.createElement('div');
+        widgetDiv.className = 'widget border rounded-lg p-3 bg-yellow-50';
+        widgetDiv.innerHTML = `
+          <div class="text-xs font-semibold mb-2">新規ウィジェット</div>
+          <div class="text-lg font-bold">+${Math.floor(Math.random() * 100)}</div>
+        `;
+        dashboardGrid.appendChild(widgetDiv);
+      });
+    }
+
+    // Backend Demo Functions
+    const processDataDemo = document.getElementById('processDataDemo');
+    const processResult = document.getElementById('processResult');
+    if (processDataDemo) {
+      processDataDemo.addEventListener('click', () => {
+        processResult.innerHTML = '<span class="text-green-600">✓ データ変換が完了しました。3件のレコードを処理しました。</span>';
+      });
+    }
+
+    // Data Validation Demo
+    const checkDuplicates = document.getElementById('checkDuplicates');
+    const validationResult = document.getElementById('validationResult');
+    if (checkDuplicates) {
+      checkDuplicates.addEventListener('click', () => {
+        validationResult.innerHTML = '重複データ: 5件発見しました';
+      });
+    }
+
+    // Schedule Demo
+    const createSchedule = document.getElementById('createSchedule');
+    const scheduleStatus = document.getElementById('scheduleStatus');
+    if (createSchedule) {
+      createSchedule.addEventListener('click', () => {
+        const interval = document.getElementById('scheduleInterval').value;
+        const time = document.getElementById('scheduleTime').value;
+        scheduleStatus.innerHTML = `<span class="text-green-600">✓ ${interval} ${time}のスケジュールを作成しました</span>`;
+      });
+    }
+
+    // API Demo Functions
+    const testPayment = document.getElementById('testPayment');
+    const paymentStatus = document.getElementById('paymentStatus');
+    if (testPayment) {
+      testPayment.addEventListener('click', () => {
+        paymentStatus.textContent = '決済処理中...';
+        setTimeout(() => {
+          paymentStatus.innerHTML = '<span class="text-green-600">✓ テスト決済成功</span>';
+        }, 1500);
+      });
+    }
+
+    // Infrastructure Demo Functions
+    const deploySystem = document.getElementById('deploySystem');
+    const deployStatus = document.getElementById('deployStatus');
+    const deployProgress = document.getElementById('deployProgress');
+    if (deploySystem) {
+      deploySystem.addEventListener('click', () => {
+        let progress = 0;
+        deployStatus.textContent = 'デプロイ中...';
+        const interval = setInterval(() => {
+          progress += Math.random() * 20;
+          if (progress >= 100) {
+            progress = 100;
+            deployStatus.innerHTML = '<span class="text-green-600">✓ デプロイ完了</span>';
+            clearInterval(interval);
+          }
+          deployProgress.style.width = progress + '%';
+        }, 300);
+      });
+    }
+
+    // CDN Demo
+    const testCDN = document.getElementById('testCDN');
+    const cdnResults = document.getElementById('cdnResults');
+    if (testCDN) {
+      testCDN.addEventListener('click', () => {
+        cdnResults.classList.remove('hidden');
+      });
+    }
+
+    // Database Demo Functions
+    const insertData = document.getElementById('insertData');
+    const dbResult = document.getElementById('dbResult');
+    if (insertData) {
+      insertData.addEventListener('click', () => {
+        const name = document.getElementById('dbName').value;
+        const email = document.getElementById('dbEmail').value;
+        if (name && email) {
+          dbResult.innerHTML = `<span class="text-green-600">✓ データを登録しました: ${name} (${email})</span>`;
+        } else {
+          dbResult.innerHTML = '<span class="text-red-600">名前とメールを入力してください</span>';
+        }
+      });
+    }
+
+    // Support Demo Functions
+    const submitSupportLight = document.getElementById('submitSupportLight');
+    const supportStatusLight = document.getElementById('supportStatusLight');
+    if (submitSupportLight) {
+      submitSupportLight.addEventListener('click', () => {
+        supportStatusLight.innerHTML = '<span class="text-green-600">✓ サポート依頼を受付けました。24時間以内に返信いたします。</span>';
+      });
+    }
+
+    const submitSupportStd = document.getElementById('submitSupportStd');
+    const supportStatusStd = document.getElementById('supportStatusStd');
+    if (submitSupportStd) {
+      submitSupportStd.addEventListener('click', () => {
+        supportStatusStd.innerHTML = '<span class="text-green-600">✓ 優先サポート依頼を受付けました。8時間以内に返信いたします。</span>';
+      });
+    }
+
+    const callSupport = document.getElementById('callSupport');
+    const supportResponse = document.getElementById('supportResponse');
+    if (callSupport) {
+      callSupport.addEventListener('click', () => {
+        supportResponse.innerHTML = `
+          <div class="font-semibold mb-2 text-green-600">接続中...</div>
+          <div>担当者と接続しています</div>
+          <div>推定待ち時間: <span class="font-mono">30秒</span></div>
+        `;
+      });
+    }
   </script>
 </body>
 </html>
