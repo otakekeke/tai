@@ -7,7 +7,94 @@
   <title>Webシステム開発料金表 - 実際の動作を見て選べる機能一覧</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .wire { background: repeating-linear-gradient(45deg,#e2e8f0,#e2e8f0 10px,#f8fafc 10px,#f8fafc 20px);}
+    /* デザインシステム - 色とサイズの統一 */
+    :root {
+      --primary-blue: #2563eb;
+      --primary-blue-light: #3b82f6;
+      --success-green: #059669;
+      --warning-orange: #d97706;
+      --danger-red: #dc2626;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-elevated: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --radius-card: 16px;
+      --radius-button: 8px;
+    }
+
+    /* 統一されたカードスタイル */
+    .card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-elevated);
+      border-color: var(--primary-blue);
+    }
+
+    /* 統一されたボタンスタイル */
+    .btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-button);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid var(--gray-200);
+    }
+    .btn:hover {
+      background-color: var(--gray-50);
+      border-color: var(--primary-blue);
+    }
+    .btn-primary {
+      background-color: var(--primary-blue);
+      color: white;
+      border-color: var(--primary-blue);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-blue-light);
+    }
+
+    /* 価格表示の統一 */
+    .price {
+      font-weight: 700;
+      color: var(--primary-blue);
+      font-size: 16px;
+    }
+    .price-large {
+      font-size: 24px;
+    }
+
+    /* 推奨バッジ */
+    .recommended {
+      background: linear-gradient(135deg, var(--success-green), #10b981);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* カテゴリ別の色分け */
+    .category-frontend { border-left: 4px solid #3b82f6; }
+    .category-backend { border-left: 4px solid #059669; }
+    .category-infra { border-left: 4px solid #d97706; }
+    .category-db { border-left: 4px solid #7c3aed; }
+    .category-qa { border-left: 4px solid #dc2626; }
+    .category-docs { border-left: 4px solid #0891b2; }
+    .category-support { border-left: 4px solid #be185d; }
+
+    /* 既存のスタイル（改良版） */
+    .wire { 
+      background: repeating-linear-gradient(45deg, var(--gray-200), var(--gray-200) 10px, var(--gray-50) 10px, var(--gray-50) 20px);
+    }
     .grid-overlay::after{
       content:"";position:absolute;inset:0;pointer-events:none;
       background-image:
@@ -17,10 +104,37 @@
     }
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
     summary::-webkit-details-marker{display:none}
-    .badge{font-size:11px}
+    .badge{
+      font-size: 11px;
+      background-color: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: var(--gray-600);
+    }
     .table-cell p{margin:.25rem 0}
-    .foot{font-size:11px}
-    .note{color:#b91c1c;font-weight:600}
+    .foot{font-size:11px; color: var(--gray-600);}
+    .note{color: var(--danger-red); font-weight:600}
+
+    /* チェックボックスの改良 */
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-blue);
+    }
+
+    /* 進捗バーの統一 */
+    .progress-bar {
+      height: 8px;
+      background-color: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-blue), var(--primary-blue-light));
+      transition: width 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -49,8 +163,8 @@
         <p>チェックを入れると料金に追加されます。<strong>上の一覧表</strong>と<strong>下の実演画面</strong>は同じ項目です（どちらでチェックしても同じ機能が選ばれます）。</p>
       </div>
       <div class="flex gap-2">
-        <button id="selectAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全選択</button>
-        <button id="clearAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全解除</button>
+        <button id="selectAll" class="btn btn-primary">全選択</button>
+        <button id="clearAll" class="btn">全解除</button>
       </div>
     </div>
   </section>
@@ -62,8 +176,11 @@
       <p class="text-xs text-slate-600 mb-4">各行のチェックボックスと下の実演画面は連動しています。表示価格は税込です。<span class="note">赤い文字</span>は現在の制限事項です。</p>
 
       <!-- Frontend table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">画面機能（お客さまが実際に操作する部分）</div>
+      <div class="card category-frontend mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>画面機能（お客さまが実際に操作する部分）</span>
+          <span class="text-xs text-gray-600">基本的な画面操作に必要</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr>
@@ -77,8 +194,13 @@
           <tbody class="align-top">
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_upload_excel_csv"></td>
-              <td class="px-3 py-2"><a href="#art_fe_upload_excel_csv" class="text-blue-600 underline">ファイルアップロード（Excel/CSV）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2">
+                <div class="flex items-center gap-2">
+                  <a href="#art_fe_upload_excel_csv" class="text-blue-600 underline">ファイルアップロード（Excel/CSV）</a>
+                  <span class="recommended">推奨</span>
+                </div>
+              </td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell">
                 <p>ExcelファイルやCSVファイル（20MBまで）を1回で1つアップロード可能。</p>
                 <p>アップロード中は進捗パーセントを表示。失敗した場合は具体的な理由を表示。</p>
@@ -93,35 +215,40 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_upload_image"></td>
               <td class="px-3 py-2"><a href="#art_fe_upload_image" class="text-blue-600 underline">ファイルアップロード（画像）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>PNG・JPG画像ファイル（20MBまで、横幅2048ピクセルまで）対応。</p><p>選択すると1秒以内に小さなプレビュー画像を表示。</p><p>動作確認済み：20回連続で画像を選択してもエラーなし。</p></td>
               <td class="px-3 py-2 table-cell"><p>画像を選んだ瞬間に小さな見本が表示される。</p><p>大きな写真を選んでも画面が固まらない。</p><p>「画像が大きすぎます」のような理由がすぐ分かる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_table_result"></td>
-              <td class="px-3 py-2"><a href="#art_fe_table_result" class="text-blue-600 underline">データを表で表示（並び替え・ページ送り機能付き）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2">
+                <div class="flex items-center gap-2">
+                  <a href="#art_fe_table_result" class="text-blue-600 underline">データを表で表示（並び替え・ページ送り機能付き）</a>
+                  <span class="recommended">推奨</span>
+                </div>
+              </td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>1画面に50行ずつ表示。列名をクリックすると昇順・降順で並び替え。</p><p>ページ切り替えは1秒以内に完了。</p><p>1万件のデータでも0.1秒で検索結果を表示。</p></td>
               <td class="px-3 py-2 table-cell"><p>「日付順」「名前順」などに列をクリックするだけで並び替えできる。</p><p>「次のページ」ボタンを押して1秒以内に次の50件が表示される。</p><p>大量のデータがあっても待たされることがない。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_filters"></td>
               <td class="px-3 py-2"><a href="#art_fe_filters" class="text-blue-600 underline">データ絞り込み機能（期間・分類・キーワードを同時指定）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>「2024年1月〜3月」「営業部」「契約」の3つの条件を同時に指定可能。</p><p>1万件のデータから0.2秒以内で絞り込み結果を表示。</p><p>何も入力しなければ全てのデータを表示。URLで検索条件を保存・共有可能。</p></td>
               <td class="px-3 py-2 table-cell"><p>「この期間の」「この部署の」「このキーワードを含む」データだけを表示できる。</p><p>URLをコピーして他の人に送ると、同じ絞り込み条件で見てもらえる。</p><p>条件を変更すると0.2秒以内に結果が更新される。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_preprocess_preview"></td>
               <td class="px-3 py-2"><a href="#art_fe_preprocess_preview" class="text-blue-600 underline">画像分割プレビュー（送信前に分割範囲を確認）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>大きな画像を1024×1024ピクセルの正方形に分割。隣り合う正方形は64ピクセル重複。</p><p>分割プレビューは0.5秒以内に表示。</p><p>プレビューで確認した設定で実際の処理を実行。</p></td>
               <td class="px-3 py-2 table-cell"><p>大きな画像がどう分割されるかを送信前に画面で確認できる。</p><p>「やり直し」が不要になる。</p><p>「プレビュー表示→内容確認→送信実行」の3ステップで完了。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_async_progress"></td>
               <td class="px-3 py-2"><a href="#art_fe_async_progress" class="text-blue-600 underline">長時間処理の進捗表示・途中停止機能</a></td>
-              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2"><span class="price">5,000円</span></td>
               <td class="px-3 py-2 table-cell">
                 <p>処理IDを保持し、2秒ごとに進捗状況を自動更新。</p>
                 <p>「キャンセル」ボタンで処理を途中停止。完了・失敗時は画面右上に通知表示。</p>
@@ -134,8 +261,11 @@
       </div>
 
       <!-- Backend table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">処理機能（データを加工・変換する部分）</div>
+      <div class="card category-backend mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>処理機能（データを加工・変換する部分）</span>
+          <span class="text-xs text-gray-600">データ処理の効率化に必要</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr>
@@ -146,43 +276,48 @@
           <tbody class="align-top">
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_excel_parse"></td>
-              <td class="px-3 py-2"><a href="#art_be_excel_parse" class="text-blue-600 underline">Excelファイル読み込み（列名が違っても対応）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2">
+                <div class="flex items-center gap-2">
+                  <a href="#art_be_excel_parse" class="text-blue-600 underline">Excelファイル読み込み（列名が違っても対応）</a>
+                  <span class="recommended">推奨</span>
+                </div>
+              </td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>複数シートから任意のシートを選択。列名の対応関係を画面で設定。</p><p>空白行は自動削除。最大50列、5万行まで対応。</p><p>読み込みは30秒以内に完了。</p></td>
               <td class="px-3 py-2 table-cell"><p>今お使いのExcelファイルをそのまま使える。</p><p>「氏名」「名前」「お名前」など列名が違っても画面で「同じもの」として設定できる。</p><p>大きなファイルでも30秒以内に読み込み完了。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_image_preprocess"></td>
               <td class="px-3 py-2"><a href="#art_be_image_preprocess" class="text-blue-600 underline">画像サイズ統一処理（大きさをそろえて処理を高速化）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>どんな大きさの画像も横幅2048ピクセル以下に統一。PNG・JPG対応。</p><p>1枚あたり0.5秒以内で処理完了。</p><p>処理に失敗した画像は理由をログに記録。</p></td>
               <td class="px-3 py-2 table-cell"><p>スマホで撮った大きな写真も、小さなアイコンも、同じ大きさに統一される。</p><p>処理が速いので待たされない。</p><p>対応形式（PNG・JPG）が明確で分かりやすい。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_data_transform"></td>
               <td class="px-3 py-2"><a href="#art_be_data_transform" class="text-blue-600 underline">データ形式統一（日付・数値を同じ書式に変換）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>日付を「2024-12-25」形式に統一。小数点以下の桁数も統一。</p><p>最大10列まで対応。変換時にエラーが発生しない設計。</p><p>変換できなかったデータは一覧で表示。</p></td>
               <td class="px-3 py-2 table-cell"><p>「2024/12/25」「12月25日」「Dec 25」などがすべて「2024-12-25」に統一される。</p><p>集計・グラフ作成で間違いが起こらない。</p><p>変換できなかったデータは一覧で確認して修正できる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_search_api"></td>
               <td class="px-3 py-2"><a href="#art_be_search_api" class="text-blue-600 underline">高速検索機能（大量データから瞬時に絞り込み）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>最大10列の条件を同時指定可能。</p><p>1万件のデータから0.1秒以内で検索結果を表示。</p><p>検索エラー時は具体的な理由を表示。</p></td>
               <td class="px-3 py-2 table-cell"><p>探したいデータをすぐに見つけられる。</p><p>条件を変更すると0.1秒以内に結果が更新される。</p><p>検索できない場合は理由が分かる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_bulk"></td>
               <td class="px-3 py-2"><a href="#art_be_bulk" class="text-blue-600 underline">バルク処理（並列4/レート制御/進捗％）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>同時≤4、レート制御。</p><p>進捗％API、失敗のみ再実行。</p><p>直列比40%以上短縮。</p></td>
               <td class="px-3 py-2 table-cell"><p>待機時間を短縮。</p><p>残り％を把握。</p><p>失敗分だけ再実行。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_prompt_schema"></td>
               <td class="px-3 py-2"><a href="#art_be_prompt_schema" class="text-blue-600 underline">プロンプト設計＋JSONスキーマ検証</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell">
                 <p>JSON Schema提示、検証、無効時に再プロンプト1回。</p>
                 <p>有効JSON率80%→99%（100入力）。</p>
@@ -193,14 +328,14 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_msg_preset"></td>
               <td class="px-3 py-2"><a href="#art_be_msg_preset" class="text-blue-600 underline">メッセージ戦略プリセット切替ロジック</a></td>
-              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2"><span class="price">5,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>ラジオ：問題提起型/ベネフィット直述型。</p><p>選択で指示文切替。</p><p>JSONプリセット差替可。</p></td>
               <td class="px-3 py-2 table-cell"><p>ボタン操作で方向を変更。</p><p>選択→生成ですぐ反映。</p><p>URL保存で再現。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_md_kb"></td>
               <td class="px-3 py-2"><a href="#art_be_md_kb" class="text-blue-600 underline">Markdown知識ベース埋め込み</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>docs/*.md を読込しプロンプトへ注入。</p><p>差替で動作更新（再起動のみ）。</p><p>テキスト100KBまで。</p></td>
               <td class="px-3 py-2 table-cell"><p>Markdown編集で方針変更。</p><p>手順追加がすぐ反映。</p><p>再デプロイ不要。</p></td>
             </tr>
@@ -209,8 +344,11 @@
       </div>
 
       <!-- Infra table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">インフラ（運用環境）</div>
+      <div class="card category-infra mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>公開・運用（システムを世界に公開）</span>
+          <span class="text-xs text-gray-600">システム公開時に必須</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -219,7 +357,7 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#infra_cicd"></td>
               <td class="px-3 py-2"><a href="#art_infra_cicd" class="text-blue-600 underline">CI/CD（自動デプロイ）＋稼働監視</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>mainへpush→自動デプロイ（10分以内）。</p><p>5分間隔でHTTP200監視、失敗時通知。</p><p>ログ30日保存、例外はスタックトレース。</p></td>
               <td class="px-3 py-2 table-cell"><p>修正が自動反映。</p><p>停止時にメール通知。</p><p>原因調査の記録が残る。</p></td>
             </tr>
@@ -228,8 +366,11 @@
       </div>
 
       <!-- DB table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">データベース</div>
+      <div class="card category-db mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>データ保存（情報を保存・管理）</span>
+          <span class="text-xs text-gray-600">データ管理に必要</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -238,28 +379,28 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_design"></td>
               <td class="px-3 py-2"><a href="#art_db_design" class="text-blue-600 underline">DB設計（DDL＋ER図）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>列名/型/制約（表≤5）。</p><p>DDL＋ER図1枚。</p><p>必須未入力検出100%（100件）。</p></td>
               <td class="px-3 py-2 table-cell"><p>保存項目と型を一覧確認。</p><p>未入力は登録不可。</p><p>設計資料を納品。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_crud"></td>
               <td class="px-3 py-2"><a href="#art_db_crud" class="text-blue-600 underline">CRUD API（登録/表示/更新/削除）</a></td>
-              <td class="px-3 py-2">2,000円 / エンティティ</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span> <span class="text-xs text-gray-600">/ エンティティ</span></td>
               <td class="px-3 py-2 table-cell"><p>REST4種、200/201/204確認。</p><p>400/500は理由JSON。</p><p>応答1秒以内。</p></td>
               <td class="px-3 py-2 table-cell"><p>登録/閲覧/修正/削除。</p><p>エラー理由が分かる。</p><p>状態記録が残る。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_less"></td>
               <td class="px-3 py-2"><a href="#art_db_less" class="text-blue-600 underline">DBレス構成（セッション保存）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>セッションストレージ保存。</p><p>タブ終了まで。永続化なし。</p><p>サーバー保存処理を省略。</p></td>
               <td class="px-3 py-2 table-cell"><p>実装日数を短縮。</p><p>サーバーに残らない。</p><p>同一タブで再利用可。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_fs"></td>
               <td class="px-3 py-2"><a href="#art_db_fs" class="text-blue-600 underline">生成物のファイル保存（一覧API付き）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>output/ にHTMLとJSON。</p><p>ファイル名：タイトル＋YYYYMMDD_HHMMSS。</p><p>/list-outputs を提供。</p></td>
               <td class="px-3 py-2 table-cell"><p>上書きされず履歴が残る。</p><p>一覧からDL可能。</p><p>ブラウザ終了後も残る。</p></td>
             </tr>
@@ -268,8 +409,11 @@
       </div>
 
       <!-- QA table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">品質・最適化</div>
+      <div class="card category-qa mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>速度向上（処理を高速化）</span>
+          <span class="text-xs text-gray-600">パフォーマンス改善に推奨</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -278,14 +422,14 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#qa_cache"></td>
               <td class="px-3 py-2"><a href="#art_qa_cache" class="text-blue-600 underline">キャッシュ（同一入力の再利用）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>キー定義、結果保存/再利用。</p><p>API呼出削減。</p><p>再実行5秒→1秒以内。</p></td>
               <td class="px-3 py-2 table-cell"><p>同じ入力の待機短縮。</p><p>API費用を抑制。</p><p>画面の反応が速い。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#qa_ai_hardening"></td>
               <td class="px-3 py-2"><a href="#art_qa_ai_hardening" class="text-blue-600 underline">AI応答の堅牢化（検証/再試行/補完）</a></td>
-              <td class="px-3 py-2">2,000円</td>
+              <td class="px-3 py-2"><span class="price">2,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>JSON検証、欠損補完、再試行≤2。</p><p>通信失敗は指数バックオフ。</p><p>エラー率5%→1%（100件）。</p></td>
               <td class="px-3 py-2 table-cell"><p>異常時でも継続。</p><p>停止件数を削減。</p><p>不正形式は弾く。</p></td>
             </tr>
@@ -294,8 +438,11 @@
       </div>
 
       <!-- Docs table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">テスト / ドキュメント</div>
+      <div class="card category-docs mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>動作確認（テスト・資料作成）</span>
+          <span class="text-xs text-gray-600">品質保証に推奨</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -304,14 +451,14 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#docs_unit"></td>
               <td class="px-3 py-2"><a href="#art_docs_unit" class="text-blue-600 underline">単体テスト（主要関数10件×成功/失敗）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>合計20本、失敗0件で納品。</p><p>実行レポートを添付。</p><p>異常入力ケースを含む。</p></td>
               <td class="px-3 py-2 table-cell"><p>動作確認の証拠。</p><p>想定外入力でも処理。</p><p>品質説明に利用可。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#docs_api_spec"></td>
               <td class="px-3 py-2"><a href="#art_docs_api_spec" class="text-blue-600 underline">API仕様書（エンドポイント/例外/例）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>対象API≤10、パラメータ/例外。</p><p>例付きMarkdown。</p><p>用語定義1ページ。</p></td>
               <td class="px-3 py-2 table-cell"><p>連携先にそのまま渡せる。</p><p>問い合わせ時に便利。</p><p>設定ミスを減らす。</p></td>
             </tr>
@@ -320,8 +467,11 @@
       </div>
 
       <!-- Support table -->
-      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">サポート</div>
+      <div class="card category-support mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>アフターサポート（継続的な保守）</span>
+          <span class="text-xs text-gray-600">運用開始後に必要</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-36">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -330,14 +480,14 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_light"></td>
               <td class="px-3 py-2"><a href="#art_support_light" class="text-blue-600 underline">保守（ライト）</a></td>
-              <td class="px-3 py-2">3,000円 / 月</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span> <span class="text-xs text-gray-600">/ 月</span></td>
               <td class="px-3 py-2 table-cell"><p>メール、軽微修正：月1回・1h以内。</p><p>平日10:00–18:00、初回返信24h以内。</p></td>
               <td class="px-3 py-2 table-cell"><p>小修正を月1回依頼。</p><p>対応時間が明確。</p><p>返信目安が分かる。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_std"></td>
               <td class="px-3 py-2"><a href="#art_support_std" class="text-blue-600 underline">保守（スタンダード）</a></td>
-              <td class="px-3 py-2">3,000円 / 月</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span> <span class="text-xs text-gray-600">/ 月</span></td>
               <td class="px-3 py-2 table-cell"><p>メール、軽微修正：月2回・各1h以内。</p><p>平日10:00–18:00、初回返信8h以内。</p></td>
               <td class="px-3 py-2 table-cell"><p>月2回まで増やせる。</p><p>返信が速い。</p><p>運用の手間を減らす。</p></td>
             </tr>
@@ -346,8 +496,11 @@
       </div>
 
       <!-- AI拡張 table -->
-      <div class="bg-white border rounded-2xl shadow-sm overflow-x-auto">
-        <div class="px-4 py-3 border-b font-semibold">AI拡張（汎用UI/ロジック）</div>
+      <div class="card category-backend overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold flex items-center justify-between">
+          <span>AI拡張（高度なAI機能）</span>
+          <span class="text-xs text-gray-600">特殊な要件に対応</span>
+        </div>
         <table class="min-w-full text-sm">
           <thead class="bg-slate-100 text-left">
             <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
@@ -356,21 +509,21 @@
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_toggle"></td>
               <td class="px-3 py-2"><a href="#art_ai_toggle_step" class="text-blue-600 underline">テンプレ生成／AI生成 切替（単一チェック）</a></td>
-              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2"><span class="price">5,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>useAI OFF：テンプレ生成。</p><p>ON：外部AI API。</p><p>状態はURL保存。</p></td>
               <td class="px-3 py-2 table-cell"><p>高速大量案=OFF。</p><p>表現幅=ON。</p><p>費用抑制=OFF。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_stepflow"></td>
               <td class="px-3 py-2"><a href="#art_ai_toggle_step" class="text-blue-600 underline">段階的生成フローUI（3ステップ）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>①案→②見出し→③本文。</p><p>各ステップの選択を次へ引継ぎ。</p></td>
               <td class="px-3 py-2 table-cell"><p>順番に選んで作成。</p><p>途中変更→再実行可。</p></td>
             </tr>
             <tr class="border-t">
               <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_combo"></td>
               <td class="px-3 py-2"><a href="#art_ai_combo" class="text-blue-600 underline">組合せ一括生成（プリセット×テンプレ×フック）</a></td>
-              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2"><span class="price">3,000円</span></td>
               <td class="px-3 py-2 table-cell"><p>2×5×5のループ生成。</p><p>組合せキーで分類。</p><p>カテゴリごとに配列返却。</p></td>
               <td class="px-3 py-2 table-cell"><p>ボタン1回で数十案。</p><p>カテゴリ別で見やすい。</p><p>必要な案だけ保存。</p></td>
             </tr>
@@ -387,14 +540,14 @@
       <div class="grid gap-6">
 
         <!-- FE: File Upload Excel/CSV -->
-        <article id="art_fe_upload_excel_csv" class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_fe_upload_excel_csv" class="card">
           <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
               <input id="fe_upload_excel_csv" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="fe_upload_excel_csv" />
               <span class="font-semibold">ファイルアップロード（Excel/CSV）</span>
               <span class="badge ml-2 px-2 py-0.5 rounded bg-slate-100 border text-slate-600">.xlsx/.csv ≤20MB</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -420,7 +573,7 @@
                 <div class="bg-slate-50 border rounded-lg p-3">
                   <div class="text-xs font-semibold mb-2">1. ファイル選択</div>
                   <div class="flex items-center gap-2">
-                    <button id="demoCsvBtn" class="px-3 py-1.5 border rounded hover:bg-white text-sm">サンプルCSVを読み込む</button>
+                    <button id="demoCsvBtn" class="btn btn-primary">サンプルCSVを読み込む</button>
                     <span id="demoCsvStatus" class="text-xs text-slate-500">未読込</span>
                   </div>
                   <p class="text-xs text-slate-500 mt-2">※実際のファイルは不要です。ボタンを押すとサンプルデータが読み込まれます。</p>
@@ -447,7 +600,7 @@
               <span class="font-semibold">ファイルアップロード（画像）</span>
               <span class="badge ml-2 px-2 py-0.5 rounded bg-slate-100 border text-slate-600">.png/.jpg 長辺≤2048px ≤20MB</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -466,7 +619,7 @@
               <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（画像選択後のプレビュー表示を確認）</summary>
               <div class="mt-3">
                 <div class="flex items-center gap-2">
-                  <button id="imgPreviewBtn" class="px-3 py-1.5 border rounded text-sm hover:bg-white">プレビューを表示</button>
+                  <button id="imgPreviewBtn" class="btn btn-primary">プレビューを表示</button>
                   <span id="imgPreviewStatus" class="text-xs text-slate-500">未表示</span>
                 </div>
                 <div id="imgPreviewBox" class="mt-3 h-40 w-full md:w-96 border rounded-lg wire flex items-center justify-center text-xs text-slate-500">
@@ -483,7 +636,7 @@
               <input id="fe_table_result" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="fe_table_result" />
               <span class="font-semibold">結果表示（表・ソート・ページネーション）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r">
@@ -509,7 +662,7 @@
                 <div class="flex flex-wrap items-end gap-2">
                   <div><label class="text-xs block">キーワード</label><input id="kw" class="border rounded px-2 py-1 text-sm" placeholder="例: campaign" /></div>
                   <div><label class="text-xs block">カテゴリ</label><select id="cat" class="border rounded px-2 py-1 text-sm"><option value="">すべて</option></select></div>
-                  <button id="applyFilter" class="px-3 py-1.5 border rounded text-sm hover:bg-white">絞り込み</button>
+                  <button id="applyFilter" class="btn btn-primary">絞り込み</button>
                 </div>
                 <div class="overflow-x-auto">
                   <table class="min-w-full text-xs border" id="tbl">
@@ -542,7 +695,7 @@
               <input id="fe_filters" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="fe_filters" />
               <span class="font-semibold">複合フィルターUI（多選択＋日付範囲＋テキスト）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -567,7 +720,7 @@
               <input id="fe_preprocess_preview" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="fe_preprocess_preview" />
               <span class="font-semibold">前処理プレビュー表示（分割/切り出しの可視化）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -601,7 +754,7 @@
               <input id="fe_async_progress" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_async_progress" />
               <span class="font-semibold">非同期タスク進捗表示・キャンセルUI</span>
             </label>
-            <div class="text-sm font-bold">5,000円</div>
+            <div class="price">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -622,13 +775,13 @@
               <div class="mt-3 flex flex-col sm:flex-row gap-3">
                 <div class="sm:w-60 bg-slate-50 border rounded-lg p-3">
                   <div class="text-xs font-semibold mb-2">操作</div>
-                  <button id="taskStart" class="px-3 py-1.5 border rounded text-sm hover:bg-white">開始</button>
-                  <button id="taskCancel" class="px-3 py-1.5 border rounded text-sm hover:bg-white ml-2">キャンセル</button>
+                  <button id="taskStart" class="btn btn-primary">開始</button>
+                  <button id="taskCancel" class="btn ml-2">キャンセル</button>
                   <div class="text-xs text-slate-500 mt-2">Task ID: <span id="taskId">-</span></div>
                 </div>
                 <div class="flex-1 bg-slate-50 border rounded-lg p-3">
                   <div class="text-xs font-semibold mb-2">進捗</div>
-                  <div class="h-3 bg-slate-200 rounded"><div id="taskBar" class="h-3 bg-blue-500 rounded" style="width:0%"></div></div>
+                  <div class="progress-bar"><div id="taskBar" class="progress-fill" style="width:0%"></div></div>
                   <div class="text-xs mt-2">状態: <span id="taskState">待機</span> / <span id="taskPct">0%</span></div>
                 </div>
               </div>
@@ -651,7 +804,7 @@
               <input id="be_excel_parse" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="be_excel_parse" />
               <span class="font-semibold">Excel解析（列マッピング対応）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -678,7 +831,7 @@
               <input id="be_image_preprocess" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="be_image_preprocess" />
               <span class="font-semibold">画像前処理（リサイズ/正規化）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -694,7 +847,7 @@
               <input id="be_data_transform" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="be_data_transform" />
               <span class="font-semibold">データ変換・整形（日付/数値の統一）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -710,7 +863,7 @@
               <input id="be_search_api" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="be_search_api" />
               <span class="font-semibold">検索・フィルタAPI</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
@@ -727,7 +880,7 @@
               <input id="be_bulk" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="be_bulk" />
               <span class="font-semibold">バルク処理（並列4/レート制御/進捗％）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="px-4 py-3">
             <details>
@@ -744,7 +897,7 @@
               <input id="be_prompt_schema" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="be_prompt_schema" />
               <span class="font-semibold">プロンプト設計＋JSONスキーマ検証</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="px-4 py-3">
             <p class="foot note mb-2">※現状は「プロンプト設計」のみ導入。スキーマ検証を追加する場合はこの項目を選択。</p>
@@ -767,7 +920,7 @@
               <input id="be_msg_preset" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="be_msg_preset" />
               <span class="font-semibold">メッセージ戦略プリセット切替ロジック</span>
             </label>
-            <div class="text-sm font-bold">5,000円</div>
+            <div class="price">5,000円</div>
           </div>
           <div class="px-4 py-3">
             <details><summary class="cursor-pointer text-sm font-semibold">入出力例</summary>
@@ -777,7 +930,7 @@
           </div>
           <div class="px-4 py-3 border-t flex items-center justify-between gap-2">
             <div class="font-semibold text-sm">Markdown知識ベース埋め込み</div>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div id="art_be_md_kb" class="px-4 pb-4">
             <label class="inline-flex items-center gap-2 mb-2">
@@ -807,7 +960,7 @@
               <input id="infra_hf" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="infra_hf" />
               <span class="font-semibold">Hugging Face Spaces デプロイ</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="p-4">
             <ul class="list-disc ml-5 text-sm space-y-1"><li>公開URL発行、初回起動≤60秒。</li><li>未ログインでアクセス可。</li></ul>
@@ -821,7 +974,7 @@
               <input id="infra_cicd" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="infra_cicd" />
               <span class="font-semibold">CI/CD（自動デプロイ）＋稼働監視</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="p-4">
             <ul class="list-disc ml-5 text-sm space-y-1"><li>main push→自動デプロイ（10分以内）。</li><li>5分毎にHTTP 200監視、失敗時通知。</li><li>ログ30日保存。</li></ul>
@@ -843,7 +996,7 @@
               <input id="db_design" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="db_design" />
               <span class="font-semibold">DB設計（DDL＋ER図）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="p-4">
             <div class="grid md:grid-cols-2 gap-3">
@@ -859,7 +1012,7 @@
               <input id="db_crud" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="db_crud" />
               <span class="font-semibold">CRUD API（登録/表示/更新/削除）</span>
             </label>
-            <div class="text-sm font-bold">2,000円 / エンティティ</div>
+            <div class="price">2,000円 <span class="text-xs text-gray-600">/ エンティティ</span></div>
           </div>
         </article>
 
@@ -869,7 +1022,7 @@
               <input id="db_less" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="db_less" />
               <span class="font-semibold">DBレス構成（セッション保存）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
         </article>
 
@@ -879,7 +1032,7 @@
               <input id="db_fs" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="db_fs" />
               <span class="font-semibold">生成物のファイル保存（一覧API付き）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="px-4 pb-4">
             <details><summary class="cursor-pointer text-sm font-semibold">入出力例（ファイル保存）</summary>
@@ -907,7 +1060,7 @@ GET /list-outputs → [
               <input id="qa_cache" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="qa_cache" />
               <span class="font-semibold">キャッシュ（同一入力の再利用）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="px-4 py-3">
             <details>
@@ -927,7 +1080,7 @@ GET /list-outputs → [
               <input id="qa_ai_hardening" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="qa_ai_hardening" />
               <span class="font-semibold">AI応答の堅牢化（検証/再試行/補完）</span>
             </label>
-            <div class="text-sm font-bold">2,000円</div>
+            <div class="price">2,000円</div>
           </div>
           <div class="px-4 py-3">
             <details>
@@ -954,7 +1107,7 @@ GET /list-outputs → [
               <input id="docs_unit" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="docs_unit" />
               <span class="font-semibold">単体テスト（主要関数10件×成功/失敗）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="p-4 text-xs">テスト例：<span class="mono">parseCsv_ok, parseCsv_ng, transformDate_ok, ...</span>（計20本）</div>
         </article>
@@ -965,7 +1118,7 @@ GET /list-outputs → [
               <input id="docs_api_spec" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="docs_api_spec" />
               <span class="font-semibold">API仕様書（エンドポイント/例外/例）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="p-4 text-xs">例：<span class="mono">GET /api/items?page=1</span> → <span class="mono">{data:[...],total:120}</span></div>
         </article>
@@ -983,7 +1136,7 @@ GET /list-outputs → [
               <input id="support_light" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="support_light" data-period="monthly" />
               <span class="font-semibold">保守（ライト）</span>
             </label>
-            <div class="text-sm font-bold">2,000円 / 月</div>
+            <div class="price">2,000円 <span class="text-xs text-gray-600">/ 月</span></div>
           </div>
           <div class="p-4 text-xs">メール、軽微修正 月1回（1h以内）、平日10:00–18:00、初回返信24h以内</div>
         </article>
@@ -993,7 +1146,7 @@ GET /list-outputs → [
               <input id="support_std" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="support_std" data-period="monthly" />
               <span class="font-semibold">保守（スタンダード）</span>
             </label>
-            <div class="text-sm font-bold">2,000円 / 月</div>
+            <div class="price">2,000円 <span class="text-xs text-gray-600">/ 月</span></div>
           </div>
           <div class="p-4 text-xs">メール、軽微修正 月2回（各1h以内）、平日10:00–18:00、初回返信8h以内</div>
         </article>
@@ -1019,7 +1172,7 @@ GET /list-outputs → [
                 <span class="font-semibold">段階的生成フローUI（3ステップ）</span>
               </label>
             </div>
-            <div class="text-sm font-bold">3,000円 + 3,000円</div>
+            <div class="price">3,000円 + 3,000円</div>
           </div>
           <div class="px-4 py-3">
             <details>
@@ -1053,7 +1206,7 @@ GET /list-outputs → [
               <input id="ai_combo" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="ai_combo" />
               <span class="font-semibold">組合せ一括生成（プリセット×テンプレ×フック）</span>
             </label>
-            <div class="text-sm font-bold">3,000円</div>
+            <div class="price">3,000円</div>
           </div>
           <div class="px-4 py-3">
             <details>
@@ -1083,20 +1236,37 @@ GET /list-outputs → [
   </main>
 
   <!-- ===== Floating Summary ===== -->
-  <aside class="fixed bottom-4 right-4 left-4 md:left-auto md:w-[28rem] bg-white border rounded-2xl shadow-lg p-4">
-    <div class="flex items-center justify-between mb-1">
-      <h3 class="font-semibold">選択した機能の料金合計</h3>
-      <button id="clearAll2" class="text-sm underline">全解除</button>
+  <aside class="fixed bottom-4 right-4 left-4 md:left-auto md:w-[28rem] card shadow-elevated p-6">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="font-bold text-lg">選択した機能の料金合計</h3>
+      <button id="clearAll2" class="btn text-xs">全解除</button>
     </div>
-    <div class="text-xs text-slate-600 mb-1 flex gap-4">
-      <div><span id="selectedCount">0</span> 項目を選択</div>
-      <div>（月額項目：<span id="selectedMonthly">0</span>）</div>
+    
+    <!-- 選択項目数の表示 -->
+    <div class="flex items-center gap-4 mb-4 text-sm text-gray-600">
+      <div class="flex items-center gap-1">
+        <div class="w-3 h-3 bg-primary-blue rounded-full"></div>
+        <span>買い切り：<span id="selectedCount" class="font-semibold">0</span>項目</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <div class="w-3 h-3 bg-warning-orange rounded-full"></div>
+        <span>月額：<span id="selectedMonthly" class="font-semibold">0</span>項目</span>
+      </div>
     </div>
-    <div class="text-sm">買い切り合計：</div>
-    <div class="text-2xl font-bold mb-2"><span id="totalPrice">0</span> 円</div>
-    <div class="text-sm">月額合計：</div>
-    <div class="text-xl font-bold"><span id="monthlyPrice">0</span> 円 / 月</div>
-    <p class="text-[11px] text-slate-500 mt-2">※上の一覧表と下の実演画面は同じ項目です。月額項目（アフターサポート）は別に計算されます。</p>
+
+    <!-- 価格表示 -->
+    <div class="space-y-3">
+      <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+        <span class="text-sm font-medium">買い切り合計</span>
+        <span class="price price-large"><span id="totalPrice">0</span> 円</span>
+      </div>
+      <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+        <span class="text-sm font-medium">月額合計</span>
+        <span class="price"><span id="monthlyPrice">0</span> 円 / 月</span>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※上の一覧表と下の実演画面は同じ項目です。月額項目（アフターサポート）は別に計算されます。</p>
   </aside>
 
   <script>
