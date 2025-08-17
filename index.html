@@ -1,1146 +1,1291 @@
+```html
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>選択式・汎用開発料金表｜エンジニア列 / 非エンジニア列</title>
+  <title>完全にイメージできる選択式・汎用開発料金表（デモ＋一覧表）</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .wire { background: repeating-linear-gradient(45deg,#e2e8f0,#e2e8f0 10px,#f8fafc 10px,#f8fafc 20px);}
+    .grid-overlay::after{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background-image:
+        linear-gradient(to right, rgba(59,130,246,.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59,130,246,.35) 1px, transparent 1px);
+      background-size: var(--tile,128px) var(--tile,128px);
+    }
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    summary::-webkit-details-marker{display:none}
+    .badge{font-size:11px}
+    .table-cell p{margin:.25rem 0}
+    .foot{font-size:11px}
+    .note{color:#b91c1c;font-weight:600}
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <!-- Header -->
   <header class="bg-white border-b sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-lg md:text-xl font-bold">選択式・開発料金表（数値基準／汎用機能）</h1>
-      <nav class="hidden md:flex gap-4 text-sm">
+      <h1 class="text-base md:text-xl font-bold">完全にイメージできる料金表（ミニデモ＋表で一括選択）</h1>
+      <nav class="hidden md:flex gap-4 text-xs md:text-sm">
+        <a href="#quick" class="hover:underline">まずは一覧表</a>
         <a href="#fe" class="hover:underline">フロントエンド</a>
         <a href="#be" class="hover:underline">バックエンド</a>
         <a href="#infra" class="hover:underline">インフラ</a>
         <a href="#db" class="hover:underline">データベース</a>
-        <a href="#qa" class="hover:underline">品質最適化</a>
+        <a href="#qa" class="hover:underline">品質/最適化</a>
         <a href="#docs" class="hover:underline">テスト/資料</a>
         <a href="#support" class="hover:underline">保守</a>
-        <a href="#ai-ext" class="hover:underline">AI拡張</a>
         <a href="#defs" class="hover:underline">定義</a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 py-8">
-    <!-- Controls -->
-    <section class="mb-6">
-      <div class="bg-white border rounded-2xl shadow-sm p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div class="text-sm">
-          <p>チェックボックスで項目を選択できます。金額は税込み表示に統一します。</p>
-        </div>
-        <div class="flex gap-2">
-          <button id="selectAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全選択</button>
-          <button id="clearAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全解除</button>
-        </div>
+  <!-- Controls -->
+  <section class="max-w-7xl mx-auto px-4 py-4">
+    <div class="bg-white border rounded-2xl shadow-sm p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div class="text-sm">
+        <p>チェックで見積に加算します。<strong>一覧表（上）</strong>と<strong>カード型デモ（下）</strong>は連動します（どちらで選んでも同じ項目にカウント）。</p>
+      </div>
+      <div class="flex gap-2">
+        <button id="selectAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全選択</button>
+        <button id="clearAll" class="px-3 py-2 rounded-lg border text-sm hover:bg-slate-50">全解除</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUICK TABLES (PROXY CHECKBOXES) ===================== -->
+  <main class="max-w-7xl mx-auto px-4 pb-28">
+    <section id="quick" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">クイック一覧（表で一括選択 &rarr; デモへジャンプ）</h2>
+      <p class="text-xs text-slate-600 mb-4">各行のチェックは下のデモカードと同期します。価格は税込。<span class="note">赤字</span>は現状の備考です。</p>
+
+      <!-- Frontend table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">フロントエンド（ユーザー画面）</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr>
+              <th class="px-3 py-2 w-10">選択</th>
+              <th class="px-3 py-2">機能名</th>
+              <th class="px-3 py-2 w-28">価格</th>
+              <th class="px-3 py-2">エンジニア（私）向け説明</th>
+              <th class="px-3 py-2">非エンジニア（お客さま）向け説明</th>
+            </tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_upload_excel_csv"></td>
+              <td class="px-3 py-2"><a href="#art_fe_upload_excel_csv" class="text-blue-600 underline">ファイルアップロード（Excel/CSV）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell">
+                <p>.xlsx/.csv を1操作=1ファイルで受理。拡張子とサイズ≤20MBを検証。</p>
+                <p>アップロード進捗％表示。失敗時は理由をJSONで返却。</p>
+                <p>受け入れ試験：連続20回の送信でエラー0件。</p>
+              </td>
+              <td class="px-3 py-2 table-cell">
+                <p>1回の操作で1件を送信できる。</p>
+                <p>進捗％を画面で確認できる。</p>
+                <p>失敗時は理由が画面に表示される。</p>
+              </td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_upload_image"></td>
+              <td class="px-3 py-2"><a href="#art_fe_upload_image" class="text-blue-600 underline">ファイルアップロード（画像）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>.png/.jpg を受理。プレビューはクリック→1秒以内。</p><p>長辺≤2048px。サイズ≤20MB検証。</p><p>連続20回のプレビューでエラー0件。</p></td>
+              <td class="px-3 py-2 table-cell"><p>1秒以内にサムネイル表示。</p><p>大きい画像でも停止しない。</p><p>不適合の理由が表示される。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_table_result"></td>
+              <td class="px-3 py-2"><a href="#art_fe_table_result" class="text-blue-600 underline">結果表示（表・ソート・ページネーション）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>1ページ50行、昇順/降順。</p><p>切替1秒以内。</p><p>10,000件で検索API応答100ms以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>並び替えとページ移動ができる。</p><p>切替の待機は1秒以内。</p><p>大量データでも遅くならない。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_filters"></td>
+              <td class="px-3 py-2"><a href="#art_fe_filters" class="text-blue-600 underline">複合フィルターUI（多選択＋日付範囲＋テキスト）</a></td>
+              <td class="px-3 py-2">10,000円</td>
+              <td class="px-3 py-2 table-cell"><p>3条件AND結合。URLクエリ保存/復元。</p><p>10,000件で応答200ms以内。</p><p>未入力時は全件表示。</p></td>
+              <td class="px-3 py-2 table-cell"><p>期間・分類・キーワードを同時絞込。</p><p>共有URLで条件を再現。</p><p>切替は0.2秒以内。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_preprocess_preview"></td>
+              <td class="px-3 py-2"><a href="#art_fe_preprocess_preview" class="text-blue-600 underline">前処理プレビュー表示（分割/切り出しの可視化）</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>タイル1024×1024、重なり64px。</p><p>描画500ms以内。</p><p>表示値を送信に適用。</p></td>
+              <td class="px-3 py-2 table-cell"><p>送信前に分割範囲を確認。</p><p>手戻り0回にできる。</p><p>操作は「表示→確認→送信」。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#fe_async_progress"></td>
+              <td class="px-3 py-2"><a href="#art_fe_async_progress" class="text-blue-600 underline">非同期タスク進捗表示・キャンセルUI</a></td>
+              <td class="px-3 py-2">9,000円</td>
+              <td class="px-3 py-2 table-cell">
+                <p>タスクID保持、2秒間隔ポーリング。</p>
+                <p>キャンセルAPI呼び出し、完了/失敗をトースト。</p>
+                <p class="note">※現状：進捗表示のみ（キャンセルAPI未接続）</p>
+              </td>
+              <td class="px-3 py-2 table-cell"><p>％と残り目安を確認。</p><p>不要なら1クリック停止。</p><p>画面を閉じても進捗復元。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Backend table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">バックエンド（処理ロジック）</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr>
+              <th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th>
+              <th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th>
+            </tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_excel_parse"></td>
+              <td class="px-3 py-2"><a href="#art_be_excel_parse" class="text-blue-600 underline">Excel解析（列マッピング対応）</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>任意シート選択、列マッピング。</p><p>空白行削除、列≤50/行≤50,000。</p><p>読込30秒以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>既存Excelをそのまま読込。</p><p>列名違いは画面で対応。</p><p>30秒以内に完了。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_image_preprocess"></td>
+              <td class="px-3 py-2"><a href="#art_be_image_preprocess" class="text-blue-600 underline">画像前処理（リサイズ/正規化）</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>長辺≤2048px、正規化。</p><p>.png/.jpg、1枚500ms。</p><p>失敗はログ化。</p></td>
+              <td class="px-3 py-2 table-cell"><p>大きい画像でも安定。</p><p>読み込みが速い。</p><p>対象形式が明確。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_data_transform"></td>
+              <td class="px-3 py-2"><a href="#art_be_data_transform" class="text-blue-600 underline">データ変換・整形（日付/数値の統一）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>日付=YYYY-MM-DD、小数桁統一。</p><p>対象列≤10、検証エラー0件。</p><p>不一致を一覧返却。</p></td>
+              <td class="px-3 py-2 table-cell"><p>集計が容易。</p><p>誤集計を防止。</p><p>修正点を一覧で確認。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_search_api"></td>
+              <td class="px-3 py-2"><a href="#art_be_search_api" class="text-blue-600 underline">検索・フィルタAPI</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>列別条件、列≤10。</p><p>10,000件で100ms応答。</p><p>400/500で理由JSON。</p></td>
+              <td class="px-3 py-2 table-cell"><p>目的の行を即絞込。</p><p>切替0.1秒以内。</p><p>入力ミスの理由が分かる。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_bulk"></td>
+              <td class="px-3 py-2"><a href="#art_be_bulk" class="text-blue-600 underline">バルク処理（並列4/レート制御/進捗％）</a></td>
+              <td class="px-3 py-2">10,000円</td>
+              <td class="px-3 py-2 table-cell"><p>同時≤4、レート制御。</p><p>進捗％API、失敗のみ再実行。</p><p>直列比40%以上短縮。</p></td>
+              <td class="px-3 py-2 table-cell"><p>待機時間を短縮。</p><p>残り％を把握。</p><p>失敗分だけ再実行。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_prompt_schema"></td>
+              <td class="px-3 py-2"><a href="#art_be_prompt_schema" class="text-blue-600 underline">プロンプト設計＋JSONスキーマ検証</a></td>
+              <td class="px-3 py-2">10,000円</td>
+              <td class="px-3 py-2 table-cell">
+                <p>JSON Schema提示、検証、無効時に再プロンプト1回。</p>
+                <p>有効JSON率80%→99%（100入力）。</p>
+                <p class="note">※現状：プロンプト設計のみ（スキーマ検証は未導入）</p>
+              </td>
+              <td class="px-3 py-2 table-cell"><p>毎回同じ形式で取得。</p><p>他システムへそのまま投入。</p><p>手直しが不要。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_msg_preset"></td>
+              <td class="px-3 py-2"><a href="#art_be_msg_preset" class="text-blue-600 underline">メッセージ戦略プリセット切替ロジック</a></td>
+              <td class="px-3 py-2">9,000円</td>
+              <td class="px-3 py-2 table-cell"><p>ラジオ：問題提起型/ベネフィット直述型。</p><p>選択で指示文切替。</p><p>JSONプリセット差替可。</p></td>
+              <td class="px-3 py-2 table-cell"><p>ボタン操作で方向を変更。</p><p>選択→生成ですぐ反映。</p><p>URL保存で再現。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#be_md_kb"></td>
+              <td class="px-3 py-2"><a href="#art_be_md_kb" class="text-blue-600 underline">Markdown知識ベース埋め込み</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>docs/*.md を読込しプロンプトへ注入。</p><p>差替で動作更新（再起動のみ）。</p><p>テキスト100KBまで。</p></td>
+              <td class="px-3 py-2 table-cell"><p>Markdown編集で方針変更。</p><p>手順追加がすぐ反映。</p><p>再デプロイ不要。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Infra table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">インフラ（運用環境）</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#infra_cicd"></td>
+              <td class="px-3 py-2"><a href="#art_infra_cicd" class="text-blue-600 underline">CI/CD（自動デプロイ）＋稼働監視</a></td>
+              <td class="px-3 py-2">10,000円</td>
+              <td class="px-3 py-2 table-cell"><p>mainへpush→自動デプロイ（10分以内）。</p><p>5分間隔でHTTP200監視、失敗時通知。</p><p>ログ30日保存、例外はスタックトレース。</p></td>
+              <td class="px-3 py-2 table-cell"><p>修正が自動反映。</p><p>停止時にメール通知。</p><p>原因調査の記録が残る。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DB table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">データベース</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_design"></td>
+              <td class="px-3 py-2"><a href="#art_db_design" class="text-blue-600 underline">DB設計（DDL＋ER図）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>列名/型/制約（表≤5）。</p><p>DDL＋ER図1枚。</p><p>必須未入力検出100%（100件）。</p></td>
+              <td class="px-3 py-2 table-cell"><p>保存項目と型を一覧確認。</p><p>未入力は登録不可。</p><p>設計資料を納品。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_crud"></td>
+              <td class="px-3 py-2"><a href="#art_db_crud" class="text-blue-600 underline">CRUD API（登録/表示/更新/削除）</a></td>
+              <td class="px-3 py-2">3,000円 / エンティティ</td>
+              <td class="px-3 py-2 table-cell"><p>REST4種、200/201/204確認。</p><p>400/500は理由JSON。</p><p>応答1秒以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>登録/閲覧/修正/削除。</p><p>エラー理由が分かる。</p><p>状態記録が残る。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_less"></td>
+              <td class="px-3 py-2"><a href="#art_db_less" class="text-blue-600 underline">DBレス構成（セッション保存）</a></td>
+              <td class="px-3 py-2">3,000円</td>
+              <td class="px-3 py-2 table-cell"><p>セッションストレージ保存。</p><p>タブ終了まで。永続化なし。</p><p>サーバー保存処理を省略。</p></td>
+              <td class="px-3 py-2 table-cell"><p>実装日数を短縮。</p><p>サーバーに残らない。</p><p>同一タブで再利用可。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#db_fs"></td>
+              <td class="px-3 py-2"><a href="#art_db_fs" class="text-blue-600 underline">生成物のファイル保存（一覧API付き）</a></td>
+              <td class="px-3 py-2">6,000円</td>
+              <td class="px-3 py-2 table-cell"><p>output/ にHTMLとJSON。</p><p>ファイル名：タイトル＋YYYYMMDD_HHMMSS。</p><p>/list-outputs を提供。</p></td>
+              <td class="px-3 py-2 table-cell"><p>上書きされず履歴が残る。</p><p>一覧からDL可能。</p><p>ブラウザ終了後も残る。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- QA table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">品質・最適化</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#qa_cache"></td>
+              <td class="px-3 py-2"><a href="#art_qa_cache" class="text-blue-600 underline">キャッシュ（同一入力の再利用）</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>キー定義、結果保存/再利用。</p><p>API呼出削減。</p><p>再実行5秒→1秒以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>同じ入力の待機短縮。</p><p>API費用を抑制。</p><p>画面の反応が速い。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#qa_ai_hardening"></td>
+              <td class="px-3 py-2"><a href="#art_qa_ai_hardening" class="text-blue-600 underline">AI応答の堅牢化（検証/再試行/補完）</a></td>
+              <td class="px-3 py-2">8,000円</td>
+              <td class="px-3 py-2 table-cell"><p>JSON検証、欠損補完、再試行≤2。</p><p>通信失敗は指数バックオフ。</p><p>エラー率5%→1%（100件）。</p></td>
+              <td class="px-3 py-2 table-cell"><p>異常時でも継続。</p><p>停止件数を削減。</p><p>不正形式は弾く。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Docs table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">テスト / ドキュメント</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#docs_unit"></td>
+              <td class="px-3 py-2"><a href="#art_docs_unit" class="text-blue-600 underline">単体テスト（主要関数10件×成功/失敗）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>合計20本、失敗0件で納品。</p><p>実行レポートを添付。</p><p>異常入力ケースを含む。</p></td>
+              <td class="px-3 py-2 table-cell"><p>動作確認の証拠。</p><p>想定外入力でも処理。</p><p>品質説明に利用可。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#docs_api_spec"></td>
+              <td class="px-3 py-2"><a href="#art_docs_api_spec" class="text-blue-600 underline">API仕様書（エンドポイント/例外/例）</a></td>
+              <td class="px-3 py-2">5,000円</td>
+              <td class="px-3 py-2 table-cell"><p>対象API≤10、パラメータ/例外。</p><p>例付きMarkdown。</p><p>用語定義1ページ。</p></td>
+              <td class="px-3 py-2 table-cell"><p>連携先にそのまま渡せる。</p><p>問い合わせ時に便利。</p><p>設定ミスを減らす。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Support table -->
+      <div class="bg-white border rounded-2xl shadow-sm mb-8 overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">サポート</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-36">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_light"></td>
+              <td class="px-3 py-2"><a href="#art_support_light" class="text-blue-600 underline">保守（ライト）</a></td>
+              <td class="px-3 py-2">3,000円 / 月</td>
+              <td class="px-3 py-2 table-cell"><p>メール、軽微修正：月1回・1h以内。</p><p>平日10:00–18:00、初回返信24h以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>小修正を月1回依頼。</p><p>対応時間が明確。</p><p>返信目安が分かる。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#support_std"></td>
+              <td class="px-3 py-2"><a href="#art_support_std" class="text-blue-600 underline">保守（スタンダード）</a></td>
+              <td class="px-3 py-2">6,000円 / 月</td>
+              <td class="px-3 py-2 table-cell"><p>メール、軽微修正：月2回・各1h以内。</p><p>平日10:00–18:00、初回返信8h以内。</p></td>
+              <td class="px-3 py-2 table-cell"><p>月2回まで増やせる。</p><p>返信が速い。</p><p>運用の手間を減らす。</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- AI拡張 table -->
+      <div class="bg-white border rounded-2xl shadow-sm overflow-x-auto">
+        <div class="px-4 py-3 border-b font-semibold">AI拡張（汎用UI/ロジック）</div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-left">
+            <tr><th class="px-3 py-2 w-10">選択</th><th class="px-3 py-2">機能名</th><th class="px-3 py-2 w-28">価格</th><th class="px-3 py-2">エンジニア（私）向け説明</th><th class="px-3 py-2">非エンジニア（お客さま）向け説明</th></tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_toggle"></td>
+              <td class="px-3 py-2"><a href="#art_ai_toggle_step" class="text-blue-600 underline">テンプレ生成／AI生成 切替（単一チェック）</a></td>
+              <td class="px-3 py-2">9,000円</td>
+              <td class="px-3 py-2 table-cell"><p>useAI OFF：テンプレ生成。</p><p>ON：外部AI API。</p><p>状態はURL保存。</p></td>
+              <td class="px-3 py-2 table-cell"><p>高速大量案=OFF。</p><p>表現幅=ON。</p><p>費用抑制=OFF。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_stepflow"></td>
+              <td class="px-3 py-2"><a href="#art_ai_toggle_step" class="text-blue-600 underline">段階的生成フローUI（3ステップ）</a></td>
+              <td class="px-3 py-2">12,000円</td>
+              <td class="px-3 py-2 table-cell"><p>①案→②見出し→③本文。</p><p>各ステップの選択を次へ引継ぎ。</p></td>
+              <td class="px-3 py-2 table-cell"><p>順番に選んで作成。</p><p>途中変更→再実行可。</p></td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-3 py-2"><input type="checkbox" class="proxy" data-target="#ai_combo"></td>
+              <td class="px-3 py-2"><a href="#art_ai_combo" class="text-blue-600 underline">組合せ一括生成（プリセット×テンプレ×フック）</a></td>
+              <td class="px-3 py-2">12,000円</td>
+              <td class="px-3 py-2 table-cell"><p>2×5×5のループ生成。</p><p>組合せキーで分類。</p><p>カテゴリごとに配列返却。</p></td>
+              <td class="px-3 py-2 table-cell"><p>ボタン1回で数十案。</p><p>カテゴリ別で見やすい。</p><p>必要な案だけ保存。</p></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
+    <!-- ===================== DEMO CARDS (REAL CHECKBOXES FOR PRICING) ===================== -->
+
     <!-- ===== Frontend ===== -->
-    <section id="fe" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">フロントエンド（ユーザー画面）</h2>
+    <section id="fe" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">フロントエンド（ユーザー画面）</h2>
       <div class="grid gap-6">
+
         <!-- FE: File Upload Excel/CSV -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_fe_upload_excel_csv" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="fe_upload_excel_csv" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_upload_excel_csv" />
               <span class="font-semibold">ファイルアップロード（Excel/CSV）</span>
+              <span class="badge ml-2 px-2 py-0.5 rounded bg-slate-100 border text-slate-600">.xlsx/.csv ≤20MB</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>.xlsx/.csv を1操作=1ファイルで受理。拡張子とサイズ≤20MBを検証。</li>
-                <li>アップロード進捗％表示。失敗時は理由をJSONで返却。</li>
-                <li>受け入れ試験：連続20回の送信でエラー0件。</li>
+                <li>拡張子/サイズ検証、進捗％表示、失敗理由JSON。</li>
+                <li>1操作=1ファイル、20連投で失敗0件。</li>
+                <li>ドラッグ&ドロップ/ボタン両対応。</li>
               </ul>
             </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1回の操作で1件を送信できる。</li>
-                <li>進捗％を画面で確認できる。</li>
-                <li>失敗時は理由が画面に表示される。</li>
+                <li>「選択→送信」の2操作で完了。</li>
+                <li>進捗バーで目安が分かる。</li>
+                <li>不適合の理由が表示される。</li>
               </ul>
             </div>
+          </div>
+          <!-- ミニデモ -->
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（サンプルCSVを読み込み → 表に反映）</summary>
+              <div class="mt-3 grid md:grid-cols-3 gap-3">
+                <div class="bg-slate-50 border rounded-lg p-3">
+                  <div class="text-xs font-semibold mb-2">1. ファイル選択</div>
+                  <div class="flex items-center gap-2">
+                    <button id="demoCsvBtn" class="px-3 py-1.5 border rounded hover:bg-white text-sm">サンプルCSVを読み込む</button>
+                    <span id="demoCsvStatus" class="text-xs text-slate-500">未読込</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-2">※実ファイル不要。ボタンで内部データを読み込みます。</p>
+                </div>
+                <div class="bg-slate-50 border rounded-lg p-3 md:col-span-2">
+                  <div class="text-xs font-semibold mb-2">2. 取り込み結果（表）</div>
+                  <div class="overflow-x-auto">
+                    <table class="min-w-full text-xs border" id="demoCsvTable">
+                      <thead class="bg-slate-100"><tr><th class="px-2 py-1 border">id</th><th class="px-2 py-1 border">date</th><th class="px-2 py-1 border">category</th><th class="px-2 py-1 border">text</th></tr></thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
         </article>
 
         <!-- FE: Image Upload -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_fe_upload_image" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="fe_upload_image" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_upload_image" />
               <span class="font-semibold">ファイルアップロード（画像）</span>
+              <span class="badge ml-2 px-2 py-0.5 rounded bg-slate-100 border text-slate-600">.png/.jpg 長辺≤2048px ≤20MB</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>.png/.jpg を受理。プレビュー生成はクリック→1秒以内。</li>
-                <li>長辺≤2048pxで表示。サイズ≤20MBを検証。</li>
-                <li>20回の連続プレビューでエラー0件。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+                <li>1秒以内プレビュー、上限チェック、縮小表示。</li>
+                <li>拡大縮小はCSS+Canvasで遅延0.5秒以内。</li>
+              </ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画像を1枚選ぶと1秒以内にサムネイルが出る。</li>
-                <li>大きい画像でも読み込みが止まらない。</li>
-                <li>拡張子とサイズが合わない場合は理由が出る。</li>
-              </ul>
-            </div>
+                <li>選択直後にサムネイル確認。</li>
+                <li>大きい画像でも固まらない。</li>
+              </ul></div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（ダミー画像プレースホルダでプレビュー挙動を確認）</summary>
+              <div class="mt-3">
+                <div class="flex items-center gap-2">
+                  <button id="imgPreviewBtn" class="px-3 py-1.5 border rounded text-sm hover:bg-white">プレビューを表示</button>
+                  <span id="imgPreviewStatus" class="text-xs text-slate-500">未表示</span>
+                </div>
+                <div id="imgPreviewBox" class="mt-3 h-40 w-full md:w-96 border rounded-lg wire flex items-center justify-center text-xs text-slate-500">
+                  プレースホルダ（長辺 2048px 相当）</div>
+              </div>
+            </details>
           </div>
         </article>
 
-        <!-- FE: Table Result -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <!-- FE: Table + Sort + Pagination + Filter -->
+        <article id="art_fe_table_result" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="fe_table_result" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_table_result" />
               <span class="font-semibold">結果表示（表・ソート・ページネーション）</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
             <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+              <div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1ページ50行、昇順/降順ソート。</li>
-                <li>ページ切替：クリック→1秒以内で描画。</li>
-                <li>10,000件で応答100ms以内の検索APIと連携。</li>
+                <li>1ページ50行。列ごとに昇順/降順。</li>
+                <li>ページ切替1秒以内。</li>
+                <li>10,000件で検索API100ms以内。</li>
               </ul>
             </div>
             <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+              <div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>表を並べ替えて確認できる。</li>
-                <li>ページ切替の待機は1秒以内。</li>
-                <li>大量データでも表示が遅くならない。</li>
+                <li>列クリックで並び替え。</li>
+                <li>次/前ページで移動。</li>
               </ul>
             </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details open>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（小規模データで実挙動を表示）</summary>
+              <div class="mt-3 space-y-2">
+                <div class="flex flex-wrap items-end gap-2">
+                  <div><label class="text-xs block">キーワード</label><input id="kw" class="border rounded px-2 py-1 text-sm" placeholder="例: campaign" /></div>
+                  <div><label class="text-xs block">カテゴリ</label><select id="cat" class="border rounded px-2 py-1 text-sm"><option value="">すべて</option></select></div>
+                  <button id="applyFilter" class="px-3 py-1.5 border rounded text-sm hover:bg-white">絞り込み</button>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="min-w-full text-xs border" id="tbl">
+                    <thead class="bg-slate-100">
+                      <tr>
+                        <th data-k="id" class="px-2 py-1 border cursor-pointer">id</th>
+                        <th data-k="date" class="px-2 py-1 border cursor-pointer">date</th>
+                        <th data-k="category" class="px-2 py-1 border cursor-pointer">category</th>
+                        <th data-k="text" class="px-2 py-1 border cursor-pointer">text</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button id="prev" class="px-2 py-1 border rounded text-xs">前へ</button>
+                  <span id="pginfo" class="text-xs text-slate-600">1 / 1</span>
+                  <button id="next" class="px-2 py-1 border rounded text-xs">次へ</button>
+                  <button id="exportCsv" class="ml-auto px-3 py-1.5 border rounded text-xs">CSVダウンロード</button>
+                </div>
+              </div>
+            </details>
           </div>
         </article>
 
         <!-- FE: Composite Filters -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_fe_filters" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
+              <input id="fe_filters" type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" data-key="fe_filters" />
               <span class="font-semibold">複合フィルターUI（多選択＋日付範囲＋テキスト）</span>
             </label>
             <div class="text-sm font-bold">10,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>3条件をAND結合。URLクエリへ保存/復元。</li>
-                <li>10,000件で応答200ms以内（ローカル計測）。</li>
-                <li>未入力時は全件を表示。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+                <li>3条件AND結合、URL保持。</li>
+                <li>10,000件で応答200ms以内。</li>
+                <li>未入力時は全件。</li>
+              </ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>期間・分類・キーワードを同時に絞り込める。</li>
-                <li>共有用URLで同じ条件を再現できる。</li>
-                <li>切替の待機は0.2秒以内。</li>
-              </ul>
-            </div>
+                <li>期間/分類/キーワードを同時絞込。</li>
+                <li>共有URLで条件再現。</li>
+                <li>切替0.2秒以内。</li>
+              </ul></div>
           </div>
         </article>
 
-        <!-- FE: Preprocess Preview (generic) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <!-- FE: Preprocess Preview -->
+        <article id="art_fe_preprocess_preview" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="fe_preprocess_preview" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="fe_preprocess_preview" />
               <span class="font-semibold">前処理プレビュー表示（分割/切り出しの可視化）</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>タイルサイズ1024×1024、重なり幅64pxをオーバーレイ表示。</li>
-                <li>描画はクリック→500ms以内。</li>
-                <li>表示値は送信データにそのまま適用。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+                <li>タイル1024×1024、重なり64px。</li>
+                <li>描画500ms以内。</li>
+              </ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>送信前に分割範囲を確認できる。</li>
-                <li>見落としによる再実行を0回にできる。</li>
-                <li>操作手順は「表示→確認→送信」の2回。</li>
-              </ul>
-            </div>
+                <li>送信前に分割範囲を確認。</li>
+                <li>再実行の手戻り0回。</li>
+              </ul></div>
           </div>
-        </article>
-
-        <!-- FE: Export -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
-              <span class="font-semibold">データエクスポート（Excel/CSV）</span>
-            </label>
-            <div class="text-sm font-bold">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>.xlsx / .csv（UTF-8）を出力。最大行数50,000。</li>
-                <li>10,000行の生成3秒以内（ローカル計測）。</li>
-                <li>列順・ヘッダー固定、数値/日付の型を維持。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1クリックでExcel/CSVを保存できる。</li>
-                <li>ヘッダー付きで集計に使える。</li>
-                <li>大量データでも待機は3秒以内。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（スライダーでタイル間隔を変更）</summary>
+              <div class="mt-3">
+                <div class="flex items-center gap-3"><label class="text-xs">タイル（px）</label><input id="tileRange" type="range" min="64" max="256" step="32" value="128"/><span id="tileVal" class="text-xs">128</span></div>
+                <div class="relative mt-3 h-40 md:h-56 border rounded-lg grid-overlay" id="overlayBox" style="--tile:128px;">
+                  <div class="absolute inset-0 flex items-center justify-center text-xs text-slate-500">分割プレビュー</div>
+                </div>
+              </div>
+            </details>
           </div>
         </article>
 
         <!-- FE: Async progress + cancel -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_fe_async_progress" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" />
+              <input id="fe_async_progress" type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" data-key="fe_async_progress" />
               <span class="font-semibold">非同期タスク進捗表示・キャンセルUI</span>
             </label>
             <div class="text-sm font-bold">9,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>タスクIDを保存し2秒間隔で進捗APIをポーリング。</li>
-                <li>キャンセルボタン→キャンセルAPI呼び出し。</li>
-                <li>完了/失敗をトーストで通知。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
+                <li>ID保持、2秒間隔で進捗API。</li>
+                <li>キャンセルAPI呼出（<span class="note">本番はAPI接続が必要。デモは擬似キャンセル</span>）。</li>
+                <li>完了/失敗をトースト通知。</li>
+              </ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
               <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>処理の％と残り目安を2秒ごとに確認できる。</li>
-                <li>不要になった処理を1回のクリックで止められる。</li>
-                <li>画面を閉じても進捗は失われない。</li>
-              </ul>
-            </div>
+                <li>％と残り目安を2秒ごとに更新。</li>
+                <li>不要なら1クリック停止。</li>
+              </ul></div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（擬似タスクで進捗バーを表示）</summary>
+              <div class="mt-3 flex flex-col sm:flex-row gap-3">
+                <div class="sm:w-60 bg-slate-50 border rounded-lg p-3">
+                  <div class="text-xs font-semibold mb-2">操作</div>
+                  <button id="taskStart" class="px-3 py-1.5 border rounded text-sm hover:bg-white">開始</button>
+                  <button id="taskCancel" class="px-3 py-1.5 border rounded text-sm hover:bg-white ml-2">キャンセル</button>
+                  <div class="text-xs text-slate-500 mt-2">Task ID: <span id="taskId">-</span></div>
+                </div>
+                <div class="flex-1 bg-slate-50 border rounded-lg p-3">
+                  <div class="text-xs font-semibold mb-2">進捗</div>
+                  <div class="h-3 bg-slate-200 rounded"><div id="taskBar" class="h-3 bg-blue-500 rounded" style="width:0%"></div></div>
+                  <div class="text-xs mt-2">状態: <span id="taskState">待機</span> / <span id="taskPct">0%</span></div>
+                </div>
+              </div>
+              <p class="foot mt-2 note">※現状の運用ではキャンセルAPI未接続。必要な場合は接続を追加します。</p>
+            </details>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Backend ===== -->
-    <section id="be" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">バックエンド（処理ロジック）</h2>
+    <section id="be" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">バックエンド（処理ロジック）</h2>
       <div class="grid gap-6">
-        <!-- BE: Excel Parser (generic mapping) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+
+        <article id="art_be_excel_parse" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="be_excel_parse" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="be_excel_parse" />
               <span class="font-semibold">Excel解析（列マッピング対応）</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>任意シート名を選択し列マッピングを設定。</li>
-                <li>空白行削除、1行=1レコード整形（列≤50、行≤50,000）。</li>
-                <li>読込30秒以内（ローカル計測）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>既存Excelをそのまま読み込める。</li>
-                <li>列名の違いは画面のマッピングで吸収できる。</li>
-                <li>長い表でも30秒以内に完了。</li>
-              </ul>
-            </div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>任意シート、列マッピング。</li><li>列≤50/行≤50,000。</li><li>30秒以内に読込。</li></ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>既存Excelをそのまま読込。</li><li>列名違いを画面で吸収。</li></ul></div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details><summary class="cursor-pointer text-sm font-semibold">入出力例</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">入力:
+| A:質問 | B:回答 |
+| タイトル | 速く作れる献立集 |
+出力(JSON):
+[
+  {"question":"タイトル","answer":"速く作れる献立集"}
+]</pre>
+            </details>
           </div>
         </article>
 
-        <!-- BE: Image preprocess -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_be_image_preprocess" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="be_image_preprocess" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="be_image_preprocess" />
               <span class="font-semibold">画像前処理（リサイズ/正規化）</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>長辺≤2048pxへリサイズ。正規化を実施。</li>
-                <li>対象形式 .png/.jpg。1枚500ms以内で処理。</li>
-                <li>失敗時は理由をログへ出力。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>大きい画像でも読み込みが安定する。</li>
-                <li>読み込み時間が短い。</li>
-                <li>対象形式が分かりやすい。</li>
-              </ul>
-            </div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>長辺≤2048pxへ統一、正規化。</li><li>.png/.jpg、1枚500ms。</li></ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>大きい画像でも安定。</li><li>読み込みが速い。</li></ul></div>
           </div>
         </article>
 
-        <!-- BE: AI API (text/vision) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_be_data_transform" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
-              <span class="font-semibold">AI API接続（テキストまたは画像）</span>
-            </label>
-            <div class="text-sm font-bold">10,000円 / エンドポイント</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>1モデル=1エンドポイント。タイムアウト30秒、再試行最大3回。</li>
-                <li>入力/出力はJSON固定。例外時は理由と再現手順を記録。</li>
-                <li>レート制限を考慮した待機を実装。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>テキストや画像の生成/分析ができる。</li>
-                <li>遅延や一時失敗が発生しても自動で再試行される。</li>
-                <li>結果は表や文章として画面に出る。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- BE: Data Transform -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="be_data_transform" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="be_data_transform" />
               <span class="font-semibold">データ変換・整形（日付/数値の統一）</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>日付をYYYY-MM-DD、数値の小数桁を統一。</li>
-                <li>対象列≤10。検証エラー0件で納品。</li>
-                <li>形式不一致は一覧で返却。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>表計算での集計がやりやすくなる。</li>
-                <li>形式の違いによる誤集計を防げる。</li>
-                <li>修正点を一覧で確認できる。</li>
-              </ul>
-            </div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>日付=YYYY-MM-DD、小数桁統一。</li><li>対象列≤10、検証エラー0件。</li></ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>集計がやりやすい。</li><li>誤集計を防げる。</li></ul></div>
           </div>
         </article>
 
-        <!-- BE: Search/Filter API -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_be_search_api" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="be_search_api" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="be_search_api" />
               <span class="font-semibold">検索・フィルタAPI</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
           <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>列ごとの条件絞り込み。対象列≤10。</li>
-                <li>10,000件で応答100ms以内（ローカル計測）。</li>
-                <li>異常時は400/500で理由をJSON返却。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>目的の行をすぐに絞り込める。</li>
-                <li>表示切替の待機は0.1秒以内。</li>
-                <li>入力ミス時の理由がわかる。</li>
-              </ul>
-            </div>
+            <div class="p-4 border-r"><div class="text-[11px] font-semibold text-slate-500">エンジニア（私）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>列別条件（列≤10）。</li><li>10,000件で100ms応答。</li><li>400/500で理由JSON。</li></ul></div>
+            <div class="p-4"><div class="text-[11px] font-semibold text-slate-500">非エンジニア（お客さま）</div>
+              <ul class="list-disc ml-5 text-sm space-y-1"><li>目的の行をすぐ絞込。</li><li>切替0.1秒以内。</li></ul></div>
           </div>
         </article>
 
-        <!-- BE: Pipeline (generic) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <!-- Bulk + pipeline demo already covered elsewhere; keep bulk -->
+        <article id="art_be_bulk" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="12000" />
-              <span class="font-semibold">処理パイプライン構築（最大3段）</span>
-            </label>
-            <div class="text-sm font-bold">12,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>例：抽出→要約→構造化JSON。各段に再実行1回。</li>
-                <li>中間データを一時保存。段間で受け渡し。</li>
-                <li>段ごとのログを分離して保存。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ボタン1回で3段の処理が順番に完了する。</li>
-                <li>途中で失敗しても自動で1回やり直す。</li>
-                <li>中間結果を確認して次に進める設定ができる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- BE: Bulk + Rate control -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
+              <input id="be_bulk" type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" data-key="be_bulk" />
               <span class="font-semibold">バルク処理（並列4/レート制御/進捗％）</span>
             </label>
             <div class="text-sm font-bold">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時実行≤4。制限に応じた待機を実装。</li>
-                <li>進捗％APIを提供。失敗分のみ再実行可能。</li>
-                <li>100件の完了時間を直列比40%以上短縮。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>大量処理の待機時間を短縮できる。</li>
-                <li>完了までの残りを％で把握できる。</li>
-                <li>失敗分だけをやり直せる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（4ワーカーの進捗）</summary>
+              <div class="mt-3 grid md:grid-cols-2 gap-3" id="bulkBox"></div>
+              <button id="bulkStart" class="mt-3 px-3 py-1.5 border rounded text-sm hover:bg-white">一括処理を開始</button>
+            </details>
           </div>
         </article>
 
-        <!-- BE: Prompt engineering with schema -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_be_prompt_schema" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
+              <input id="be_prompt_schema" type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" data-key="be_prompt_schema" />
               <span class="font-semibold">プロンプト設計＋JSONスキーマ検証</span>
             </label>
             <div class="text-sm font-bold">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>JSON Schemaを提示しスキーマ検証を実装。</li>
-                <li>無効出力は自動で再プロンプト1回。</li>
-                <li>有効JSON率80%→99%（100入力で測定）。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>毎回同じ形式で結果を受け取れる。</li>
-                <li>他システムへそのまま投入できる。</li>
-                <li>手直しの作業が不要になる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <p class="foot note mb-2">※現状は「プロンプト設計」のみ導入。スキーマ検証を追加する場合はこの項目を選択。</p>
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">スキーマ例と検証結果</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">Schema:
+{ "type":"object","properties":{
+  "title":{"type":"string"},
+  "bullets":{"type":"array","items":{"type":"string"},"minItems":3}
+},"required":["title","bullets"]}
+有効出力例:
+{"title":"時短コツ","bullets":["買い置き","下ごしらえ","火加減"]}</pre>
+            </details>
           </div>
         </article>
 
-        <!-- BE: Message strategy presets (generic) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_be_msg_preset" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" />
+              <input id="be_msg_preset" type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" data-key="be_msg_preset" />
               <span class="font-semibold">メッセージ戦略プリセット切替ロジック</span>
             </label>
             <div class="text-sm font-bold">9,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ラジオ選択：問題提起型 / ベネフィット直述型 をAPIへ送信。</li>
-                <li>選択値に合わせてプロンプト指示文を切替。</li>
-                <li>プリセットはJSONで管理し差し替え可能。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ボタン操作だけで表現の方向を変えられる。</li>
-                <li>選択→生成の2操作で反映される。</li>
-                <li>選択状態はURLに保存され再現できる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details><summary class="cursor-pointer text-sm font-semibold">入出力例</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">選択:A → 指示: 「課題→解決→行動」
+選択:B → 指示: 「ベネフィット→証拠→行動」</pre>
+            </details>
+          </div>
+          <div class="px-4 py-3 border-t flex items-center justify-between gap-2">
+            <div class="font-semibold text-sm">Markdown知識ベース埋め込み</div>
+            <div class="text-sm font-bold">8,000円</div>
+          </div>
+          <div id="art_be_md_kb" class="px-4 pb-4">
+            <label class="inline-flex items-center gap-2 mb-2">
+              <input id="be_md_kb" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="be_md_kb" />
+              <span class="text-sm">この項目を選択</span>
+            </label>
+            <details><summary class="cursor-pointer text-sm font-semibold">入出力例（docs/rules.md を注入）</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">rules.md:
+・語尾は「です/ます」
+・専門用語には短い注釈
+→ プロンプトの前提へ挿入</pre>
+            </details>
           </div>
         </article>
 
-        <!-- BE: Markdown KB injection (generic) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
-              <span class="font-semibold">Markdown知識ベース埋め込み</span>
-            </label>
-            <div class="text-sm font-bold">8,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r">
-              <div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>サーバーの <code>docs/*.md</code> を読み込みプロンプトへ挿入。</li>
-                <li>ファイル差し替えで動作を更新（再起動のみ）。</li>
-                <li>テキスト長は100KBまでを対象。</li>
-              </ul>
-            </div>
-            <div class="p-4">
-              <div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Markdownの編集だけで出力方針を変更できる。</li>
-                <li>新しい手順を追加するとすぐ反映される。</li>
-                <li>再デプロイは不要。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
     <!-- ===== Infra ===== -->
-    <section id="infra" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">インフラ（運用環境）</h2>
+    <section id="infra" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">インフラ（運用環境）</h2>
       <div class="grid gap-6">
-        <!-- Infra: HF Deploy -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+
+        <article id="art_infra_hf" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="infra_hf" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="infra_hf" />
               <span class="font-semibold">Hugging Face Spaces デプロイ</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>Gradio/Streamlitを配置し公開URLを発行。</li>
-                <li>初回起動は60秒以内（Space起動時）。</li>
-                <li>未ログインでアクセス可。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>URL共有だけで利用開始できる。</li>
-                <li>最初の読み込みは60秒以内に完了。</li>
-                <li>ログイン操作が不要。</li>
-              </ul>
-            </div>
+          <div class="p-4">
+            <ul class="list-disc ml-5 text-sm space-y-1"><li>公開URL発行、初回起動≤60秒。</li><li>未ログインでアクセス可。</li></ul>
+            <div class="mt-3 p-3 border rounded-lg wire text-xs">画面イメージ：上=タイトル 中央=フォーム 下=結果<br>URL: <span class="mono">https://huggingface.co/spaces/...</span></div>
           </div>
         </article>
 
-        <!-- Infra: Env/API keys with UI override -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_infra_cicd" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" />
-              <span class="font-semibold">APIキー管理（.env読込＋UI上書き）</span>
-            </label>
-            <div class="text-sm font-bold">6,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>起動時に <code>.env</code> を読み込み。</li>
-                <li>UI入力があれば <code>.env</code> より優先。</li>
-                <li>状態表示：「設定済み/未設定」を画面に出力。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>標準のキー設定を使える。</li>
-                <li>一時キーをUIから試せる。</li>
-                <li>設定状況を画面で確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Infra: CI/CD + Monitoring -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
+              <input id="infra_cicd" type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" data-key="infra_cicd" />
               <span class="font-semibold">CI/CD（自動デプロイ）＋稼働監視</span>
             </label>
             <div class="text-sm font-bold">10,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>mainへのpushで自動デプロイ。完了10分以内。</li>
-                <li>5分間隔でHTTP 200を監視。失敗時に通知。</li>
-                <li>ログを30日保存。例外はスタックトレースを記録。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>修正が自動で反映される。</li>
-                <li>停止時にメール通知が届く。</li>
-                <li>原因調査の記録を残せる。</li>
-              </ul>
-            </div>
+          <div class="p-4">
+            <ul class="list-disc ml-5 text-sm space-y-1"><li>main push→自動デプロイ（10分以内）。</li><li>5分毎にHTTP 200監視、失敗時通知。</li><li>ログ30日保存。</li></ul>
+            <div class="mt-3 p-3 border rounded-lg text-xs">例：<span class="mono">12:03 push → 12:12 デプロイ完了 / 12:15 監視OK</span></div>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Database ===== -->
-    <section id="db" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">データベース</h2>
+    <section id="db" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">データベース</h2>
       <div class="grid gap-6">
-        <!-- DB Design -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+
+        <article id="art_db_design" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="db_design" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="db_design" />
               <span class="font-semibold">DB設計（DDL＋ER図）</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>列名/型/制約を定義（表≤5）。</li>
-                <li>DDLとER図1枚を納品。</li>
-                <li>必須列の未入力検出100%（テスト100件）。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>保存項目と型を一覧で確認できる。</li>
-                <li>未入力は登録できない。</li>
-                <li>設計資料を受け取れる。</li>
-              </ul>
+          <div class="p-4">
+            <div class="grid md:grid-cols-2 gap-3">
+              <div class="bg-slate-50 border rounded p-3 text-xs">テーブル例 items(id PK, title TEXT, created_at DATETIME NOT NULL)</div>
+              <div class="bg-slate-50 border rounded p-3 text-xs">ER図：items（1）—（N）records</div>
             </div>
           </div>
         </article>
 
-        <!-- CRUD per entity -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_db_crud" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" />
+              <input id="db_crud" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="db_crud" />
               <span class="font-semibold">CRUD API（登録/表示/更新/削除）</span>
             </label>
             <div class="text-sm font-bold">3,000円 / エンティティ</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>REST4種を提供。200/201/204を確認。</li>
-                <li>400/500は理由をJSONで返却。</li>
-                <li>1秒以内の応答を保証（ローカル計測）。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>登録/閲覧/修正/削除ができる。</li>
-                <li>エラー理由を画面で確認できる。</li>
-                <li>結果の状態を記録できる。</li>
-              </ul>
-            </div>
-          </div>
         </article>
 
-        <!-- DB-less session option -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_db_less" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" />
+              <input id="db_less" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="db_less" />
               <span class="font-semibold">DBレス構成（セッション保存）</span>
             </label>
             <div class="text-sm font-bold">3,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ブラウザのセッションストレージに結果を保存。</li>
-                <li>保存はタブを閉じるまで。永続化なし。</li>
-                <li>サーバー側保存処理を削除。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>実装日数を短縮できる。</li>
-                <li>サーバーにデータが残らない。</li>
-                <li>同一タブ内で再利用できる。</li>
-              </ul>
-            </div>
-          </div>
         </article>
 
-        <!-- Filesystem persistence of outputs -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_db_fs" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" />
+              <input id="db_fs" type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" data-key="db_fs" />
               <span class="font-semibold">生成物のファイル保存（一覧API付き）</span>
             </label>
             <div class="text-sm font-bold">6,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li><code>output/</code> 配下にHTMLとJSONを保存。</li>
-                <li>ファイル名：タイトル＋<code>YYYYMMDD_HHMMSS</code>。</li>
-                <li><code>/list-outputs</code> で一覧を返却。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>生成物が上書きされず履歴が残る。</li>
-                <li>一覧からダウンロードできる。</li>
-                <li>ブラウザ終了後もファイルが残る。</li>
-              </ul>
-            </div>
+          <div class="px-4 pb-4">
+            <details><summary class="cursor-pointer text-sm font-semibold">入出力例（ファイル保存）</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">保存先: output/
+output/summary_20250816_103001.html
+output/summary_20250816_103001.json
+GET /list-outputs → [
+  {"name":"summary_20250816_103001.html","size":12400,"url":"..."}
+]</pre>
+            </details>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Quality & Optimization ===== -->
-    <section id="qa" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">品質・最適化</h2>
+    <section id="qa" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">品質・最適化</h2>
       <div class="grid gap-6">
-        <!-- Cache -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+
+        <article id="art_qa_cache" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="qa_cache" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="qa_cache" />
               <span class="font-semibold">キャッシュ（同一入力の再利用）</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>キー1種を定義し結果を保存/再利用。</li>
-                <li>API呼び出し回数を削減。</li>
-                <li>再実行時間を5秒→1秒以内に短縮。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同じ入力の待機が短くなる。</li>
-                <li>外部APIの費用を抑えられる。</li>
-                <li>画面の反応が速くなる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（同じ入力でキャッシュヒット）</summary>
+              <div class="mt-3 flex items-end gap-2">
+                <input id="cacheInput" class="border rounded px-2 py-1 text-sm" placeholder="例: sample-input"/>
+                <button id="cacheRun" class="px-3 py-1.5 border rounded text-sm hover:bg-white">生成</button>
+                <span id="cacheState" class="text-xs text-slate-500">未実行</span>
+              </div>
+            </details>
           </div>
         </article>
 
-        <!-- Async server-side -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <article id="art_qa_ai_hardening" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
-              <span class="font-semibold">非同期化（サーバー側）</span>
-            </label>
-            <div class="text-sm font-bold">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>重処理をバックグラウンド実行（キュー1系統）。</li>
-                <li>進捗％APIを0.5秒間隔で更新。</li>
-                <li>UIブロック時間0秒を確認。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>処理中でも他の操作を続けられる。</li>
-                <li>進捗が0.5秒ごとに更新される。</li>
-                <li>待機時間を短く感じられる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Parallel -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="10000" />
-              <span class="font-semibold">並列処理（ワーカー4）</span>
-            </label>
-            <div class="text-sm font-bold">10,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>同時ワーカー≤4。分割処理を実装。</li>
-                <li>直列比40%以上の短縮を目標。</li>
-                <li>競合を回避するロックを実装。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>処理待ちが短くなる。</li>
-                <li>複数の作業を同時に進められる。</li>
-                <li>完了時間の見通しが立てやすい。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- AI hardening -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" />
+              <input id="qa_ai_hardening" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="qa_ai_hardening" />
               <span class="font-semibold">AI応答の堅牢化（検証/再試行/補完）</span>
             </label>
             <div class="text-sm font-bold">8,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>JSON検証、欠損補完、再試行最大2回。</li>
-                <li>通信失敗は指数バックオフで再実行。</li>
-                <li>エラー率5%→1%（100件測定）。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>異常時でも処理が継続する。</li>
-                <li>停止件数を減らせる。</li>
-                <li>不正形式の結果は表示されない。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">入出力例（崩れたJSON → 自動補正）</summary>
+<pre class="mono text-[11px] overflow-auto mt-2">入力:
+{"title":"ABC","bullets":["a","b"  ← カンマ欠落
+補正後:
+{"title":"ABC","bullets":["a","b"]}</pre>
+            </details>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Docs & Tests ===== -->
-    <section id="docs" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">テスト / ドキュメント</h2>
+    <section id="docs" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">テスト / ドキュメント</h2>
       <div class="grid gap-6">
-        <!-- Unit tests -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+
+        <article id="art_docs_unit" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="docs_unit" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="docs_unit" />
               <span class="font-semibold">単体テスト（主要関数10件×成功/失敗）</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>合計20本のテストを実行し失敗0件で納品。</li>
-                <li>実行レポートを添付。</li>
-                <li>異常入力のケースを含める。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>動作確認の証拠を受け取れる。</li>
-                <li>想定外入力でもエラー処理が動く。</li>
-                <li>品質の説明資料として利用できる。</li>
-              </ul>
-            </div>
-          </div>
+          <div class="p-4 text-xs">テスト例：<span class="mono">parseCsv_ok, parseCsv_ng, transformDate_ok, ...</span>（計20本）</div>
         </article>
 
-        <!-- Manual -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_docs_api_spec" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
-              <span class="font-semibold">操作マニュアル（A4換算5ページ）</span>
-            </label>
-            <div class="text-sm font-bold">5,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>画面ごとの手順と図を掲載。</li>
-                <li>手順通りに実行して同一結果を再現。</li>
-                <li>PDF1本を納品。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>手順を見ながら操作できる。</li>
-                <li>社内共有にそのまま使える。</li>
-                <li>迷った箇所を図で確認できる。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- API spec -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" />
+              <input id="docs_api_spec" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="docs_api_spec" />
               <span class="font-semibold">API仕様書（エンドポイント/例外/例）</span>
             </label>
             <div class="text-sm font-bold">5,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>対象API≤10のパラメータ/例外を記載。</li>
-                <li>例を含むMarkdownを納品。</li>
-                <li>用語の定義を1ページで付与。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>連携先に渡せる資料になる。</li>
-                <li>問い合わせ時の確認が速くなる。</li>
-                <li>設定ミスを減らせる。</li>
-              </ul>
-            </div>
-          </div>
+          <div class="p-4 text-xs">例：<span class="mono">GET /api/items?page=1</span> → <span class="mono">{data:[...],total:120}</span></div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Support ===== -->
-    <section id="support" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">サポート</h2>
+    <section id="support" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">保守</h2>
       <div class="grid gap-6">
-        <!-- Support Light -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_support_light" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" />
+              <input id="support_light" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="support_light" data-period="monthly" />
               <span class="font-semibold">保守（ライト）</span>
             </label>
             <div class="text-sm font-bold">3,000円 / 月</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>メール対応。軽微修正：月1回、1時間以内。</li>
-                <li>対応時間：平日10:00–18:00（JST）。</li>
-                <li>初回返信は24時間以内（営業日）。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>小さな修正を月1回依頼できる。</li>
-                <li>対応時間帯が明確。</li>
-                <li>返信時刻の目安が分かる。</li>
-              </ul>
-            </div>
-          </div>
+          <div class="p-4 text-xs">メール、軽微修正 月1回（1h以内）、平日10:00–18:00、初回返信24h以内</div>
         </article>
-
-        <!-- Support Standard -->
-        <article class="bg-white border rounded-2xl shadow-sm">
+        <article id="art_support_std" class="bg-white border rounded-2xl shadow-sm">
           <div class="px-4 py-3 border-b flex items-center justify-between">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" />
+              <input id="support_std" type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" data-key="support_std" data-period="monthly" />
               <span class="font-semibold">保守（スタンダード）</span>
             </label>
             <div class="text-sm font-bold">6,000円 / 月</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>メール対応。軽微修正：月2回、各1時間以内。</li>
-                <li>対応時間：平日10:00–18:00（JST）。</li>
-                <li>初回返信は8時間以内（営業日）。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>修正回数を月2回まで増やせる。</li>
-                <li>返信が速い。</li>
-                <li>運用の手間を減らせる。</li>
-              </ul>
-            </div>
-          </div>
+          <div class="p-4 text-xs">メール、軽微修正 月2回（各1h以内）、平日10:00–18:00、初回返信8h以内</div>
         </article>
       </div>
     </section>
 
-    <!-- ===== AI Extensions (generic UI features) ===== -->
-    <section id="ai-ext" class="mb-12">
-      <h2 class="text-xl font-bold mb-4">AI拡張（汎用UI/ロジック）</h2>
+    <!-- ===== AI Extensions combined demo ===== -->
+    <section id="ai-ext" class="mb-10">
+      <h2 class="text-xl font-bold mb-3">AI拡張（汎用UI/ロジック）</h2>
       <div class="grid gap-6">
-        <!-- Template vs AI toggle (generic text idea generation) -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" />
-              <span class="font-semibold">テンプレ生成／AI生成 切替（単一チェック）</span>
-            </label>
-            <div class="text-sm font-bold">9,000円</div>
+
+        <!-- Toggle + 3-step combined -->
+        <article id="art_ai_toggle_step" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <label class="inline-flex items-center gap-2">
+                <input id="ai_toggle" type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" data-key="ai_toggle" />
+                <span class="font-semibold">テンプレ生成／AI生成 切替（単一チェック）</span>
+              </label>
+              <span class="text-sm">＋</span>
+              <label class="inline-flex items-center gap-2">
+                <input id="ai_stepflow" type="checkbox" class="feature-toggle h-5 w-5" data-price="12000" data-key="ai_stepflow" />
+                <span class="font-semibold">段階的生成フローUI（3ステップ）</span>
+              </label>
+            </div>
+            <div class="text-sm font-bold">9,000円 + 12,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li><code>useAI</code>チェックがOFF：サーバー内テンプレで文字列生成。</li>
-                <li>ON：外部AI APIへ送信して結果を表示。</li>
-                <li>切替は1クリック。状態はURLに保存。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>高速に大量案が必要なときはOFF。</li>
-                <li>表現の幅が必要なときはON。</li>
-                <li>費用を抑えたいときはOFFを選べる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（キーワード→案→見出し→本文）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex items-end gap-3">
+                  <div><label class="text-xs block">キーワード</label><input id="kwStep" class="border rounded px-2 py-1 text-sm" placeholder="例: 時短レシピ" /></div>
+                  <label class="flex items-center gap-2 text-sm"><input id="useAI" type="checkbox" class="h-4 w-4"> AI生成を使用</label>
+                  <button id="genIdeas" class="px-3 py-1.5 border rounded text-sm hover:bg-white">①案を生成</button>
+                </div>
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3"><div class="text-xs font-semibold mb-2">① 案の一覧</div><select size="6" id="ideas" class="w-full border rounded text-xs p-2"></select></div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="flex items-center justify-between mb-2"><div class="text-xs font-semibold">② 見出し</div><button id="genHeads" class="px-2 py-1 border rounded text-xs hover:bg-white">生成</button></div>
+                    <select size="6" id="heads" class="w-full border rounded text-xs p-2"></select>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="flex items-center justify-between mb-2"><div class="text-xs font-semibold">③ 本文</div><button id="genBody" class="px-2 py-1 border rounded text-xs hover:bg-white">生成</button></div>
+                    <textarea id="bodyOut" class="w-full h-32 border rounded text-xs p-2"></textarea>
+                  </div>
+                </div>
+              </div>
+            </details>
           </div>
         </article>
 
-        <!-- Stepwise flow generic -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
+        <!-- Combination generator -->
+        <article id="art_ai_combo" class="bg-white border rounded-2xl shadow-sm">
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2">
             <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="12000" />
-              <span class="font-semibold">段階的生成フローUI（3ステップ）</span>
-            </label>
-            <div class="text-sm font-bold">12,000円</div>
-          </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>タブ：①案の一覧→②見出し→③本文（例）。</li>
-                <li>各ステップの出力をドロップダウンで提示。</li>
-                <li>選択値を次ステップに引き渡し。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>順番に選んで最終案を作成できる。</li>
-                <li>途中の選択を変更して再実行できる。</li>
-                <li>最終出力が途中選択と一致する。</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Combination generator generic -->
-        <article class="bg-white border rounded-2xl shadow-sm">
-          <div class="px-4 py-3 border-b flex items-center justify-between">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" class="feature-toggle h-5 w-5" data-price="12000" />
+              <input id="ai_combo" type="checkbox" class="feature-toggle h-5 w-5" data-price="12000" data-key="ai_combo" />
               <span class="font-semibold">組合せ一括生成（プリセット×テンプレ×フック）</span>
             </label>
             <div class="text-sm font-bold">12,000円</div>
           </div>
-          <div class="grid md:grid-cols-2">
-            <div class="p-4 border-r"><div class="text-xs font-semibold text-slate-500">エンジニア（私）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>プリセット2種×テンプレ5種×フック5種でループ生成。</li>
-                <li>組合せキー（例：<code>presetA/template2/hook3</code>）で分類。</li>
-                <li>カテゴリ単位で配列を返却しUIで見出し表示。</li>
-              </ul>
-            </div>
-            <div class="p-4"><div class="text-xs font-semibold text-slate-500">非エンジニア（お客さま）</div>
-              <ul class="list-disc ml-5 text-sm space-y-1">
-                <li>ボタン1回で数十案をカテゴリ別に一覧取得。</li>
-                <li>目的のカテゴリへすぐ移動できる。</li>
-                <li>必要な案だけチェックして保存できる。</li>
-              </ul>
-            </div>
+          <div class="px-4 py-3">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">ミニデモ（疑似カテゴリ分け）</summary>
+              <div class="mt-2 text-xs">プリセット2種×テンプレ5種×フック5種 → カテゴリ別に結果表示（デモは省略表示）</div>
+            </details>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- ===== Definitions ===== -->
-    <section id="defs" class="mb-20">
-      <h2 class="text-xl font-bold mb-3">定義・前提条件</h2>
-      <div class="bg-white border rounded-2xl shadow-sm p-4">
-        <ul class="list-disc ml-5 text-sm space-y-2">
+    <section id="defs" class="mb-24">
+      <h2 class="text-xl font-bold mb-3">定義・前提条件（数値）</h2>
+      <div class="bg-white border rounded-2xl shadow-sm p-4 text-sm">
+        <ul class="list-disc ml-5 space-y-2">
           <li>測定環境：ローカルPC（CPU8コア/メモリ16GB）。ネットワーク遅延は含まない。</li>
           <li>ファイル上限：通常20MB、Excel取込は50MB、行上限50,000。</li>
-          <li>同時ユーザー想定：10。並列ワーカーの既定：4。</li>
-          <li>画像の分割既定：サイズ1024×1024、重なり64px。</li>
-          <li>再見積条件：行数&gt;50,000、同時ユーザー&gt;10、段数&gt;3、モデル&gt;2。</li>
-          <li>価格は税込み。API利用料や外部サービス費用は含まない。</li>
+          <li>並列ワーカー：4。レート制限は設定値に追随。</li>
+          <li>画像分割既定：サイズ1024×1024、重なり64px。</li>
+          <li>再見積条件：行数&gt;50,000 / 同時ユーザー&gt;10 / 段数&gt;3 / モデル&gt;2。</li>
+          <li>価格は税込。外部サービス費用（API料等）は含まない。</li>
         </ul>
       </div>
     </section>
   </main>
 
   <!-- ===== Floating Summary ===== -->
-  <aside class="fixed bottom-4 right-4 left-4 md:left-auto md:w-96 bg-white border rounded-2xl shadow-lg p-4">
-    <div class="flex items-center justify-between mb-2">
+  <aside class="fixed bottom-4 right-4 left-4 md:left-auto md:w-[28rem] bg-white border rounded-2xl shadow-lg p-4">
+    <div class="flex items-center justify-between mb-1">
       <h3 class="font-semibold">見積サマリー</h3>
       <button id="clearAll2" class="text-sm underline">全解除</button>
     </div>
-    <div class="text-sm text-slate-600 mb-2">
-      <span id="selectedCount">0</span> 項目を選択中
+    <div class="text-xs text-slate-600 mb-1 flex gap-4">
+      <div><span id="selectedCount">0</span> 項目を選択</div>
+      <div>（月額項目：<span id="selectedMonthly">0</span>）</div>
     </div>
+    <div class="text-sm">買い切り合計：</div>
     <div class="text-2xl font-bold mb-2"><span id="totalPrice">0</span> 円</div>
-    <p class="text-xs text-slate-500">※月額項目は別途表記（例：保守）。</p>
+    <div class="text-sm">月額合計：</div>
+    <div class="text-xl font-bold"><span id="monthlyPrice">0</span> 円 / 月</div>
+    <p class="text-[11px] text-slate-500 mt-2">※同一項目は一覧表とカードで同期。月額項目（保守）は別枠で集計します。</p>
   </aside>
 
   <script>
-    const toggles = () => Array.from(document.querySelectorAll('.feature-toggle'));
+    // ===== Utility: get all real feature toggles (used for pricing) =====
+    const realToggles = () => Array.from(document.querySelectorAll('.feature-toggle[data-key]'));
     const totalEl = document.getElementById('totalPrice');
+    const monthlyEl = document.getElementById('monthlyPrice');
     const countEl = document.getElementById('selectedCount');
+    const countMonthlyEl = document.getElementById('selectedMonthly');
+
     function calc() {
-      let sum = 0, cnt = 0;
-      toggles().forEach(chk => {
-        if (chk.checked) { sum += Number(chk.dataset.price || 0); cnt += 1; }
+      let sum = 0, monthly = 0, cnt = 0, cntMonthly = 0;
+      realToggles().forEach(chk => {
+        if (chk.checked) {
+          const price = Number(chk.dataset.price || 0);
+          if (chk.dataset.period === 'monthly') { monthly += price; cntMonthly += 1; }
+          else { sum += price; cnt += 1; }
+        }
       });
       totalEl.textContent = sum.toLocaleString();
+      monthlyEl.textContent = monthly.toLocaleString();
       countEl.textContent = cnt;
+      countMonthlyEl.textContent = cntMonthly;
     }
+
+    // ===== Global Select/Clear =====
+    function setAll(val) { realToggles().forEach(c => c.checked = val); syncProxiesFromTargets(); calc(); }
+    document.getElementById('selectAll').addEventListener('click', () => setAll(true));
+    const clearAll = () => setAll(false);
+    document.getElementById('clearAll').addEventListener('click', clearAll);
+    document.getElementById('clearAll2').addEventListener('click', clearAll);
+
+    // ===== Proxy checkboxes in tables =====
+    function syncTargetsFromProxies(e) {
+      const proxy = e.target.closest('.proxy');
+      if (!proxy) return;
+      const targetSel = proxy.dataset.target;
+      const target = document.querySelector(targetSel);
+      if (target) {
+        target.checked = proxy.checked;
+        target.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+    function syncProxiesFromTargets() {
+      document.querySelectorAll('.proxy').forEach(proxy => {
+        const t = document.querySelector(proxy.dataset.target);
+        if (t) proxy.checked = t.checked;
+      });
+    }
+    document.addEventListener('change', syncTargetsFromProxies);
     document.addEventListener('change', e => {
-      if (e.target.classList && e.target.classList.contains('feature-toggle')) calc();
+      if (e.target.classList.contains('feature-toggle')) { calc(); syncProxiesFromTargets(); }
     });
-    document.getElementById('selectAll').addEventListener('click', () => { toggles().forEach(c => c.checked = true); calc(); });
-    document.getElementById('clearAll').addEventListener('click', () => { toggles().forEach(c => c.checked = false); calc(); });
-    document.getElementById('clearAll2').addEventListener('click', () => { toggles().forEach(c => c.checked = false); calc(); });
+
+    // ===== Initial calc =====
     calc();
+
+    // ===== Demo data for tables =====
+    const demoRows = [
+      {id:1,date:'2025-08-01',category:'general',text:'quick campaign idea'},
+      {id:2,date:'2025-08-02',category:'sales',text:'monthly report draft'},
+      {id:3,date:'2025-08-03',category:'general',text:'research note'},
+      {id:4,date:'2025-08-04',category:'ops',text:'ops checklist'},
+      {id:5,date:'2025-08-05',category:'sales',text:'follow-up template'},
+      {id:6,date:'2025-08-06',category:'general',text:'team memo'},
+      {id:7,date:'2025-08-07',category:'ops',text:'incident summary'},
+      {id:8,date:'2025-08-08',category:'general',text:'campaign schedule'}
+    ];
+
+    // ===== Excel/CSV Demo =====
+    const demoCsvBtn = document.getElementById('demoCsvBtn');
+    const demoCsvStatus = document.getElementById('demoCsvStatus');
+    const demoCsvTableBody = document.querySelector('#demoCsvTable tbody');
+    if (demoCsvBtn) {
+      demoCsvBtn.addEventListener('click', () => {
+        demoCsvStatus.textContent = '読み込み中…';
+        setTimeout(() => {
+          demoCsvTableBody.innerHTML = '';
+          demoRows.forEach(r => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td class="px-2 py-1 border">${r.id}</td>
+                            <td class="px-2 py-1 border">${r.date}</td>
+                            <td class="px-2 py-1 border">${r.category}</td>
+                            <td class="px-2 py-1 border">${r.text}</td>`;
+            demoCsvTableBody.appendChild(tr);
+          });
+          demoCsvStatus.textContent = '読み込み完了（8件）';
+        }, 400);
+      });
+    }
+
+    // ===== Image Preview Demo =====
+    const imgBtn = document.getElementById('imgPreviewBtn');
+    const imgStatus = document.getElementById('imgPreviewStatus');
+    const imgBox = document.getElementById('imgPreviewBox');
+    if (imgBtn) {
+      imgBtn.addEventListener('click', () => {
+        imgStatus.textContent = '表示中';
+        imgBox.classList.remove('wire');
+        imgBox.style.background = 'linear-gradient(135deg,#cbd5e1,#f1f5f9)';
+        imgBox.textContent = 'プレビュー（縮小済み）';
+        setTimeout(()=>{imgStatus.textContent = '表示（1秒以内）';}, 300);
+      });
+    }
+
+    // ===== Sort/Filter/Pagination Demo =====
+    const tblBody = document.querySelector('#tbl tbody');
+    const pginfo = document.getElementById('pginfo');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const kw = document.getElementById('kw');
+    const cat = document.getElementById('cat');
+    const applyBtn = document.getElementById('applyFilter');
+    const exportCsv = document.getElementById('exportCsv');
+    let sortKey = 'id', sortAsc = true, page = 1, pageSize = 5, viewRows = demoRows.slice();
+
+    function refreshCats(){ const cats = Array.from(new Set(demoRows.map(r=>r.category)));
+      cats.forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; cat.appendChild(o); }); }
+    function apply(){ const k=(kw.value||'').toLowerCase(), c=cat.value||'';
+      viewRows = demoRows.filter(r=> (!k||r.text.toLowerCase().includes(k)) && (!c||r.category===c)); page=1; render(); }
+    function render(){
+      const sorted = viewRows.slice().sort((a,b)=>{const av=a[sortKey], bv=b[sortKey]; return (av<bv? -1: av>bv? 1: 0) * (sortAsc?1:-1)});
+      const totalPg = Math.max(1, Math.ceil(sorted.length/pageSize)); page = Math.min(page,totalPg);
+      const rows = sorted.slice((page-1)*pageSize, (page-1)*pageSize+pageSize);
+      tblBody.innerHTML = rows.map(r=>`<tr><td class="px-2 py-1 border">${r.id}</td><td class="px-2 py-1 border">${r.date}</td><td class="px-2 py-1 border">${r.category}</td><td class="px-2 py-1 border">${r.text}</td></tr>`).join('');
+      pginfo.textContent = `${page} / ${totalPg}`;
+    }
+    document.querySelectorAll('#tbl thead th').forEach(th=>{
+      th.addEventListener('click', ()=>{
+        const k = th.getAttribute('data-k'); sortAsc = (sortKey===k)? !sortAsc : true; sortKey = k; render();
+      });
+    });
+    prev && prev.addEventListener('click', ()=>{ page=Math.max(1,page-1); render(); });
+    next && next.addEventListener('click', ()=>{ page=page+1; render(); });
+    applyBtn && applyBtn.addEventListener('click', apply);
+    exportCsv && exportCsv.addEventListener('click', ()=>{
+      const header='id,date,category,text\n';
+      const csv=viewRows.map(r=>[r.id,r.date,r.category,('"'+r.text.replace(/"/g,'""')+'"')].join(',')).join('\n');
+      const blob=new Blob([header+csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='export.csv'; a.click();
+    });
+    if (cat) { refreshCats(); apply(); }
+
+    // ===== Preprocess tile demo =====
+    const tileRange = document.getElementById('tileRange');
+    const tileVal = document.getElementById('tileVal');
+    const overlayBox = document.getElementById('overlayBox');
+    if (tileRange) tileRange.addEventListener('input', e=>{ tileVal.textContent=e.target.value; overlayBox.style.setProperty('--tile', e.target.value+'px'); });
+
+    // ===== Async task demo =====
+    let tId=null, pct=0, timer=null, canceled=false;
+    const taskIdEl=document.getElementById('taskId');
+    const taskState=document.getElementById('taskState');
+    const taskPct=document.getElementById('taskPct');
+    const taskBar=document.getElementById('taskBar');
+    const taskStart=document.getElementById('taskStart');
+    const taskCancel=document.getElementById('taskCancel');
+    function resetTask(){ tId=null;pct=0;canceled=false; taskBar.style.width='0%';taskPct.textContent='0%';taskState.textContent='待機';taskIdEl.textContent='-'; if(timer){clearInterval(timer);timer=null;} }
+    taskStart && taskStart.addEventListener('click', ()=>{
+      resetTask(); tId='T'+Math.random().toString(36).slice(2,8).toUpperCase(); taskIdEl.textContent=tId; taskState.textContent='実行中';
+      timer=setInterval(()=>{ if(canceled){ taskState.textContent='キャンセル済み'; clearInterval(timer); return; }
+        pct += 5 + Math.floor(Math.random()*6);
+        if(pct>=100){ pct=100; taskBar.style.width='100%'; taskPct.textContent='100%'; taskState.textContent='完了'; clearInterval(timer); }
+        else { taskBar.style.width=pct+'%'; taskPct.textContent=pct+'%'; } }, 500);
+    });
+    taskCancel && taskCancel.addEventListener('click', ()=>{ canceled=true; });
+
+    // ===== Bulk worker demo =====
+    const bulkBox=document.getElementById('bulkBox');
+    const bulkStart=document.getElementById('bulkStart');
+    function makeBar(i){ const wrap=document.createElement('div'); wrap.className='p-3 border rounded-lg bg-slate-50';
+      wrap.innerHTML=`<div class="text-xs font-semibold mb-2">ワーカー #${i+1}</div>
+      <div class="h-3 bg-slate-200 rounded"><div class="h-3 bg-emerald-500 rounded" id="b${i}" style="width:0%"></div></div>
+      <div class="text-xs mt-2">進捗: <span id="bp${i}">0%</span></div>`; return wrap; }
+    if (bulkBox) { [0,1,2,3].forEach(i=> bulkBox.appendChild(makeBar(i))); }
+    bulkStart && bulkStart.addEventListener('click', ()=>{ [0,1,2,3].forEach(i=>{
+      const bar=document.getElementById('b'+i); const pct=document.getElementById('bp'+i);
+      let p=0; const int=setInterval(()=>{ p += 8 + Math.floor(Math.random()*10); if(p>=100){ p=100; clearInterval(int); } bar.style.width=p+'%'; pct.textContent=p+'%'; }, 400 + i*100);
+    }); });
+
+    // ===== Cache demo =====
+    const cache=new Map(); const cacheInput=document.getElementById('cacheInput'); const cacheRun=document.getElementById('cacheRun'); const cacheState=document.getElementById('cacheState');
+    cacheRun && cacheRun.addEventListener('click', ()=>{ const v=(cacheInput.value||'').trim(); if(!v){ cacheState.textContent='入力なし'; return; }
+      if(cache.has(v)){ cacheState.textContent='キャッシュヒット（即時返却）'; return; }
+      cacheState.textContent='生成中…'; setTimeout(()=>{ cache.set(v,'ok'); cacheState.textContent='新規生成→キャッシュ保存'; }, 600);
+    });
+
+    // ===== Initial proxy sync =====
+    syncProxiesFromTargets();
   </script>
 </body>
 </html>
+```
