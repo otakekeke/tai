@@ -140,7 +140,7 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <h1 class="text-base md:text-xl font-bold">Webシステム開発料金表 - 実際の動作を見てから選択</h1>
       <nav class="hidden md:flex gap-4 text-xs md:text-sm">
-        <a href="#fe" class="hover:underline">画面機能 (8項目)</a>
+        <a href="#fe" class="hover:underline">画面機能 (9項目)</a>
         <a href="#be" class="hover:underline">処理機能 (6項目)</a>
         <a href="#infra" class="hover:underline">公開・運用 (3項目)</a>
         <a href="#db" class="hover:underline">データ保存 (3項目)</a>
@@ -568,6 +568,54 @@
                 </div>
                 <div id="notificationArea" class="border rounded-lg p-3 bg-gray-50 min-h-24">
                   <div class="text-xs text-gray-500">通知がここに表示されます</div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: AI Text Input -->
+        <article id="art_fe_ai_text_input" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_ai_text_input" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="fe_ai_text_input" />
+              <span class="font-semibold">AIに読み込ませるテキスト欄</span>
+              <span class="badge">テキスト解析・処理</span>
+            </label>
+            <div class="price">2,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>テキスト入力・編集機能</li>
+                <li>文字数カウント・制限表示</li>
+                <li>AI処理用のテキスト整形</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>AIに最適な形式でテキストを入力</li>
+                <li>文字数制限を事前に確認</li>
+                <li>効率的なテキスト処理が可能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（AIテキスト入力）</summary>
+              <div class="mt-3 space-y-3">
+                <div>
+                  <label class="text-xs block mb-1">AIに読み込ませるテキスト</label>
+                  <textarea id="aiTextInput" class="border rounded px-2 py-1 text-sm w-full" rows="4" placeholder="AIに処理してもらいたいテキストを入力してください..."></textarea>
+                  <div class="flex justify-between items-center mt-1">
+                    <div id="charCount" class="text-xs text-gray-500">文字数: 0 / 1000</div>
+                    <button id="processWithAI" class="btn btn-primary text-xs">AIで処理</button>
+                  </div>
+                </div>
+                <div id="aiProcessResult" class="border rounded-lg p-3 bg-gray-50 text-xs min-h-20">
+                  AI処理結果がここに表示されます
                 </div>
               </div>
             </details>
@@ -1447,7 +1495,7 @@
       </div>
     </div>
     
-    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※全23項目から選択可能。各機能には実際に動かせる体験デモが付いています。月額項目（アフターサポート）は別に計算されます。</p>
+    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※全24項目から選択可能。各機能には実際に動かせる体験デモが付いています。月額項目（アフターサポート）は別に計算されます。</p>
   </aside>
 
   <script>
@@ -1761,6 +1809,68 @@
           <div>システムが正常に動作しています - ${new Date().toLocaleTimeString()}</div>
         `;
         notificationArea.appendChild(notificationDiv);
+      });
+    }
+
+    // AI Text Input Demo
+    const aiTextInput = document.getElementById('aiTextInput');
+    const charCount = document.getElementById('charCount');
+    const processWithAI = document.getElementById('processWithAI');
+    const aiProcessResult = document.getElementById('aiProcessResult');
+    
+    if (aiTextInput && charCount) {
+      aiTextInput.addEventListener('input', (e) => {
+        const text = e.target.value;
+        const count = text.length;
+        const maxLength = 1000;
+        
+        charCount.textContent = `文字数: ${count} / ${maxLength}`;
+        
+        if (count > maxLength) {
+          charCount.classList.add('text-red-500');
+          charCount.classList.remove('text-gray-500');
+        } else if (count > maxLength * 0.8) {
+          charCount.classList.add('text-orange-500');
+          charCount.classList.remove('text-gray-500', 'text-red-500');
+        } else {
+          charCount.classList.add('text-gray-500');
+          charCount.classList.remove('text-orange-500', 'text-red-500');
+        }
+      });
+    }
+    
+    if (processWithAI && aiProcessResult) {
+      processWithAI.addEventListener('click', () => {
+        const text = aiTextInput ? aiTextInput.value : '';
+        
+        if (!text.trim()) {
+          aiProcessResult.innerHTML = '<div class="text-red-600">テキストを入力してください</div>';
+          return;
+        }
+        
+        aiProcessResult.innerHTML = '<div class="text-blue-600">AI処理中...</div>';
+        
+        setTimeout(() => {
+          const wordCount = text.split(/\s+/).length;
+          const charCount = text.length;
+          const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+          
+          aiProcessResult.innerHTML = `
+            <div class="space-y-2">
+              <div class="font-semibold text-green-600">✓ AI処理完了</div>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div>文字数: <span class="font-mono">${charCount}</span></div>
+                <div>単語数: <span class="font-mono">${wordCount}</span></div>
+                <div>文数: <span class="font-mono">${sentences}</span></div>
+                <div>処理時間: <span class="font-mono">0.3秒</span></div>
+              </div>
+              <div class="text-xs text-gray-600 mt-2">
+                <div class="font-semibold">AI分析結果:</div>
+                <div>このテキストは${wordCount > 50 ? '長文' : '短文'}で、${sentences > 3 ? '複数の文' : '単一文'}から構成されています。</div>
+              </div>
+            </div>
+          `;
+        }, 1500);
       });
     }
 
