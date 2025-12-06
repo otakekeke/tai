@@ -140,11 +140,11 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <h1 class="text-base md:text-xl font-bold">Webシステム開発料金表 - 実際の動作を見てから選択</h1>
       <nav class="hidden md:flex gap-4 text-xs md:text-sm">
-        <a href="#fe" class="hover:underline">画面機能 (9項目)</a>
-        <a href="#be" class="hover:underline">処理機能 (6項目)</a>
+        <a href="#fe" class="hover:underline">画面機能 (15項目)</a>
+        <a href="#be" class="hover:underline">処理機能 (10項目)</a>
         <a href="#infra" class="hover:underline">公開・運用 (3項目)</a>
-        <a href="#db" class="hover:underline">データ保存 (3項目)</a>
-        <a href="#support" class="hover:underline">サポート (3項目)</a>
+        <a href="#db" class="hover:underline">データ保存 (6項目)</a>
+        <a href="#support" class="hover:underline">サポート (4項目)</a>
       </nav>
     </div>
   </header>
@@ -673,6 +673,421 @@
           </div>
         </article>
 
+        <!-- FE: Business Master Management -->
+        <article id="art_fe_business_master" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_business_master" type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" data-key="fe_business_master" />
+              <span class="font-semibold">業務マスタ管理画面</span>
+              <span class="badge">顧客・スタッフ・タスクマスタ</span>
+            </label>
+            <div class="price">9,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>顧客・スタッフ・タスクマスタの一覧表示</li>
+                <li>検索・絞り込み・並び替え機能</li>
+                <li>新規登録・編集・削除（論理削除）</li>
+                <li>データ検証・エラーハンドリング</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>基本データを一元管理・効率的に操作</li>
+                <li>検索機能で必要な情報を瞬時に発見</li>
+                <li>データの整合性が保たれミスを防止</li>
+                <li>業務の標準化と効率化を実現</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（業務マスタ管理）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">顧客マスタ</div>
+                    <div class="text-xs space-y-1">
+                      <div>C001: 株式会社ABC</div>
+                      <div>C002: 株式会社XYZ</div>
+                      <div>C003: 個人事業主 田中</div>
+                    </div>
+                    <button id="demoCustomerMaster" class="btn w-full mt-2 text-xs">顧客一覧表示</button>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">スタッフマスタ</div>
+                    <div class="text-xs space-y-1">
+                      <div>S001: 山田太郎（営業）</div>
+                      <div>S002: 佐藤花子（設計）</div>
+                      <div>S003: 鈴木一郎（管理）</div>
+                    </div>
+                    <button id="demoStaffMaster" class="btn w-full mt-2 text-xs">スタッフ一覧表示</button>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">タスクマスタ</div>
+                    <div class="text-xs space-y-1">
+                      <div>T001: 要件定義</div>
+                      <div>T002: 設計書作成</div>
+                      <div>T003: 実装・テスト</div>
+                    </div>
+                    <button id="demoTaskMaster" class="btn w-full mt-2 text-xs">タスク一覧表示</button>
+                  </div>
+                </div>
+                <div id="masterDemoResult" class="border rounded-lg p-3 bg-gray-50 text-xs">マスタデータの操作結果がここに表示されます</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Task Progress Management -->
+        <article id="art_fe_task_progress" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_task_progress" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="fe_task_progress" />
+              <span class="font-semibold">タスク進行管理・4ビュー表示</span>
+              <span class="badge">全タスク・遅延・担当者別・マイルストーン</span>
+            </label>
+            <div class="price">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>全タスク一覧表示・進捗管理</li>
+                <li>遅延タスクの自動検出・ハイライト</li>
+                <li>担当者別タスク表示・負荷管理</li>
+                <li>マイルストーン別進捗表示</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>プロジェクト全体の進捗を一目で把握</li>
+                <li>遅延リスクを早期発見・対策</li>
+                <li>担当者の作業負荷を適正化</li>
+                <li>マイルストーン達成状況を可視化</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（4ビュー切替）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="viewAllTasks" class="btn btn-primary text-xs">全タスク</button>
+                  <button id="viewDelayedTasks" class="btn text-xs">遅延タスク</button>
+                  <button id="viewStaffTasks" class="btn text-xs">担当者別</button>
+                  <button id="viewMilestoneTasks" class="btn text-xs">マイルストーン</button>
+                </div>
+                <div id="taskViewResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">全タスクビュー</div>
+                  <div class="space-y-1">
+                    <div class="flex justify-between">
+                      <span>T001: 要件定義</span>
+                      <span class="text-green-600">完了</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>T002: 設計書作成</span>
+                      <span class="text-yellow-600">進行中</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>T003: 実装・テスト</span>
+                      <span class="text-red-600">遅延</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Inline Editing -->
+        <article id="art_fe_inline_editing" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_inline_editing" type="checkbox" class="feature-toggle h-5 w-5" data-price="4000" data-key="fe_inline_editing" />
+              <span class="font-semibold">インライン編集機能</span>
+              <span class="badge">ドロップダウン直接編集</span>
+            </label>
+            <div class="price">4,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>テーブル内でのドロップダウン直接編集</li>
+                <li>ステータス・担当者・ボール変更</li>
+                <li>即座に保存・データ同期</li>
+                <li>変更履歴の自動記録</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>画面遷移なしで素早く更新</li>
+                <li>作業効率が大幅に向上</li>
+                <li>ミスを防ぐ選択肢制限</li>
+                <li>変更内容が即座に反映</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（インライン編集）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="overflow-x-auto">
+                  <table class="min-w-full text-xs border">
+                    <thead class="bg-slate-100">
+                      <tr>
+                        <th class="px-2 py-1 border">タスク名</th>
+                        <th class="px-2 py-1 border">ステータス</th>
+                        <th class="px-2 py-1 border">担当者</th>
+                        <th class="px-2 py-1 border">ボール</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="px-2 py-1 border">要件定義</td>
+                        <td class="px-2 py-1 border">
+                          <select class="border rounded px-1 py-0 text-xs" onchange="updateTaskStatus(this)">
+                            <option value="未着手">未着手</option>
+                            <option value="進行中" selected>進行中</option>
+                            <option value="完了">完了</option>
+                          </select>
+                        </td>
+                        <td class="px-2 py-1 border">
+                          <select class="border rounded px-1 py-0 text-xs" onchange="updateTaskAssignee(this)">
+                            <option value="S001">山田太郎</option>
+                            <option value="S002" selected>佐藤花子</option>
+                            <option value="S003">鈴木一郎</option>
+                          </select>
+                        </td>
+                        <td class="px-2 py-1 border">
+                          <select class="border rounded px-1 py-0 text-xs" onchange="updateTaskBall(this)">
+                            <option value="S001">山田太郎</option>
+                            <option value="S002" selected>佐藤花子</option>
+                            <option value="S003">鈴木一郎</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="inlineEditResult" class="text-xs text-gray-600">ドロップダウンを変更すると即座に保存されます</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Detail Display Panel -->
+        <article id="art_fe_detail_panel" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_detail_panel" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="fe_detail_panel" />
+              <span class="font-semibold">詳細表示パネル</span>
+              <span class="badge">モーダル・サイドパネル</span>
+            </label>
+            <div class="price">3,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>サイドパネル・モーダルでの詳細表示</li>
+                <li>関連データの自動表示</li>
+                <li>アクティビティログ表示</li>
+                <li>編集・更新機能</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>詳細情報を画面遷移なしで確認</li>
+                <li>関連する情報を一括表示</li>
+                <li>作業の流れがスムーズ</li>
+                <li>情報の見落としを防止</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（詳細パネル）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="showCustomerDetail" class="btn btn-primary text-xs">顧客詳細</button>
+                  <button id="showTaskDetail" class="btn text-xs">タスク詳細</button>
+                  <button id="showActivityLog" class="btn text-xs">アクティビティ</button>
+                </div>
+                <div id="detailPanelResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">顧客詳細パネル</div>
+                  <div class="space-y-1">
+                    <div><strong>顧客ID:</strong> C001</div>
+                    <div><strong>会社名:</strong> 株式会社ABC</div>
+                    <div><strong>契約種別:</strong> 標準プラン</div>
+                    <div><strong>開始日:</strong> 2025-01-15</div>
+                    <div><strong>担当者:</strong> 山田太郎</div>
+                    <div><strong>関連タスク:</strong> 3件</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Hub Screen -->
+        <article id="art_fe_hub_screen" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_hub_screen" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="fe_hub_screen" />
+              <span class="font-semibold">各画面遷移前にハブ画面を設ける</span>
+              <span class="badge">ナビゲーションハブ・メニュー</span>
+            </label>
+            <div class="price">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>ナビゲーションハブ・メニュー画面の提供</li>
+                <li>画面遷移の中央管理</li>
+                <li>アクセス権限に応じた画面表示制御</li>
+                <li>ブレッドクラム・履歴管理</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>画面間の移動がスムーズ</li>
+                <li>現在位置が常に把握できる</li>
+                <li>権限に応じた適切な画面表示</li>
+                <li>操作性の向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（ハブ画面）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">ナビゲーションメニュー</div>
+                    <div class="space-y-1">
+                      <button id="hubNavCustomers" class="btn w-full text-xs text-left">顧客管理</button>
+                      <button id="hubNavTasks" class="btn w-full text-xs text-left">タスク管理</button>
+                      <button id="hubNavStaff" class="btn w-full text-xs text-left">スタッフ管理</button>
+                      <button id="hubNavReports" class="btn w-full text-xs text-left">レポート</button>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">画面遷移履歴</div>
+                    <div id="hubNavigationHistory" class="text-xs space-y-1">
+                      <div>ホーム → 顧客管理</div>
+                      <div>顧客管理 → タスク管理</div>
+                      <div class="text-gray-400">現在: タスク管理</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="hubScreenResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">ハブ画面機能</div>
+                  <div class="space-y-1">
+                    <div>✓ ナビゲーションメニュー表示</div>
+                    <div>✓ 画面遷移履歴管理</div>
+                    <div>✓ 権限に応じたメニュー表示</div>
+                    <div>✓ ブレッドクラム表示</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- FE: Customize Screen -->
+        <article id="art_fe_customize_screen" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="fe_customize_screen" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="fe_customize_screen" />
+              <span class="font-semibold">カスタマイズ画面</span>
+              <span class="badge">レイアウト・表示項目カスタマイズ</span>
+            </label>
+            <div class="price">5,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>レイアウト・表示項目のカスタマイズ</li>
+                <li>個人設定の保存・読み込み</li>
+                <li>表示項目の表示/非表示切り替え</li>
+                <li>テーマ・色設定</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>自分好みの画面構成に調整可能</li>
+                <li>必要な情報だけを表示</li>
+                <li>作業効率の向上</li>
+                <li>使いやすい環境を構築</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（カスタマイズ画面）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">表示項目設定</div>
+                    <div class="space-y-2">
+                      <label class="flex items-center gap-2 text-xs">
+                        <input type="checkbox" id="showCustomerId" checked class="h-4 w-4" />
+                        <span>顧客IDを表示</span>
+                      </label>
+                      <label class="flex items-center gap-2 text-xs">
+                        <input type="checkbox" id="showTaskStatus" checked class="h-4 w-4" />
+                        <span>タスクステータスを表示</span>
+                      </label>
+                      <label class="flex items-center gap-2 text-xs">
+                        <input type="checkbox" id="showActivityLogCheckbox" class="h-4 w-4" />
+                        <span>アクティビティログを表示</span>
+                      </label>
+                    </div>
+                    <div class="mt-2">
+                      <label class="text-xs block mb-1">テーマ</label>
+                      <select id="themeSelect" class="border rounded px-2 py-1 text-xs w-full">
+                        <option value="light">ライト</option>
+                        <option value="dark">ダーク</option>
+                        <option value="auto">自動</option>
+                      </select>
+                    </div>
+                    <button id="saveCustomizeSettings" class="btn btn-primary w-full mt-2 text-xs">設定を保存</button>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">プレビュー</div>
+                    <div id="customizePreview" class="border rounded p-2 bg-white text-xs space-y-1">
+                      <div class="font-semibold">カスタマイズプレビュー</div>
+                      <div id="previewCustomerId" class="text-blue-600">顧客ID: C001</div>
+                      <div id="previewTaskStatus" class="text-green-600">ステータス: 進行中</div>
+                      <div id="previewActivityLog" class="text-gray-400 hidden">アクティビティ: 3件</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="customizeScreenResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">カスタマイズ設定</div>
+                  <div class="space-y-1">
+                    <div>✓ 表示項目: 顧客ID、タスクステータス</div>
+                    <div>✓ テーマ: ライト</div>
+                    <div>✓ 設定を保存しました</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -997,6 +1412,240 @@
           </div>
         </article>
 
+        <!-- BE: Auto Task Expansion -->
+        <article id="art_be_auto_task_expansion" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_auto_task_expansion" type="checkbox" class="feature-toggle h-5 w-5" data-price="9000" data-key="be_auto_task_expansion" />
+              <span class="font-semibold">自動タスク展開システム</span>
+              <span class="badge">契約種別に応じた自動生成</span>
+            </label>
+            <div class="price">9,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>契約種別に応じた自動タスク生成</li>
+                <li>日付自動計算・担当者自動割当</li>
+                <li>タスクテンプレート管理</li>
+                <li>依存関係の自動設定</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>顧客登録時に自動でタスクが生成</li>
+                <li>手作業での設定ミスを完全防止</li>
+                <li>業務の標準化と効率化を実現</li>
+                <li>プロジェクト開始が即座に可能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（自動タスク展開）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">顧客登録</div>
+                    <div class="space-y-2">
+                      <div><label class="text-xs block">会社名</label><input id="customerName" class="border rounded px-2 py-1 text-xs w-full" placeholder="株式会社ABC" /></div>
+                      <div><label class="text-xs block">契約種別</label>
+                        <select id="contractType" class="border rounded px-2 py-1 text-xs w-full">
+                          <option value="basic">ベーシックプラン</option>
+                          <option value="standard">スタンダードプラン</option>
+                          <option value="premium">プレミアムプラン</option>
+                        </select>
+                      </div>
+                      <button id="createCustomerWithTasks" class="btn btn-primary w-full text-xs">顧客登録＋タスク自動生成</button>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">自動生成されたタスク</div>
+                    <div id="autoGeneratedTasks" class="text-xs space-y-1">
+                      顧客登録を実行してください
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Real-time Delay Detection -->
+        <article id="art_be_delay_detection" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_delay_detection" type="checkbox" class="feature-toggle h-5 w-5" data-price="6000" data-key="be_delay_detection" />
+              <span class="font-semibold">リアルタイム遅延判定</span>
+              <span class="badge">自動検出・ハイライト</span>
+            </label>
+            <div class="price">6,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>目標納期との比較・遅延日数計算</li>
+                <li>遅延タスクの自動ハイライト</li>
+                <li>アラート通知・優先度設定</li>
+                <li>遅延パターンの分析</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>遅延リスクを早期発見・対策</li>
+                <li>プロジェクトの品質を維持</li>
+                <li>顧客への影響を最小化</li>
+                <li>チーム全体の意識向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（遅延判定）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="checkDelayedTasks" class="btn btn-primary text-xs">遅延チェック実行</button>
+                  <button id="showDelayStats" class="btn text-xs">遅延統計表示</button>
+                </div>
+                <div id="delayDetectionResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">遅延タスク検出結果</div>
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-red-600">
+                      <span>T003: 実装・テスト</span>
+                      <span>3日遅延</span>
+                    </div>
+                    <div class="flex justify-between text-orange-600">
+                      <span>T005: テスト実施</span>
+                      <span>1日遅延</span>
+                    </div>
+                    <div class="text-green-600">✓ その他のタスクは正常</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Auto ID Generation -->
+        <article id="art_be_auto_id" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_auto_id" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="be_auto_id" />
+              <span class="font-semibold">ID自動採番システム</span>
+              <span class="badge">プレフィックス付きID生成</span>
+            </label>
+            <div class="price">3,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>プレフィックス付きID自動生成</li>
+                <li>重複防止・連番管理</li>
+                <li>カテゴリ別ID管理</li>
+                <li>ID履歴・検索機能</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>手動でのID管理が不要</li>
+                <li>重複やミスを完全防止</li>
+                <li>データの整理・検索が容易</li>
+                <li>業務の標準化を実現</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（ID自動採番）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="flex gap-2">
+                  <button id="generateCustomerId" class="btn btn-primary text-xs">顧客ID生成</button>
+                  <button id="generateTaskId" class="btn text-xs">タスクID生成</button>
+                  <button id="generateStaffId" class="btn text-xs">スタッフID生成</button>
+                </div>
+                <div id="idGenerationResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">生成されたID</div>
+                  <div class="space-y-1">
+                    <div>C001: 顧客ID（株式会社ABC）</div>
+                    <div>T001: タスクID（要件定義）</div>
+                    <div>S001: スタッフID（山田太郎）</div>
+                    <div class="text-green-600">✓ 重複チェック完了</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- BE: Business Logic Implementation -->
+        <article id="art_be_business_logic" class="card">
+          <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="be_business_logic" type="checkbox" class="feature-toggle h-5 w-5" data-price="8000" data-key="be_business_logic" />
+              <span class="font-semibold">業務ロジック実装</span>
+              <span class="badge">日付計算・データ連携</span>
+            </label>
+            <div class="price">8,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>日付計算・オフセット処理</li>
+                <li>データ連携・同期処理</li>
+                <li>ステータス管理・状態遷移</li>
+                <li>業務ルールの自動適用</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>複雑な計算処理を自動化</li>
+                <li>データの整合性を自動維持</li>
+                <li>業務ルールの標準化</li>
+                <li>人的ミスを大幅削減</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（業務ロジック）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">日付計算デモ</div>
+                    <div class="space-y-2">
+                      <div><label class="text-xs block">開始日</label><input id="startDate" type="date" class="border rounded px-2 py-1 text-xs w-full" value="2025-01-15" /></div>
+                      <div><label class="text-xs block">オフセット日数</label><input id="offsetDays" class="border rounded px-2 py-1 text-xs w-full" value="5" /></div>
+                      <button id="calculateDates" class="btn btn-primary w-full text-xs">日付計算実行</button>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">計算結果</div>
+                    <div id="dateCalculationResult" class="text-xs space-y-1">
+                      計算ボタンを押してください
+                    </div>
+                  </div>
+                </div>
+                <div id="businessLogicResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">業務ロジック実行結果</div>
+                  <div class="space-y-1">
+                    <div>✓ 日付計算: 2025-01-15 + 5日 = 2025-01-20</div>
+                    <div>✓ ステータス更新: 進行中 → 完了</div>
+                    <div>✓ 関連データ同期: 担当者名を更新</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -1308,6 +1957,208 @@
           </div>
         </article>
 
+        <!-- DB: Multi-sheet Database -->
+        <article id="art_db_multi_sheet" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="db_multi_sheet" type="checkbox" class="feature-toggle h-5 w-5" data-price="5000" data-key="db_multi_sheet" />
+              <span class="font-semibold">複数シート連携データベース</span>
+              <span class="badge">5シート構成・リレーション管理</span>
+            </label>
+            <div class="price">5,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>5シート構成（customers, task_master, staff_master, task_progress, activity_log）</li>
+                <li>シート間のリレーション管理</li>
+                <li>データ整合性の自動チェック</li>
+                <li>関連データの自動同期</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>複雑なデータ構造を効率的に管理</li>
+                <li>データの整合性が自動で保たれる</li>
+                <li>関連情報の検索・表示が高速</li>
+                <li>データベース設計の専門知識不要</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（シート連携）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">シート構成</div>
+                    <div class="text-xs space-y-1">
+                      <div>📊 customers（顧客マスタ）</div>
+                      <div>📋 task_master（タスクテンプレート）</div>
+                      <div>👥 staff_master（スタッフマスタ）</div>
+                      <div>📈 task_progress（タスク進行）</div>
+                      <div>📝 activity_log（アクティビティ）</div>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">リレーション例</div>
+                    <div class="text-xs space-y-1">
+                      <div>C001 → 3件のタスク</div>
+                      <div>T001 → 2件の進行記録</div>
+                      <div>S001 → 5件のアクティビティ</div>
+                      <div class="text-green-600">✓ 全データ整合性OK</div>
+                    </div>
+                  </div>
+                </div>
+                <button id="testSheetIntegration" class="btn btn-primary text-xs">シート連携テスト実行</button>
+                <div id="sheetIntegrationResult" class="border rounded-lg p-3 bg-gray-50 text-xs">シート間のデータ連携結果がここに表示されます</div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- DB: Data Validation Rules -->
+        <article id="art_db_validation_rules" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="db_validation_rules" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="db_validation_rules" />
+              <span class="font-semibold">データ検証ルール設定</span>
+              <span class="badge">ドロップダウン制約・入力制限</span>
+            </label>
+            <div class="price">2,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>ドロップダウン制約・選択肢制限</li>
+                <li>入力形式チェック・文字数制限</li>
+                <li>必須項目の自動チェック</li>
+                <li>エラーメッセージの自動表示</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>データ入力ミスを完全防止</li>
+                <li>データの品質が自動で保たれる</li>
+                <li>入力方法が明確で分かりやすい</li>
+                <li>後からデータ修正する手間を削減</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（データ検証）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">入力制限デモ</div>
+                    <div class="space-y-2">
+                      <div><label class="text-xs block">契約種別</label>
+                        <select class="border rounded px-2 py-1 text-xs w-full">
+                          <option value="">選択してください</option>
+                          <option value="basic">ベーシックプラン</option>
+                          <option value="standard">スタンダードプラン</option>
+                          <option value="premium">プレミアムプラン</option>
+                        </select>
+                      </div>
+                      <div><label class="text-xs block">ステータス</label>
+                        <select class="border rounded px-2 py-1 text-xs w-full">
+                          <option value="">選択してください</option>
+                          <option value="未着手">未着手</option>
+                          <option value="進行中">進行中</option>
+                          <option value="完了">完了</option>
+                          <option value="停止中">停止中</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">検証結果</div>
+                    <div id="validationRulesResult" class="text-xs space-y-1">
+                      <div class="text-green-600">✓ 契約種別: 有効な選択</div>
+                      <div class="text-green-600">✓ ステータス: 有効な選択</div>
+                      <div class="text-green-600">✓ 全項目: 検証OK</div>
+                    </div>
+                  </div>
+                </div>
+                <button id="testValidationRules" class="btn btn-primary text-xs">検証ルールテスト実行</button>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- DB: Auto Data Update -->
+        <article id="art_db_auto_update" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="db_auto_update" type="checkbox" class="feature-toggle h-5 w-5" data-price="2000" data-key="db_auto_update" />
+              <span class="font-semibold">関連データ自動更新</span>
+              <span class="badge">マスタ変更時の連携動作</span>
+            </label>
+            <div class="price">2,000円</div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれる機能</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>マスタデータ変更時の自動同期</li>
+                <li>関連レコードの一括更新</li>
+                <li>データ整合性の自動維持</li>
+                <li>更新履歴の自動記録</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>手動での関連データ更新が不要</li>
+                <li>データの整合性が自動で保たれる</li>
+                <li>更新漏れによるミスを防止</li>
+                <li>作業効率が大幅に向上</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（自動更新）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">マスタ変更デモ</div>
+                    <div class="space-y-2">
+                      <div><label class="text-xs block">スタッフ名変更</label>
+                        <div class="flex gap-1">
+                          <input id="oldStaffName" class="border rounded px-2 py-1 text-xs w-full" value="山田太郎" readonly />
+                          <span class="text-xs self-center">→</span>
+                          <input id="newStaffName" class="border rounded px-2 py-1 text-xs w-full" placeholder="新しい名前" />
+                        </div>
+                      </div>
+                      <button id="updateStaffName" class="btn btn-primary w-full text-xs">スタッフ名更新</button>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">自動更新結果</div>
+                    <div id="autoUpdateResult" class="text-xs space-y-1">
+                      スタッフ名更新を実行してください
+                    </div>
+                  </div>
+                </div>
+                <div id="autoUpdateDetails" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">自動更新されたデータ</div>
+                  <div class="space-y-1">
+                    <div>✓ task_progress: 3件の担当者名を更新</div>
+                    <div>✓ activity_log: 5件の記録者名を更新</div>
+                    <div>✓ 関連データ: 全て正常に同期完了</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -1459,6 +2310,84 @@
           </div>
         </article>
 
+        <article id="art_support_business" class="card">
+          <div class="px-4 py-3 border-b flex items-center justify-between">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input id="support_business" type="checkbox" class="feature-toggle h-5 w-5" data-price="3000" data-key="support_business" data-period="monthly" />
+              <span class="font-semibold">業務システム保守</span>
+              <span class="badge">月2回・軽微修正対応</span>
+            </label>
+            <div class="price">3,000円 <span class="text-xs text-gray-600">/ 月</span></div>
+          </div>
+          <div class="grid md:grid-cols-2">
+            <div class="p-4 border-r">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">含まれるサービス</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>軽微な修正対応（月2回・各1時間以内）</li>
+                <li>データバックアップ・復元</li>
+                <li>不具合対応・緊急修正</li>
+                <li>システム監視・稼働状況確認</li>
+              </ul>
+            </div>
+            <div class="p-4">
+              <div class="text-[11px] font-semibold text-slate-500 mb-2">お客さまにとっての効果</div>
+              <ul class="list-disc ml-5 text-sm space-y-1">
+                <li>業務システムの安定稼働を継続</li>
+                <li>データ消失リスクを完全回避</li>
+                <li>緊急時の迅速な対応で業務継続</li>
+                <li>システム運用の負担を大幅軽減</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-4 py-3 border-t">
+            <details>
+              <summary class="cursor-pointer text-sm font-semibold">実際に動かしてみる（業務システム保守）</summary>
+              <div class="mt-3 space-y-3">
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">保守依頼フォーム</div>
+                    <div class="space-y-2">
+                      <div><label class="text-xs block">修正内容</label>
+                        <select class="border rounded px-2 py-1 text-xs w-full">
+                          <option value="">選択してください</option>
+                          <option value="bug">不具合修正</option>
+                          <option value="feature">機能追加</option>
+                          <option value="data">データ修正</option>
+                          <option value="backup">バックアップ</option>
+                        </select>
+                      </div>
+                      <div><label class="text-xs block">緊急度</label>
+                        <select class="border rounded px-2 py-1 text-xs w-full">
+                          <option value="normal">通常</option>
+                          <option value="urgent">緊急</option>
+                        </select>
+                      </div>
+                      <button id="submitBusinessSupport" class="btn btn-primary w-full text-xs">保守依頼送信</button>
+                    </div>
+                  </div>
+                  <div class="bg-slate-50 border rounded-lg p-3">
+                    <div class="text-xs font-semibold mb-2">保守状況</div>
+                    <div id="businessSupportStatus" class="text-xs space-y-1">
+                      <div>✓ システム稼働: 正常</div>
+                      <div>✓ 最終バックアップ: 2025-01-15</div>
+                      <div>✓ 今月の修正回数: 1/2回</div>
+                      <div>✓ 対応可能時間: 平日10:00-18:00</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="businessSupportResult" class="border rounded-lg p-3 bg-gray-50 text-xs">
+                  <div class="font-semibold mb-2">保守対応履歴</div>
+                  <div class="space-y-1">
+                    <div>2025-01-15: データバックアップ実行</div>
+                    <div>2025-01-10: 表示不具合修正</div>
+                    <div>2025-01-05: システム監視確認</div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -1495,7 +2424,7 @@
       </div>
     </div>
     
-    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※全24項目から選択可能。各機能には実際に動かせる体験デモが付いています。月額項目（アフターサポート）は別に計算されます。</p>
+    <p class="text-xs text-gray-500 mt-3 leading-relaxed">※全38項目から選択可能。各機能には実際に動かせる体験デモが付いています。月額項目（アフターサポート）は別に計算されます。</p>
   </aside>
 
   <script>
@@ -2002,6 +2931,436 @@
         `;
       });
     }
+
+    // ===== NEW DEMO FUNCTIONS FOR TASK MANAGEMENT APP =====
+    
+    // Business Master Management Demo
+    const demoCustomerMaster = document.getElementById('demoCustomerMaster');
+    const demoStaffMaster = document.getElementById('demoStaffMaster');
+    const demoTaskMaster = document.getElementById('demoTaskMaster');
+    const masterDemoResult = document.getElementById('masterDemoResult');
+    
+    if (demoCustomerMaster) {
+      demoCustomerMaster.addEventListener('click', () => {
+        masterDemoResult.innerHTML = '<div class="text-green-600">✓ 顧客マスタ一覧を表示しました（3件）</div>';
+      });
+    }
+    
+    if (demoStaffMaster) {
+      demoStaffMaster.addEventListener('click', () => {
+        masterDemoResult.innerHTML = '<div class="text-green-600">✓ スタッフマスタ一覧を表示しました（3件）</div>';
+      });
+    }
+    
+    if (demoTaskMaster) {
+      demoTaskMaster.addEventListener('click', () => {
+        masterDemoResult.innerHTML = '<div class="text-green-600">✓ タスクマスタ一覧を表示しました（3件）</div>';
+      });
+    }
+
+    // Task Progress Management Demo
+    const viewAllTasks = document.getElementById('viewAllTasks');
+    const viewDelayedTasks = document.getElementById('viewDelayedTasks');
+    const viewStaffTasks = document.getElementById('viewStaffTasks');
+    const viewMilestoneTasks = document.getElementById('viewMilestoneTasks');
+    const taskViewResult = document.getElementById('taskViewResult');
+    
+    if (viewAllTasks) {
+      viewAllTasks.addEventListener('click', () => {
+        taskViewResult.innerHTML = `
+          <div class="font-semibold mb-2">全タスクビュー</div>
+          <div class="space-y-1">
+            <div class="flex justify-between">
+              <span>T001: 要件定義</span>
+              <span class="text-green-600">完了</span>
+            </div>
+            <div class="flex justify-between">
+              <span>T002: 設計書作成</span>
+              <span class="text-yellow-600">進行中</span>
+            </div>
+            <div class="flex justify-between">
+              <span>T003: 実装・テスト</span>
+              <span class="text-red-600">遅延</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+    
+    if (viewDelayedTasks) {
+      viewDelayedTasks.addEventListener('click', () => {
+        taskViewResult.innerHTML = `
+          <div class="font-semibold mb-2">遅延タスクビュー</div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-red-600">
+              <span>T003: 実装・テスト</span>
+              <span>3日遅延</span>
+            </div>
+            <div class="flex justify-between text-orange-600">
+              <span>T005: テスト実施</span>
+              <span>1日遅延</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Auto Task Expansion Demo
+    const createCustomerWithTasks = document.getElementById('createCustomerWithTasks');
+    const autoGeneratedTasks = document.getElementById('autoGeneratedTasks');
+    
+    if (createCustomerWithTasks) {
+      createCustomerWithTasks.addEventListener('click', () => {
+        const contractType = document.getElementById('contractType').value;
+        const customerName = document.getElementById('customerName').value || '株式会社ABC';
+        
+        let tasks = [];
+        if (contractType === 'basic') {
+          tasks = ['要件定義', '基本設計', '実装'];
+        } else if (contractType === 'standard') {
+          tasks = ['要件定義', '基本設計', '詳細設計', '実装', 'テスト'];
+        } else if (contractType === 'premium') {
+          tasks = ['要件定義', '基本設計', '詳細設計', '実装', 'テスト', 'デプロイ', '運用開始'];
+        }
+        
+        autoGeneratedTasks.innerHTML = `
+          <div class="font-semibold mb-2">${customerName}の自動生成タスク</div>
+          <div class="space-y-1">
+            ${tasks.map((task, index) => `<div>${index + 1}. ${task}</div>`).join('')}
+          </div>
+          <div class="text-green-600 mt-2">✓ ${tasks.length}件のタスクを自動生成しました</div>
+        `;
+      });
+    }
+
+    // Delay Detection Demo
+    const checkDelayedTasks = document.getElementById('checkDelayedTasks');
+    const delayDetectionResult = document.getElementById('delayDetectionResult');
+    
+    if (checkDelayedTasks) {
+      checkDelayedTasks.addEventListener('click', () => {
+        delayDetectionResult.innerHTML = `
+          <div class="font-semibold mb-2">遅延タスク検出結果</div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-red-600">
+              <span>T003: 実装・テスト</span>
+              <span>3日遅延</span>
+            </div>
+            <div class="flex justify-between text-orange-600">
+              <span>T005: テスト実施</span>
+              <span>1日遅延</span>
+            </div>
+            <div class="text-green-600">✓ その他のタスクは正常</div>
+          </div>
+        `;
+      });
+    }
+
+    // ID Generation Demo
+    const generateCustomerId = document.getElementById('generateCustomerId');
+    const generateTaskId = document.getElementById('generateTaskId');
+    const generateStaffId = document.getElementById('generateStaffId');
+    const idGenerationResult = document.getElementById('idGenerationResult');
+    
+    if (generateCustomerId) {
+      generateCustomerId.addEventListener('click', () => {
+        idGenerationResult.innerHTML = `
+          <div class="font-semibold mb-2">生成されたID</div>
+          <div class="space-y-1">
+            <div>C001: 顧客ID（株式会社ABC）</div>
+            <div>T001: タスクID（要件定義）</div>
+            <div>S001: スタッフID（山田太郎）</div>
+            <div class="text-green-600">✓ 重複チェック完了</div>
+          </div>
+        `;
+      });
+    }
+
+    // Business Logic Demo
+    const calculateDates = document.getElementById('calculateDates');
+    const dateCalculationResult = document.getElementById('dateCalculationResult');
+    
+    if (calculateDates) {
+      calculateDates.addEventListener('click', () => {
+        const startDate = document.getElementById('startDate').value;
+        const offsetDays = parseInt(document.getElementById('offsetDays').value) || 5;
+        
+        const start = new Date(startDate);
+        const end = new Date(start);
+        end.setDate(start.getDate() + offsetDays);
+        
+        dateCalculationResult.innerHTML = `
+          <div class="font-semibold mb-2">計算結果</div>
+          <div class="space-y-1">
+            <div>開始日: ${startDate}</div>
+            <div>オフセット: ${offsetDays}日</div>
+            <div>終了日: ${end.toISOString().split('T')[0]}</div>
+            <div class="text-green-600">✓ 日付計算完了</div>
+          </div>
+        `;
+      });
+    }
+
+    // Sheet Integration Demo
+    const testSheetIntegration = document.getElementById('testSheetIntegration');
+    const sheetIntegrationResult = document.getElementById('sheetIntegrationResult');
+    
+    if (testSheetIntegration) {
+      testSheetIntegration.addEventListener('click', () => {
+        sheetIntegrationResult.innerHTML = `
+          <div class="font-semibold mb-2">シート連携テスト結果</div>
+          <div class="space-y-1">
+            <div>✓ customers → task_progress: 3件の関連データ</div>
+            <div>✓ staff_master → activity_log: 5件の関連データ</div>
+            <div>✓ task_master → task_progress: 2件の関連データ</div>
+            <div class="text-green-600">✓ 全シート間のデータ整合性OK</div>
+          </div>
+        `;
+      });
+    }
+
+    // Validation Rules Demo
+    const testValidationRules = document.getElementById('testValidationRules');
+    
+    if (testValidationRules) {
+      testValidationRules.addEventListener('click', () => {
+        const validationRulesResult = document.getElementById('validationRulesResult');
+        validationRulesResult.innerHTML = `
+          <div class="text-green-600">✓ 契約種別: 有効な選択</div>
+          <div class="text-green-600">✓ ステータス: 有効な選択</div>
+          <div class="text-green-600">✓ 全項目: 検証OK</div>
+        `;
+      });
+    }
+
+    // Auto Update Demo
+    const updateStaffName = document.getElementById('updateStaffName');
+    const autoUpdateResult = document.getElementById('autoUpdateResult');
+    
+    if (updateStaffName) {
+      updateStaffName.addEventListener('click', () => {
+        const newName = document.getElementById('newStaffName').value || '新しい名前';
+        autoUpdateResult.innerHTML = `
+          <div class="font-semibold mb-2">自動更新結果</div>
+          <div class="space-y-1">
+            <div>✓ staff_master: 山田太郎 → ${newName}</div>
+            <div>✓ task_progress: 3件の担当者名を更新</div>
+            <div>✓ activity_log: 5件の記録者名を更新</div>
+            <div class="text-green-600">✓ 関連データ: 全て正常に同期完了</div>
+          </div>
+        `;
+      });
+    }
+
+    // Business Support Demo
+    const submitBusinessSupport = document.getElementById('submitBusinessSupport');
+    const businessSupportResult = document.getElementById('businessSupportResult');
+    
+    if (submitBusinessSupport) {
+      submitBusinessSupport.addEventListener('click', () => {
+        businessSupportResult.innerHTML = `
+          <div class="font-semibold mb-2">保守依頼受付完了</div>
+          <div class="space-y-1">
+            <div>依頼ID: BS-${Date.now().toString().slice(-6)}</div>
+            <div>対応予定: 24時間以内</div>
+            <div>今月の修正回数: 2/2回（上限に達しました）</div>
+            <div class="text-green-600">✓ 保守依頼を正常に受付ました</div>
+          </div>
+        `;
+      });
+    }
+
+    // Inline Editing Demo Functions
+    window.updateTaskStatus = function(select) {
+      const inlineEditResult = document.getElementById('inlineEditResult');
+      inlineEditResult.innerHTML = `<div class="text-green-600">✓ ステータスを「${select.value}」に更新しました</div>`;
+    };
+    
+    window.updateTaskAssignee = function(select) {
+      const inlineEditResult = document.getElementById('inlineEditResult');
+      inlineEditResult.innerHTML = `<div class="text-green-600">✓ 担当者を「${select.value}」に更新しました</div>`;
+    };
+    
+    window.updateTaskBall = function(select) {
+      const inlineEditResult = document.getElementById('inlineEditResult');
+      inlineEditResult.innerHTML = `<div class="text-green-600">✓ ボールを「${select.value}」に更新しました</div>`;
+    };
+
+    // Detail Panel Demo
+    const showCustomerDetail = document.getElementById('showCustomerDetail');
+    const showTaskDetail = document.getElementById('showTaskDetail');
+    const showActivityLog = document.getElementById('showActivityLog');
+    const detailPanelResult = document.getElementById('detailPanelResult');
+    
+    if (showCustomerDetail) {
+      showCustomerDetail.addEventListener('click', () => {
+        detailPanelResult.innerHTML = `
+          <div class="font-semibold mb-2">顧客詳細パネル</div>
+          <div class="space-y-1">
+            <div><strong>顧客ID:</strong> C001</div>
+            <div><strong>会社名:</strong> 株式会社ABC</div>
+            <div><strong>契約種別:</strong> 標準プラン</div>
+            <div><strong>開始日:</strong> 2025-01-15</div>
+            <div><strong>担当者:</strong> 山田太郎</div>
+            <div><strong>関連タスク:</strong> 3件</div>
+          </div>
+        `;
+      });
+    }
+    
+    if (showTaskDetail) {
+      showTaskDetail.addEventListener('click', () => {
+        detailPanelResult.innerHTML = `
+          <div class="font-semibold mb-2">タスク詳細パネル</div>
+          <div class="space-y-1">
+            <div><strong>タスクID:</strong> T001</div>
+            <div><strong>タスク名:</strong> 要件定義</div>
+            <div><strong>ステータス:</strong> 進行中</div>
+            <div><strong>担当者:</strong> 佐藤花子</div>
+            <div><strong>開始日:</strong> 2025-01-15</div>
+            <div><strong>予定完了日:</strong> 2025-01-20</div>
+          </div>
+        `;
+      });
+    }
+    
+    if (showActivityLog) {
+      showActivityLog.addEventListener('click', () => {
+        detailPanelResult.innerHTML = `
+          <div class="font-semibold mb-2">アクティビティログ</div>
+          <div class="space-y-1">
+            <div>2025-01-15 10:30: タスク開始</div>
+            <div>2025-01-16 14:20: 進捗更新</div>
+            <div>2025-01-17 09:15: ステータス変更</div>
+            <div>2025-01-18 16:45: コメント追加</div>
+          </div>
+        `;
+      });
+    }
+
+    // ===== Hub Screen Demo =====
+    const hubNavCustomers = document.getElementById('hubNavCustomers');
+    const hubNavTasks = document.getElementById('hubNavTasks');
+    const hubNavStaff = document.getElementById('hubNavStaff');
+    const hubNavReports = document.getElementById('hubNavReports');
+    const hubNavigationHistory = document.getElementById('hubNavigationHistory');
+    const hubScreenResult = document.getElementById('hubScreenResult');
+
+    const navigationHistory = ['ホーム'];
+    
+    function updateHubNavigation(target) {
+      navigationHistory.push(target);
+      if (navigationHistory.length > 3) {
+        navigationHistory.shift();
+      }
+      
+      let historyHtml = '';
+      for (let i = 0; i < navigationHistory.length - 1; i++) {
+        historyHtml += `<div>${navigationHistory[i]} → ${navigationHistory[i + 1]}</div>`;
+      }
+      historyHtml += `<div class="text-gray-400">現在: ${navigationHistory[navigationHistory.length - 1]}</div>`;
+      
+      hubNavigationHistory.innerHTML = historyHtml;
+      
+      hubScreenResult.innerHTML = `
+        <div class="font-semibold mb-2">ハブ画面機能</div>
+        <div class="space-y-1">
+          <div>✓ ナビゲーションメニュー表示</div>
+          <div>✓ 画面遷移履歴管理</div>
+          <div>✓ 権限に応じたメニュー表示</div>
+          <div>✓ ブレッドクラム表示</div>
+          <div class="text-green-600 mt-2">→ ${target}画面に遷移しました</div>
+        </div>
+      `;
+    }
+
+    if (hubNavCustomers) {
+      hubNavCustomers.addEventListener('click', () => updateHubNavigation('顧客管理'));
+    }
+    if (hubNavTasks) {
+      hubNavTasks.addEventListener('click', () => updateHubNavigation('タスク管理'));
+    }
+    if (hubNavStaff) {
+      hubNavStaff.addEventListener('click', () => updateHubNavigation('スタッフ管理'));
+    }
+    if (hubNavReports) {
+      hubNavReports.addEventListener('click', () => updateHubNavigation('レポート'));
+    }
+
+    // ===== Customize Screen Demo =====
+    const showCustomerId = document.getElementById('showCustomerId');
+    const showTaskStatus = document.getElementById('showTaskStatus');
+    const showActivityLogCheckbox = document.getElementById('showActivityLogCheckbox');
+    const themeSelect = document.getElementById('themeSelect');
+    const saveCustomizeSettings = document.getElementById('saveCustomizeSettings');
+    const customizeScreenResult = document.getElementById('customizeScreenResult');
+    const previewCustomerId = document.getElementById('previewCustomerId');
+    const previewTaskStatus = document.getElementById('previewTaskStatus');
+    const previewActivityLog = document.getElementById('previewActivityLog');
+    const customizePreview = document.getElementById('customizePreview');
+
+    function updateCustomizePreview() {
+      if (showCustomerId && previewCustomerId) {
+        previewCustomerId.style.display = showCustomerId.checked ? 'block' : 'none';
+      }
+      if (showTaskStatus && previewTaskStatus) {
+        previewTaskStatus.style.display = showTaskStatus.checked ? 'block' : 'none';
+      }
+      if (showActivityLogCheckbox && previewActivityLog) {
+        if (showActivityLogCheckbox.checked) {
+          previewActivityLog.classList.remove('hidden');
+        } else {
+          previewActivityLog.classList.add('hidden');
+        }
+      }
+      if (themeSelect && customizePreview) {
+        const theme = themeSelect.value;
+        if (theme === 'dark') {
+          customizePreview.classList.add('bg-gray-800', 'text-white');
+          customizePreview.classList.remove('bg-white');
+        } else {
+          customizePreview.classList.remove('bg-gray-800', 'text-white');
+          customizePreview.classList.add('bg-white');
+        }
+      }
+    }
+
+    if (showCustomerId) {
+      showCustomerId.addEventListener('change', updateCustomizePreview);
+    }
+    if (showTaskStatus) {
+      showTaskStatus.addEventListener('change', updateCustomizePreview);
+    }
+    if (showActivityLogCheckbox) {
+      showActivityLogCheckbox.addEventListener('change', updateCustomizePreview);
+    }
+    if (themeSelect) {
+      themeSelect.addEventListener('change', updateCustomizePreview);
+    }
+
+    if (saveCustomizeSettings) {
+      saveCustomizeSettings.addEventListener('click', () => {
+        const enabledItems = [];
+        if (showCustomerId && showCustomerId.checked) enabledItems.push('顧客ID');
+        if (showTaskStatus && showTaskStatus.checked) enabledItems.push('タスクステータス');
+        if (showActivityLogCheckbox && showActivityLogCheckbox.checked) enabledItems.push('アクティビティログ');
+        
+        const theme = themeSelect ? themeSelect.value : 'light';
+        const themeText = theme === 'light' ? 'ライト' : theme === 'dark' ? 'ダーク' : '自動';
+        
+        customizeScreenResult.innerHTML = `
+          <div class="font-semibold mb-2">カスタマイズ設定</div>
+          <div class="space-y-1">
+            <div>✓ 表示項目: ${enabledItems.join('、') || 'なし'}</div>
+            <div>✓ テーマ: ${themeText}</div>
+            <div class="text-green-600">✓ 設定を保存しました</div>
+          </div>
+        `;
+      });
+    }
+
+    // Initialize preview
+    updateCustomizePreview();
   </script>
 </body>
 </html>
